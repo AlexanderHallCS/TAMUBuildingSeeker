@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		11A829F927023F320005FF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829F827023F320005FF3B /* AppDelegate.swift */; };
 		11A829FB27023F320005FF3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829FA27023F320005FF3B /* SceneDelegate.swift */; };
-		11A829FD27023F320005FF3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829FC27023F320005FF3B /* ViewController.swift */; };
+		11A829FD27023F320005FF3B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829FC27023F320005FF3B /* StartViewController.swift */; };
 		11A82A0027023F320005FF3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A829FE27023F320005FF3B /* Main.storyboard */; };
 		11A82A0227023F380005FF3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0127023F380005FF3B /* Assets.xcassets */; };
 		11A82A0527023F380005FF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0327023F380005FF3B /* LaunchScreen.storyboard */; };
 		11A82A0D270241D50005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 11A82A0C270241D40005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel */; };
+		11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABF35F270AB387000EDAE8 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11A829F527023F320005FF3B /* TAMUBuildingSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAMUBuildingSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A829F827023F320005FF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A829FA27023F320005FF3B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		11A829FC27023F320005FF3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		11A829FC27023F320005FF3B /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		11A829FF27023F320005FF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11A82A0127023F380005FF3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11A82A0427023F380005FF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11A82A0627023F380005FF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11A82A0C270241D40005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = UpdatedV2ThirteenCampusBuildings.mlmodel; sourceTree = "<group>"; };
+		11ABF35F270AB387000EDAE8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +63,8 @@
 				11A82A0C270241D40005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel */,
 				11A829F827023F320005FF3B /* AppDelegate.swift */,
 				11A829FA27023F320005FF3B /* SceneDelegate.swift */,
-				11A829FC27023F320005FF3B /* ViewController.swift */,
+				11A829FC27023F320005FF3B /* StartViewController.swift */,
+				11ABF35F270AB387000EDAE8 /* MapViewController.swift */,
 				11A829FE27023F320005FF3B /* Main.storyboard */,
 				11A82A0127023F380005FF3B /* Assets.xcassets */,
 				11A82A0327023F380005FF3B /* LaunchScreen.storyboard */,
@@ -142,8 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A82A0D270241D50005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel in Sources */,
-				11A829FD27023F320005FF3B /* ViewController.swift in Sources */,
+				11A829FD27023F320005FF3B /* StartViewController.swift in Sources */,
 				11A829F927023F320005FF3B /* AppDelegate.swift in Sources */,
+				11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */,
 				11A829FB27023F320005FF3B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

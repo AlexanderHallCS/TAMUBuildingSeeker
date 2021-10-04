@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,6 +36,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSk-bJ-NHd">
+                                <rect key="frame" x="262" y="44" width="132" height="65"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Map Test">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" red="0.16651803779999999" green="1" blue="0.27444330639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="qzH-oK-ewC" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="1zM-XO-42d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -43,17 +55,22 @@
                             <constraint firstItem="idH-CH-2Mh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.740097" id="0Sx-rZ-m17"/>
                             <constraint firstAttribute="bottom" secondItem="7tY-ML-8WJ" secondAttribute="bottom" constant="99" id="6bp-gp-ey1"/>
                             <constraint firstItem="7tY-ML-8WJ" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.108259" id="Hfs-DU-PET"/>
+                            <constraint firstItem="MSk-bJ-NHd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.318841" id="OeA-Vh-kn1"/>
                             <constraint firstItem="es6-y5-Ok4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PGR-qu-9vv"/>
                             <constraint firstItem="es6-y5-Ok4" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="XM8-mG-lbh"/>
                             <constraint firstItem="7tY-ML-8WJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yg2-yi-Yf1"/>
                             <constraint firstItem="7tY-ML-8WJ" firstAttribute="top" secondItem="idH-CH-2Mh" secondAttribute="bottom" constant="70" id="aKg-cK-BlU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MSk-bJ-NHd" secondAttribute="trailing" constant="20" id="e5i-EB-lTj"/>
                             <constraint firstItem="7tY-ML-8WJ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.695652" id="eSG-Uc-UvZ"/>
                             <constraint firstItem="idH-CH-2Mh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fvI-Ct-4tI"/>
                             <constraint firstItem="es6-y5-Ok4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wPr-3U-xes"/>
+                            <constraint firstItem="MSk-bJ-NHd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="wZG-Ga-Rm6"/>
                             <constraint firstItem="es6-y5-Ok4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="xMO-ql-4MT"/>
                             <constraint firstItem="idH-CH-2Mh" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.48817" id="z4r-Mp-zOa"/>
+                            <constraint firstItem="MSk-bJ-NHd" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0725446" id="zQI-OB-wNB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="QhZ-oy-GLp"/>
                     <connections>
                         <outlet property="resultLabel" destination="idH-CH-2Mh" id="Rl9-Yd-E3a"/>
                     </connections>
@@ -61,6 +78,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="84.375"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="yqf-tG-5kC">
+            <objects>
+                <viewController id="qzH-oK-ewC" customClass="MapViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sJC-Tk-78Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="z4n-yJ-ITK">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtH-bk-SpM">
+                                <rect key="frame" x="15" y="44" width="78" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="zbN-jv-TQf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="511-9Q-2Gc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="3x5-bl-uDh"/>
+                            <constraint firstItem="z4n-yJ-ITK" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" id="Qx4-Cb-vWl"/>
+                            <constraint firstItem="z4n-yJ-ITK" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.246652" constant="675" id="TFd-Lx-zeK"/>
+                            <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerY" secondItem="sJC-Tk-78Q" secondAttribute="centerY" id="jIj-S2-IYd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="z4n-yJ-ITK" id="JD0-eV-idp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUm-zX-EGA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="957.97101449275374" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>

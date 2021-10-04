@@ -10,7 +10,7 @@ import Vision
 import CoreML
 import ImageIO
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class StartViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet var resultLabel: UILabel!
     
