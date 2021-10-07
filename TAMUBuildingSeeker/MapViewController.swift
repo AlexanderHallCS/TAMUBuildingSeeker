@@ -8,32 +8,51 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate  {
 
     @IBOutlet var mapView: MKMapView!
+    
+    let manager = CLLocationManager()
+    
+    let buildingCoordinates: [String: (CLLocationCoordinate2D)] = ["BSBW":CLLocationCoordinate2D(latitude: 30.61567,longitude: -96.33946)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.mapType = .mutedStandard
-        self.mapView.delegate = self;
+        self.mapView.delegate = self
+        manager.delegate = self
+        manager.requestLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["BSBW"]!))
+            
+            request.requestsAlternateRoutes = true
+            request.transportType = .walking
+            
+            let buildingMarker = MKPointAnnotation()
+            buildingMarker.coordinate = buildingCoordinates["BSBW"]!
+            buildingMarker.title = "Biological Sciences Building West"
+            mapView.addAnnotation(buildingMarker)
 
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 40.7127, longitude: -74.0059), addressDictionary: nil))
-//        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.783333, longitude: -122.416667), addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 40.7127, longitude: -74.0099), addressDictionary: nil))
-        request.requestsAlternateRoutes = true
-        request.transportType = .walking
+            let directions = MKDirections(request: request)
 
-        let directions = MKDirections(request: request)
+            directions.calculate { [unowned self] response, error in
+                guard let unwrappedResponse = response else { return }
 
-        directions.calculate { [unowned self] response, error in
-            guard let unwrappedResponse = response else { return }
-
-            for route in unwrappedResponse.routes {
-                self.mapView.addOverlay(route.polyline)
-                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                for route in unwrappedResponse.routes {
+                    self.mapView.addOverlay(route.polyline)
+                    self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                }
             }
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to fetch user's location: \(error.localizedDescription)")
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
