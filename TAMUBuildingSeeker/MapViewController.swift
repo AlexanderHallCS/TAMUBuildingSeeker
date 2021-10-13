@@ -22,6 +22,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.mapView.delegate = self
         manager.delegate = self
         manager.requestLocation()
+        manager.startUpdatingLocation()
+        
+        let buildingMarker = MKPointAnnotation()
+        buildingMarker.coordinate = buildingCoordinates["BSBW"]!
+        buildingMarker.title = "Biological Sciences Building West"
+        mapView.addAnnotation(buildingMarker)
+        
+        mapView.showsUserLocation = true
     }
     // TODO: Request permission to use location (rather than have it set to true in Settings app by default) --> See info.plist if it's bugging out
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -32,16 +40,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             request.requestsAlternateRoutes = true
             request.transportType = .walking
-            
-            let currentLocationMarker = MKPointAnnotation()
-            currentLocationMarker.coordinate = location.coordinate
-            currentLocationMarker.title = "You"
-            mapView.addAnnotation(currentLocationMarker)
-            
-            let buildingMarker = MKPointAnnotation()
-            buildingMarker.coordinate = buildingCoordinates["BSBW"]!
-            buildingMarker.title = "Biological Sciences Building West"
-            mapView.addAnnotation(buildingMarker)
 
             let directions = MKDirections(request: request)
 
@@ -49,8 +47,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 guard let unwrappedResponse = response else { return }
 
                 for route in unwrappedResponse.routes {
-                    self.mapView.addOverlay(route.polyline)
-                    self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                    mapView.addOverlay(route.polyline)
+                    mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
                 }
             }
         }
