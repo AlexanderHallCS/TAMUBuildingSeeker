@@ -157,7 +157,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                    return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                 }
                 self.classificationResult = descriptions.map { classification in
-                    return "\(self.renameResult(result: String(classification.split(separator: " ")[1])))   \(classification.split(separator: " ")[0])"
+                    let resultsData = classification.split(separator: " ")
+                    let percentage = Int(resultsData[0].replacingOccurrences(of: "(0.", with: "").replacingOccurrences(of: ")", with: ""))!
+                    return "\(self.renameResult(result: String(resultsData[1])))  \(percentage)%"
                 }
                 self.performSegue(withIdentifier: "mapToTable", sender: nil)
                 print("DESCRIPTIONS: " + descriptions.description)
