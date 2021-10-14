@@ -25,7 +25,7 @@ class SelectViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         
         // Do any additional setup after loading the view.
         pickerData = ["Annex/West Evans Library", "Biological Sciences Building West", "Butler Hall", "Engineering Activity Building A", "Engineering Activity Building B", "Engineering Activity Building C",
-        "Heldenfelds","Liberal Arts & Humanities Building","Pavillion","Peterson Building","Rudder Tower","SBISA","Student Computing Center"]
+        "Heldenfelds","Liberal Arts & Humanities Building","Pavilion","Peterson Building","Rudder Tower","SBISA","Student Computing Center"]
         
         goToMapButton.backgroundColor = #colorLiteral(red: 0.3058823529, green: 0.04705882353, blue: 0.03921568627, alpha: 1)
     }
