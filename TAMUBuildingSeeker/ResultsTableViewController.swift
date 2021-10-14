@@ -13,8 +13,6 @@ class ResultsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = "What Buildings We Recognized the Image As"
     }
 
     // MARK: - Table view data source
@@ -30,6 +28,10 @@ class ResultsTableViewController: UITableViewController {
         cell.textLabel!.text = percentages[indexPath.row]
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Our Building Results"
     }
 
     /*

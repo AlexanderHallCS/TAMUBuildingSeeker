@@ -77,32 +77,26 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         request.requestsAlternateRoutes = true
         request.transportType = .walking
-        
-        
-        let directions = MKDirections(request: request)
-
-        directions.calculate { [unowned self] response, error in
-            guard let unwrappedResponse = response else { return }
-
-            for route in unwrappedResponse.routes {
-                mapView.addOverlay(route.polyline)
-                mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-            }
-        }
     }
     
     
     // TODO: Request permission to use location (rather than have it set to true in Settings app by default) --> See info.plist if it's bugging out
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-    }
-    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            //request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
+            let directions = MKDirections(request: request)
 
-            
+            directions.calculate { [unowned self] response, error in
+                guard let unwrappedResponse = response else { return }
+
+                for route in unwrappedResponse.routes {
+                    mapView.addOverlay(route.polyline)
+                    mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                }
+            }
+            manager.stopUpdatingLocation()
         }
-    } */
+    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to fetch user's location: \(error.localizedDescription)")
@@ -162,10 +156,43 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     // Formats the classification for display; e.g. "(0.37) cliff, drop, drop-off".
                    return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                 }
-                self.classificationResult = descriptions
+                self.classificationResult = descriptions.map { classification in
+                    return "\(self.renameResult(result: String(classification.split(separator: " ")[1])))   \(classification.split(separator: " ")[0])"
+                }
                 self.performSegue(withIdentifier: "mapToTable", sender: nil)
                 print("DESCRIPTIONS: " + descriptions.description)
             }
+        }
+    }
+    
+    func renameResult(result: String) -> String {
+        switch result {
+        case "ANNEX_LIBR":
+            return "Annex and West Evans Library"
+        case "BSBW":
+            return "Biological Sciences Building West"
+        case "BTLR":
+            return "Butler Hall"
+        case "EABAA":
+            return "Engineering Activity Building A"
+        case "EABAB":
+            return "Engineering Activity Building B"
+        case "EABAC":
+            return "Engineering Activity Building C"
+        case "HELD":
+            return "Heldenfelds"
+        case "LAAH":
+            return "Liberal Arts & Humanities Building"
+        case "PAV":
+            return "Pavillion"
+        case "PETR":
+            return "Peterson Building"
+        case "RDER":
+            return "Rudder Tower"
+        case "SCC":
+            return "Student Computing Center"
+        default:
+            return result
         }
     }
     
