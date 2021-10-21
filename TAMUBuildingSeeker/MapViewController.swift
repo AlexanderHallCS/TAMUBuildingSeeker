@@ -10,6 +10,8 @@ import MapKit
 import Vision
 import CoreML
 import ImageIO
+import FirebaseCore
+import FirebaseFirestore
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
@@ -18,7 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let manager = CLLocationManager()
     
-    let buildingCoordinates: [String: (CLLocationCoordinate2D)] = ["ANNEX_LIBR":CLLocationCoordinate2D(latitude: 30.6167151,longitude: -96.3393358),"BSBW":CLLocationCoordinate2D(latitude: 30.61567,longitude: -96.33946),"BTLR":CLLocationCoordinate2D(latitude: 30.6148464,longitude: -96.3411227),"HELD":CLLocationCoordinate2D(latitude: 30.6151036,longitude: -96.3408943),"LAAH":CLLocationCoordinate2D(latitude: 30.6175581,longitude: -96.3397668),"PAV":CLLocationCoordinate2D(latitude: 30.6168331,longitude: -96.340215), "PETR":CLLocationCoordinate2D(latitude: 30.6159816,longitude: -96.338583),"RDER":CLLocationCoordinate2D(latitude: 30.6128318,longitude: -96.3424932),"SBISA":CLLocationCoordinate2D(latitude: 30.61696,longitude: -96.3457119),"SCC":CLLocationCoordinate2D(latitude: 30.6158783,longitude: -96.3400321)]
+    let buildingCoordinates: [String: (CLLocationCoordinate2D)] = ["ANNEX_LIBR":CLLocationCoordinate2D(latitude: 30.6167151,longitude: -96.3393358),"BSBW":CLLocationCoordinate2D(latitude: 30.61567,longitude: -96.33946),"BTLR":CLLocationCoordinate2D(latitude: 30.6148464,longitude: -96.3411227),"HELD":CLLocationCoordinate2D(latitude: 30.6151036,longitude: -96.3408943),"LAAH":CLLocationCoordinate2D(latitude: 30.6175581,longitude: -96.3397668),"PAV":CLLocationCoordinate2D(latitude: 30.6168331,longitude: -96.340215), "PETR":CLLocationCoordinate2D(latitude: 30.6159816,longitude: -96.338583),"RDER":CLLocationCoordinate2D(latitude: 30.613184601301068,longitude: -96.34019802129845),"SBISA":CLLocationCoordinate2D(latitude: 30.61696,longitude: -96.3457119),"SCC":CLLocationCoordinate2D(latitude: 30.6158783,longitude: -96.3400321)]
     
     var selectedBuilding = ""
     
@@ -39,6 +41,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }()
     
     var classificationResult: [String] = []
+    var didGetFirstLocation = false
+    var latitudes: [Double] = []
+    var longitudes: [Double] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,20 +103,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // TODO: Request permission to use location (rather than have it set to true in Settings app by default) --> See info.plist if it's bugging out
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
-            let directions = MKDirections(request: request)
+            if let location = locations.first {
+                if(!didGetFirstLocation) {
+                    request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
+                    let directions = MKDirections(request: request)
 
-            directions.calculate { [unowned self] response, error in
-                guard let unwrappedResponse = response else { return }
+                    directions.calculate { [unowned self] response, error in
+                        guard let unwrappedResponse = response else { return }
 
-                for route in unwrappedResponse.routes {
-                    mapView.addOverlay(route.polyline)
-                    mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                        for route in unwrappedResponse.routes {
+                            mapView.addOverlay(route.polyline)
+                            mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                        }
+                    }
+                    didGetFirstLocation = true
                 }
+                latitudes.append(locations.first!.coordinate.latitude)
+                longitudes.append(locations.first!.coordinate.longitude)
             }
-            manager.stopUpdatingLocation()
-        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -177,6 +187,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     print("Percentage: \(resultsData[0])")
                     let percentage = resultsData[0]
                     return "\(self.renameResult(result: String(resultsData[1])))  \(Int((Double(percentage)!*100).rounded()))%"
+                }
+                
+                // TODO: Make database private for writing <<<<<<<<<<<<<<<<<<
+                var ref: DocumentReference? = nil
+                ref = db.collection("WalkingPaths").addDocument(data: [
+                    "latitudes": self.latitudes,
+                    "longitudes" : self.longitudes,
+                    "responseToQuestion#" : "Yes"
+                ]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                    }
                 }
                 self.performSegue(withIdentifier: "mapToTable", sender: nil)
                 print("DESCRIPTIONS: " + descriptions.description)
