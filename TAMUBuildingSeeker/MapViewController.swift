@@ -59,7 +59,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let buildingMarker = MKPointAnnotation()
         switch(selectedBuilding) {
-        case "Annex/West Evans Library":
+        case "Evans Library Annex":
             buildingMarker.coordinate = buildingCoordinates["ANNEX_LIBR"]!
             request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["ANNEX_LIBR"]!))
         case "Butler Hall":
@@ -117,12 +117,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
                     let directions = MKDirections(request: request)
 
-                    directions.calculate { [unowned self] response, error in
+                    directions.calculate { [weak self] response, error in
                         guard let unwrappedResponse = response else { return }
 
                         for route in unwrappedResponse.routes {
-                            mapView.addOverlay(route.polyline)
-                            mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                            self!.mapView.addOverlay(route.polyline)
+                            self!.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
                         }
                     }
                     didGetFirstLocation = true
@@ -209,7 +209,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     }
                 }
                 self.performSegue(withIdentifier: "mapToTable", sender: nil)
-                print("DESCRIPTIONS: " + descriptions.description)
+                //print("DESCRIPTIONS: " + descriptions.description)
             }
         }
     }
@@ -217,7 +217,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func renameResult(result: String) -> String {
         switch result {
         case "ANNEX_LIBR":
-            return "Annex and West Evans Library"
+            return "Evans Library Annex"
         case "BSBW":
             return "Biological Sciences Building West"
         case "BTLR":
