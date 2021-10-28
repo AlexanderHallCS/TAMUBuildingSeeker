@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used to autofill the start/end location.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>TAMU Building Seeker requires access to camera for taking pictures of buildings or using photo library building pictures.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

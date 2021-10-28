@@ -18,10 +18,11 @@
 		11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABF35F270AB387000EDAE8 /* MapViewController.swift */; };
 		11FE42A22718709F0094162C /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A12718709F0094162C /* SelectViewController.swift */; };
 		11FE42A6271890B30094162C /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A5271890B30094162C /* ResultsTableViewController.swift */; };
-		B8E7CA4DA2FA2D595E5145CD /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31933033B2A85A3498E707E2 /* Pods_TAMUBuildingSeeker.framework */; };
+		2E9D7D4A2A6A2BA937666C0D /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B3C4FBE2137DA39501A96E /* Pods_TAMUBuildingSeeker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05E1DA4D3F997E7062F2A5B4 /* Pods-TAMUBuildingSeeker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.debug.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.debug.xcconfig"; sourceTree = "<group>"; };
 		111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11A829F527023F320005FF3B /* TAMUBuildingSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAMUBuildingSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A829F827023F320005FF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,9 +36,8 @@
 		11ABF35F270AB387000EDAE8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		11FE42A12718709F0094162C /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		11FE42A5271890B30094162C /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
-		31933033B2A85A3498E707E2 /* Pods_TAMUBuildingSeeker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAMUBuildingSeeker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFA6DAD5082FA2A66DF79B43 /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
-		E256D41D501BD5A03E369FA8 /* Pods-TAMUBuildingSeeker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.debug.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.debug.xcconfig"; sourceTree = "<group>"; };
+		B4B3C4FBE2137DA39501A96E /* Pods_TAMUBuildingSeeker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAMUBuildingSeeker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD598F08609E66753F500994 /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8E7CA4DA2FA2D595E5145CD /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
+				2E9D7D4A2A6A2BA937666C0D /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +58,7 @@
 				11A829F727023F320005FF3B /* TAMUBuildingSeeker */,
 				11A829F627023F320005FF3B /* Products */,
 				5D5CFA5476B87C3DD4EFA539 /* Pods */,
-				D43F60B4F0554A3C9C6881AC /* Frameworks */,
+				4194A9645484EFE31CDE491E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,21 +89,21 @@
 			path = TAMUBuildingSeeker;
 			sourceTree = "<group>";
 		};
+		4194A9645484EFE31CDE491E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4B3C4FBE2137DA39501A96E /* Pods_TAMUBuildingSeeker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5D5CFA5476B87C3DD4EFA539 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E256D41D501BD5A03E369FA8 /* Pods-TAMUBuildingSeeker.debug.xcconfig */,
-				DFA6DAD5082FA2A66DF79B43 /* Pods-TAMUBuildingSeeker.release.xcconfig */,
+				05E1DA4D3F997E7062F2A5B4 /* Pods-TAMUBuildingSeeker.debug.xcconfig */,
+				BD598F08609E66753F500994 /* Pods-TAMUBuildingSeeker.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		D43F60B4F0554A3C9C6881AC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				31933033B2A85A3498E707E2 /* Pods_TAMUBuildingSeeker.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,11 +113,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11A82A0927023F380005FF3B /* Build configuration list for PBXNativeTarget "TAMUBuildingSeeker" */;
 			buildPhases = (
-				39512077B7317750F66ACC46 /* [CP] Check Pods Manifest.lock */,
+				EE09DE8AD440B786D9155858 /* [CP] Check Pods Manifest.lock */,
 				11A829F127023F320005FF3B /* Sources */,
 				11A829F227023F320005FF3B /* Frameworks */,
 				11A829F327023F320005FF3B /* Resources */,
-				BD1E5622A227891881C70D72 /* [CP] Embed Pods Frameworks */,
+				C35B42EBA21A69E4C46018D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,7 +176,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		39512077B7317750F66ACC46 /* [CP] Check Pods Manifest.lock */ = {
+		C35B42EBA21A69E4C46018D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE09DE8AD440B786D9155858 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -196,23 +213,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BD1E5622A227891881C70D72 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -372,7 +372,7 @@
 		};
 		11A82A0A27023F380005FF3B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E256D41D501BD5A03E369FA8 /* Pods-TAMUBuildingSeeker.debug.xcconfig */;
+			baseConfigurationReference = 05E1DA4D3F997E7062F2A5B4 /* Pods-TAMUBuildingSeeker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -381,6 +381,8 @@
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "TAMU Building Seeker requires access to camera for taking pictures of buildings or using photo library building pictures.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to autofill the start/end location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -392,7 +394,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlexanderHallCS.TAMUBuildingSeeker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -403,7 +405,7 @@
 		};
 		11A82A0B27023F380005FF3B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFA6DAD5082FA2A66DF79B43 /* Pods-TAMUBuildingSeeker.release.xcconfig */;
+			baseConfigurationReference = BD598F08609E66753F500994 /* Pods-TAMUBuildingSeeker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -412,6 +414,8 @@
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "TAMU Building Seeker requires access to camera for taking pictures of buildings or using photo library building pictures.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to autofill the start/end location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -423,7 +427,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlexanderHallCS.TAMUBuildingSeeker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -75,9 +75,8 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4n-yJ-ITK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtH-bk-SpM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtH-bk-SpM">
                                 <rect key="frame" x="15" y="44" width="78" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                 <connections>
@@ -85,7 +84,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUr-8Z-rza">
-                                <rect key="frame" x="131" y="804" width="152" height="48"/>
+                                <rect key="frame" x="131" y="796" width="152" height="48"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <backgroundConfiguration key="background">
@@ -110,12 +109,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="3x5-bl-uDh"/>
+                            <constraint firstItem="jtH-bk-SpM" firstAttribute="top" secondItem="511-9Q-2Gc" secondAttribute="top" id="BFL-FC-BY7"/>
+                            <constraint firstItem="511-9Q-2Gc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jtH-bk-SpM" secondAttribute="trailing" symbolic="YES" id="CgE-TB-ebT"/>
+                            <constraint firstItem="jtH-bk-SpM" firstAttribute="leading" secondItem="sJC-Tk-78Q" secondAttribute="trailing" multiplier="15/414" id="FwO-4W-87f"/>
                             <constraint firstItem="RUr-8Z-rza" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.0535714" id="OF7-oL-b9A"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" id="Qx4-Cb-vWl"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.246652" constant="675" id="TFd-Lx-zeK"/>
-                            <constraint firstItem="511-9Q-2Gc" firstAttribute="bottom" secondItem="RUr-8Z-rza" secondAttribute="bottom" constant="10" id="ZDR-QO-zrU"/>
-                            <constraint firstItem="RUr-8Z-rza" firstAttribute="centerX" secondItem="511-9Q-2Gc" secondAttribute="centerX" id="geJ-D9-Gy3"/>
+                            <constraint firstItem="RUr-8Z-rza" firstAttribute="top" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="796/896" id="ZDR-QO-zrU"/>
+                            <constraint firstItem="RUr-8Z-rza" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="geJ-D9-Gy3"/>
+                            <constraint firstItem="jtH-bk-SpM" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.0345982" id="hjx-UK-c1z"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerY" secondItem="sJC-Tk-78Q" secondAttribute="centerY" id="jIj-S2-IYd"/>
+                            <constraint firstItem="jtH-bk-SpM" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.188406" id="jUX-yK-DFn"/>
                             <constraint firstItem="RUr-8Z-rza" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.36715" id="jgV-ud-7f2"/>
                         </constraints>
                     </view>
@@ -207,6 +211,11 @@
                                     <segue destination="qzH-oK-ewC" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="dQn-ER-IVo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSP-Zr-i7U">
+                                <rect key="frame" x="20" y="44" width="78" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nvP-4n-GNA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -214,11 +223,16 @@
                             <constraint firstItem="Nhz-E6-0c1" firstAttribute="width" secondItem="1Cd-1o-fvp" secondAttribute="width" multiplier="0.323671" id="4gt-r6-2QY"/>
                             <constraint firstItem="dUm-sI-hgM" firstAttribute="height" secondItem="1Cd-1o-fvp" secondAttribute="height" multiplier="0.0457589" id="5PA-e7-kWI"/>
                             <constraint firstItem="dUm-sI-hgM" firstAttribute="top" secondItem="nvP-4n-GNA" secondAttribute="top" constant="46" id="63L-bB-L8f"/>
+                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="height" secondItem="1Cd-1o-fvp" secondAttribute="height" multiplier="0.0345982" id="8qs-k3-5hZ"/>
                             <constraint firstItem="Nhz-E6-0c1" firstAttribute="height" secondItem="1Cd-1o-fvp" secondAttribute="height" multiplier="0.0535714" id="CEj-4b-3tv"/>
                             <constraint firstItem="dUm-sI-hgM" firstAttribute="centerX" secondItem="1Cd-1o-fvp" secondAttribute="centerX" id="Dp3-B9-7xY"/>
                             <constraint firstItem="dUm-sI-hgM" firstAttribute="width" secondItem="1Cd-1o-fvp" secondAttribute="width" multiplier="0.637681" id="Zd5-h9-Jdj"/>
+                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="width" secondItem="1Cd-1o-fvp" secondAttribute="width" multiplier="0.188406" id="acB-3W-2Se"/>
                             <constraint firstItem="nvP-4n-GNA" firstAttribute="bottom" secondItem="Nhz-E6-0c1" secondAttribute="bottom" constant="27" id="dPh-sR-5Bs"/>
+                            <constraint firstItem="nvP-4n-GNA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DSP-Zr-i7U" secondAttribute="trailing" symbolic="YES" id="oJt-sr-Gi7"/>
                             <constraint firstItem="Nhz-E6-0c1" firstAttribute="centerX" secondItem="nvP-4n-GNA" secondAttribute="centerX" id="shH-Jj-Kif"/>
+                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="leading" secondItem="nvP-4n-GNA" secondAttribute="leading" constant="20" id="uZl-Fq-ywR"/>
+                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="top" secondItem="nvP-4n-GNA" secondAttribute="top" id="v7N-L1-UNq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WrQ-qm-RcT"/>

@@ -12,6 +12,7 @@ import CoreML
 import ImageIO
 import FirebaseCore
 import FirebaseFirestore
+import GeoFire
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
@@ -20,7 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let manager = CLLocationManager()
     
-    let buildingCoordinates: [String: (CLLocationCoordinate2D)] = ["ANNEX_LIBR":CLLocationCoordinate2D(latitude: 30.6167151,longitude: -96.3393358),"BSBW":CLLocationCoordinate2D(latitude: 30.61567,longitude: -96.33946),"BTLR":CLLocationCoordinate2D(latitude: 30.6148464,longitude: -96.3411227),"HELD":CLLocationCoordinate2D(latitude: 30.6151036,longitude: -96.3408943),"LAAH":CLLocationCoordinate2D(latitude: 30.6175581,longitude: -96.3397668),"PAV":CLLocationCoordinate2D(latitude: 30.6168331,longitude: -96.340215), "PETR":CLLocationCoordinate2D(latitude: 30.6159816,longitude: -96.338583),"RDER":CLLocationCoordinate2D(latitude: 30.613184601301068,longitude: -96.34019802129845),"SBISA":CLLocationCoordinate2D(latitude: 30.61696,longitude: -96.3457119),"SCC":CLLocationCoordinate2D(latitude: 30.6158783,longitude: -96.3400321)]
+    let buildingCoordinates: [String: (CLLocationCoordinate2D)] = ["ANNEX_LIBR":CLLocationCoordinate2D(latitude: 30.6163635,longitude: -96.33843075),"BSBW":CLLocationCoordinate2D(latitude: 30.61561355,longitude: -96.33967812),"BTLR":CLLocationCoordinate2D(latitude: 30.61484579,longitude: -96.33893333),"EABAA":CLLocationCoordinate2D(latitude: 30.61593593,longitude: -96.33709296),"EABAB":CLLocationCoordinate2D(latitude: 30.61563357,longitude: -96.33749011),"EABAC":CLLocationCoordinate2D(latitude: 30.61541765, longitude: -96.33785592),"HELD":CLLocationCoordinate2D(latitude: 30.61510356,longitude: -96.33870627),"LAAH":CLLocationCoordinate2D(latitude: 30.61760828,longitude: -96.33806657),"PAV":CLLocationCoordinate2D(latitude: 30.61684315,longitude: -96.33802255), "PETR":CLLocationCoordinate2D(latitude: 30.61274081,longitude: -96.338583),"RDER":CLLocationCoordinate2D(latitude: 30.61274023,longitude: -96.34015579),"SBISA":CLLocationCoordinate2D(latitude: 30.61675223,longitude: -96.34382093),"SCC":CLLocationCoordinate2D(latitude: 30.61589394,longitude: -96.33785416)]
     
     var selectedBuilding = ""
     
@@ -42,8 +43,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var classificationResult: [String] = []
     var didGetFirstLocation = false
-    var latitudes: [Double] = []
-    var longitudes: [Double] = []
+    var coordinates: [GeoPoint] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +68,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         case "Biological Sciences Building West":
             buildingMarker.coordinate = buildingCoordinates["BSBW"]!
             request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["BSBW"]!))
+        case "Engineering Activity Building A":
+            buildingMarker.coordinate = buildingCoordinates["EABAA"]!
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["EABAA"]!))
+        case "Engineering Activity Building B":
+            buildingMarker.coordinate = buildingCoordinates["EABAB"]!
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["EABAB"]!))
+        case "Engineering Activity Building C":
+            buildingMarker.coordinate = buildingCoordinates["EABAC"]!
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["EABAC"]!))
         case "Heldenfelds":
             buildingMarker.coordinate = buildingCoordinates["HELD"]!
             request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["HELD"]!))
@@ -118,8 +127,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     }
                     didGetFirstLocation = true
                 }
-                latitudes.append(locations.first!.coordinate.latitude)
-                longitudes.append(locations.first!.coordinate.longitude)
+                coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
             }
         
     }
@@ -170,16 +178,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 // unable to classify image
                 return
             }
-            // The `results` will always be `VNClassificationObservation`s, as specified by the Core ML model in this project.
             let classifications = results as! [VNClassificationObservation]
         
             if classifications.isEmpty {
                 self.classificationResult = []
             } else {
-                // Display top classifications ranked by confidence in the UI.
+                // Get top 3 classifications
                 let topClassifications = classifications.prefix(3)
                 let descriptions = topClassifications.map { classification in
-                    // Formats the classification for display; e.g. "(0.37) cliff, drop, drop-off".
                    return String(format: "  %.2f %@", classification.confidence, classification.identifier)
                 }
                 self.classificationResult = descriptions.map { classification in
@@ -192,9 +198,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 // TODO: Make database private for writing <<<<<<<<<<<<<<<<<<
                 var ref: DocumentReference? = nil
                 ref = db.collection("WalkingPaths").addDocument(data: [
-                    "latitudes": self.latitudes,
-                    "longitudes" : self.longitudes,
-                    "responseToQuestion#" : "Yes"
+                    "coordinatesOfUser": self.coordinates,
+                    "responseToQuestion0#" : "Yes",
+                    "responseToQuestion1#" : "5"
                 ]) { err in
                     if let err = err {
                         print("Error adding document: \(err)")
@@ -243,7 +249,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     /// - Tag: PerformRequests
     func updateClassifications(for image: UIImage) {
-        //resultLabel.text = "Classifying..."
         
         var orientation: CGImagePropertyOrientation = .down
         switch image.imageOrientation {
@@ -266,11 +271,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             do {
                 try handler.perform([self.classificationRequest])
             } catch {
-                /*
-                 This handler catches general image processing errors. The `classificationRequest`'s
-                 completion handler `processClassifications(_:error:)` catches errors specific
-                 to processing that request.
-                 */
                 print("Failed to perform classification.\n\(error.localizedDescription)")
             }
         }

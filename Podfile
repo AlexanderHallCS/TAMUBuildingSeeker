@@ -10,5 +10,6 @@ target 'TAMUBuildingSeeker' do
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Analytics'
+  pod 'GeoFire/Utils'
 
 end
