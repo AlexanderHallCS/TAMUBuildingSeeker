@@ -18,11 +18,10 @@
 		11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABF35F270AB387000EDAE8 /* MapViewController.swift */; };
 		11FE42A22718709F0094162C /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A12718709F0094162C /* SelectViewController.swift */; };
 		11FE42A6271890B30094162C /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A5271890B30094162C /* ResultsTableViewController.swift */; };
-		2E9D7D4A2A6A2BA937666C0D /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B3C4FBE2137DA39501A96E /* Pods_TAMUBuildingSeeker.framework */; };
+		510530B53B23EB73C849661E /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940473BD002F4BC38DF39F24 /* Pods_TAMUBuildingSeeker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05E1DA4D3F997E7062F2A5B4 /* Pods-TAMUBuildingSeeker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.debug.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.debug.xcconfig"; sourceTree = "<group>"; };
 		111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11A829F527023F320005FF3B /* TAMUBuildingSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAMUBuildingSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A829F827023F320005FF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,8 +35,9 @@
 		11ABF35F270AB387000EDAE8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		11FE42A12718709F0094162C /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		11FE42A5271890B30094162C /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
-		B4B3C4FBE2137DA39501A96E /* Pods_TAMUBuildingSeeker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAMUBuildingSeeker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD598F08609E66753F500994 /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
+		19B91BAFC131050DE2070C3C /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
+		24FE310EB3C02D01CCBF514B /* Pods-TAMUBuildingSeeker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.debug.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.debug.xcconfig"; sourceTree = "<group>"; };
+		940473BD002F4BC38DF39F24 /* Pods_TAMUBuildingSeeker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAMUBuildingSeeker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E9D7D4A2A6A2BA937666C0D /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
+				510530B53B23EB73C849661E /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +58,7 @@
 				11A829F727023F320005FF3B /* TAMUBuildingSeeker */,
 				11A829F627023F320005FF3B /* Products */,
 				5D5CFA5476B87C3DD4EFA539 /* Pods */,
-				4194A9645484EFE31CDE491E /* Frameworks */,
+				E513D7089D9A1316FFD5DC99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,21 +89,21 @@
 			path = TAMUBuildingSeeker;
 			sourceTree = "<group>";
 		};
-		4194A9645484EFE31CDE491E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B4B3C4FBE2137DA39501A96E /* Pods_TAMUBuildingSeeker.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		5D5CFA5476B87C3DD4EFA539 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				05E1DA4D3F997E7062F2A5B4 /* Pods-TAMUBuildingSeeker.debug.xcconfig */,
-				BD598F08609E66753F500994 /* Pods-TAMUBuildingSeeker.release.xcconfig */,
+				24FE310EB3C02D01CCBF514B /* Pods-TAMUBuildingSeeker.debug.xcconfig */,
+				19B91BAFC131050DE2070C3C /* Pods-TAMUBuildingSeeker.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E513D7089D9A1316FFD5DC99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				940473BD002F4BC38DF39F24 /* Pods_TAMUBuildingSeeker.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,11 +113,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11A82A0927023F380005FF3B /* Build configuration list for PBXNativeTarget "TAMUBuildingSeeker" */;
 			buildPhases = (
-				EE09DE8AD440B786D9155858 /* [CP] Check Pods Manifest.lock */,
+				CA0083CA221F3088CC09E8D1 /* [CP] Check Pods Manifest.lock */,
 				11A829F127023F320005FF3B /* Sources */,
 				11A829F227023F320005FF3B /* Frameworks */,
 				11A829F327023F320005FF3B /* Resources */,
-				C35B42EBA21A69E4C46018D1 /* [CP] Embed Pods Frameworks */,
+				A0A0E5950B8C3EFD9BA88228 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,7 +176,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C35B42EBA21A69E4C46018D1 /* [CP] Embed Pods Frameworks */ = {
+		A0A0E5950B8C3EFD9BA88228 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -193,7 +193,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EE09DE8AD440B786D9155858 /* [CP] Check Pods Manifest.lock */ = {
+		CA0083CA221F3088CC09E8D1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -372,12 +372,12 @@
 		};
 		11A82A0A27023F380005FF3B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05E1DA4D3F997E7062F2A5B4 /* Pods-TAMUBuildingSeeker.debug.xcconfig */;
+			baseConfigurationReference = 24FE310EB3C02D01CCBF514B /* Pods-TAMUBuildingSeeker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
@@ -386,9 +386,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -405,12 +405,12 @@
 		};
 		11A82A0B27023F380005FF3B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD598F08609E66753F500994 /* Pods-TAMUBuildingSeeker.release.xcconfig */;
+			baseConfigurationReference = 19B91BAFC131050DE2070C3C /* Pods-TAMUBuildingSeeker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
@@ -419,9 +419,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

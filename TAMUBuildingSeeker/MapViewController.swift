@@ -12,6 +12,7 @@ import CoreML
 import ImageIO
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseStorage
 import GeoFire
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
@@ -27,10 +28,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let request = MKDirections.Request()
     
-    lazy var classificationRequest: VNCoreMLRequest = {
+    /*lazy var classificationRequest: VNCoreMLRequest = {
         do {
+            //let model = try VNCoreMLModel(for: )
             let model = try VNCoreMLModel(for: UpdatedV2ThirteenCampusBuildings().model)
-            
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
             })
@@ -39,14 +40,26 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         } catch {
             fatalError("Failed to load Vision ML model: \(error)")
         }
-    }()
+    }() */
     
     var classificationResult: [String] = []
     var didGetFirstLocation = false
     var coordinates: [GeoPoint] = []
     
+    /*init() {
+        self.
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    } */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        //fetchMLModelFile() // DELETE THIS LATER
+        //downloadedMLModelFile()
         
         takePictureButton.backgroundColor = #colorLiteral(red: 0.3058823529, green: 0.04705882353, blue: 0.03921568627, alpha: 1)
         
@@ -109,6 +122,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         request.transportType = .walking
     }
     
+    func downloadedMLModelFile() -> (StorageDownloadTask, URL) {
+        let storage = Storage.storage()
+        let modelRef = storage.reference(forURL: "gs://tamu-building-seeker-6115e.appspot.com/UpdatedV2ThirteenCampusBuildings.mlmodel")
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let localURL = documentsURL.appendingPathComponent("model/BuildingModel.mlmodel")
+        let downloadTask = modelRef.write(toFile: localURL) { (URL, error) -> Void in
+            if (error != nil) {
+                print("Uh-oh, an error occurred!")
+                print(error)
+            } else {
+                print("Local file URL is returned")
+            }
+        }
+        
+        return (downloadTask, localURL)
+    }
     
     // TODO: Request permission to use location (rather than have it set to true in Settings app by default) --> See info.plist if it's bugging out
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -149,7 +178,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return
         }
         
-        let photoSourcePicker = UIAlertController()
+        var alertStyle = UIAlertController.Style.actionSheet
+        if(UIDevice.current.userInterfaceIdiom == .pad) {
+            alertStyle = UIAlertController.Style.alert
+        }
+        
+        let photoSourcePicker = UIAlertController(title: nil, message: nil, preferredStyle: alertStyle)
         let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
             self.presentPhotoPicker(sourceType: .camera)
         }
@@ -190,13 +224,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
                 self.classificationResult = descriptions.map { classification in
                     let resultsData = classification.split(separator: " ")
-                    print("Percentage: \(resultsData[0])")
+                    //print("Percentage: \(resultsData[0])")
                     let percentage = resultsData[0]
                     return "\(self.renameResult(result: String(resultsData[1])))  \(Int((Double(percentage)!*100).rounded()))%"
                 }
                 
                 // TODO: Make database private for writing <<<<<<<<<<<<<<<<<<
-                var ref: DocumentReference? = nil
+               /* var ref: DocumentReference? = nil
                 ref = db.collection("WalkingPaths").addDocument(data: [
                     "coordinatesOfUser": self.coordinates,
                     "responseToQuestion0#" : "Yes",
@@ -207,7 +241,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
                     }
-                }
+                } */
                 self.performSegue(withIdentifier: "mapToTable", sender: nil)
                 //print("DESCRIPTIONS: " + descriptions.description)
             }
@@ -268,11 +302,44 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         DispatchQueue.global(qos: .userInitiated).async {
             let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: orientation.rawValue)! ,options: [:])
-            do {
-                try handler.perform([self.classificationRequest])
+            let mlModelFileData = self.downloadedMLModelFile()
+            let mlModelFileDownload = mlModelFileData.0
+            let mlModelFilePath = mlModelFileData.1
+            
+            mlModelFileDownload.observe(.success) { snapshot in
+                // Download completed successfully
+                do {
+                    let compiledModelURL = try MLModel.compileModel(at: mlModelFilePath)
+                    print("test1")
+                    let mlModelObject = try MLModel(contentsOf: compiledModelURL)
+                    print("test2")
+                    let modelTest = try VNCoreMLModel(for: mlModelObject)
+                    print("WOOO BABY")
+                    do {
+                        //let model = try VNCoreMLModel(for: )
+                        let request = VNCoreMLRequest(model: modelTest, completionHandler: { [weak self] request, error in
+                            self?.processClassifications(for: request, error: error)
+                        })
+                        request.imageCropAndScaleOption = .centerCrop
+                        do {
+                            try handler.perform([request])
+                            print("WE REQUESTING!")
+                        } catch {
+                            print("Failed to perform classification.\n\(error.localizedDescription)")
+                        }
+                    } catch {
+                        fatalError("Failed to load Vision ML model: \(error)")
+                    }
+                } catch {
+                    print("error!!")
+                }
+            }
+            /*do {
+                //try handler.perform([self.classificationRequest])
+                //try handler.perform([self.fetchMLModelFile()])
             } catch {
                 print("Failed to perform classification.\n\(error.localizedDescription)")
-            }
+            } */
         }
     }
     
@@ -287,9 +354,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ResultsTableViewController {
-            vc.percentages = classificationResult
+        if let vc = segue.destination as? UINavigationController {
+            if let childVC = vc.viewControllers[0] as? ResultsTableViewController {
+                childVC.percentages = classificationResult
+            }
         }
     }
 
+    @IBAction func unwindToMap(segue: UIStoryboardSegue) {}
+    
 }

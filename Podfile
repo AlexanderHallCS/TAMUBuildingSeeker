@@ -8,6 +8,7 @@ target 'TAMUBuildingSeeker' do
   # Pods for TAMUBuildingSeeker
   platform :ios, '14.7'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Analytics'
   pod 'GeoFire/Utils'
