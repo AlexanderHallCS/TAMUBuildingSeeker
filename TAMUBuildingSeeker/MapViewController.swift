@@ -28,6 +28,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let request = MKDirections.Request()
     
+    var picker: UIImagePickerController?
+    var chosenImage: UIImage?
     /*lazy var classificationRequest: VNCoreMLRequest = {
         do {
             //let model = try VNCoreMLModel(for: )
@@ -124,9 +126,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func downloadedMLModelFile() -> (StorageDownloadTask, URL) {
         let storage = Storage.storage()
-        let modelRef = storage.reference(forURL: "gs://tamu-building-seeker-6115e.appspot.com/UpdatedV2ThirteenCampusBuildings.mlmodel")
+        let modelRef = storage.reference(forURL: "gs://tamu-building-seeker-6115e.appspot.com/CampusLandmarksModel.mlmodel")
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let localURL = documentsURL.appendingPathComponent("model/BuildingModel.mlmodel")
+        let localURL = documentsURL.appendingPathComponent("model/CampusLandmarksModel.mlmodel")
         let downloadTask = modelRef.write(toFile: localURL) { (URL, error) -> Void in
             if (error != nil) {
                 print("Uh-oh, an error occurred!")
@@ -198,12 +200,51 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         present(photoSourcePicker, animated: true)
     }
     
-    func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = false
-        picker.delegate = self
-        picker.sourceType = sourceType
-        present(picker, animated: true)
+    @objc func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
+        picker = UIImagePickerController()
+        //let mainView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width - 500, height: self.view.frame.size.height-500))
+        picker!.sourceType = sourceType
+        picker!.showsCameraControls = false
+        picker!.allowsEditing = false
+        picker!.delegate = self
+        //picker!.view.addSubview(self.addOverlay()!)
+        picker!.cameraOverlayView = self.addOverlay()
+        
+        let screenSize = UIScreen.main.bounds.size
+        //let scale = screenSize.height/screenSize.width // DELETE IF NOT WORKING
+        let aspectRatio: CGFloat = 4.0/3.0
+        let cameraImageHeight = screenSize.width*aspectRatio
+        let offsetToCenter = screenSize.height - cameraImageHeight
+        let scale = (screenSize.height+offsetToCenter)/cameraImageHeight
+        picker!.cameraViewTransform = CGAffineTransform(scaleX: scale, y: scale)
+        
+        present(picker!, animated: true)
+    }
+    
+    func addOverlay() -> UIView? {
+        let cameraView = UIView()
+        
+        let borders = UIImageView()
+        borders.image = UIImage(named: "Picture Taking Guidelines")
+        borders.frame = CGRect(x: 13, y: 30, width: self.view.frame.width-30, height: self.view.frame.height-30)
+        borders.layer.zPosition = 1
+        cameraView.addSubview(borders)
+        
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "Survey Notification Button"), for: .normal)
+        button.isUserInteractionEnabled = true
+        button.frame = CGRect(x: self.view.center.x-45, y: self.view.center.y+305, width: 90, height: 90)
+        button.addTarget(self, action: #selector(self.tomaFoto), for: .touchUpInside)
+        button.layer.zPosition = 2
+        cameraView.addSubview(button)
+        
+        cameraView.frame = self.view.frame
+        cameraView.tag = 101
+        return cameraView
+    }
+    
+    @objc func tomaFoto() {
+        picker?.takePicture()
     }
     
     func processClassifications(for request: VNRequest, error: Error?) {
@@ -344,13 +385,52 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true)
-        
-        var capturedImage = UIImage()
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            capturedImage = pickedImage
-        }
-        updateClassifications(for: capturedImage)
+        picker.dismiss(animated: false, completion: {
+            for each in self.view.subviews {
+                if each.tag == 101 {
+                    each.removeFromSuperview()
+                }
+            }
+            
+            self.chosenImage = info[.originalImage] as? UIImage
+            
+            let view: UIImageView = UIImageView()
+            view.image = self.chosenImage
+            view.frame = CGRect(x: self.view.frame.maxX/4, y: self.view.frame.maxY/4, width: self.view.frame.width/2, height: self.view.frame.height/2)
+            view.layer.borderWidth = 7.0
+            view.layer.borderColor = UIColor.green.cgColor
+            
+            //self.image = view.image
+            
+            let button: UIButton = UIButton(type: .custom)
+            button.setImage(UIImage(named: "Take Again Button"), for: .normal)
+            button.isUserInteractionEnabled = true
+            button.frame = CGRect(x: self.view.frame.maxX - 166, y: self.view.frame.maxY - 151, width: 126, height: 53)
+            button.layer.cornerRadius = 25
+            button.addTarget(self, action: #selector(self.presentPhotoPicker), for: .touchUpInside)
+            
+            let button2: UIButton = UIButton(type: .custom)
+            button2.setImage(UIImage(named: "Confirm Button"), for: .normal)
+            button2.isUserInteractionEnabled = true
+            button2.frame = CGRect(x: self.view.frame.maxX - 336, y: self.view.frame.maxY - 151, width: 126, height: 53)
+            button2.layer.cornerRadius = 25
+            button2.addTarget(self, action: #selector(self.confirmButtonPressed), for: .touchUpInside)
+            
+            self.view.addSubview(view)
+            self.view.addSubview(button)
+            self.view.addSubview(button2)
+        })
+//        picker.dismiss(animated: true)
+//
+//        var capturedImage = UIImage()
+//        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//            capturedImage = pickedImage
+//        }
+//        updateClassifications(for: capturedImage)
+    }
+    
+    @objc func confirmButtonPressed() {
+        updateClassifications(for: chosenImage!)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
