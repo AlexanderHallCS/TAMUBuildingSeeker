@@ -15,10 +15,13 @@ import FirebaseFirestore
 import FirebaseStorage
 import GeoFire
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate  {
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var takePictureButton: UIButton!
+    
+    var previewImageView: UIImageView!
+    var capturedImage: UIImage?
     
     let manager = CLLocationManager()
     
@@ -28,38 +31,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let request = MKDirections.Request()
     
-    /*lazy var classificationRequest: VNCoreMLRequest = {
-        do {
-            //let model = try VNCoreMLModel(for: )
-            let model = try VNCoreMLModel(for: UpdatedV2ThirteenCampusBuildings().model)
-            let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
-                self?.processClassifications(for: request, error: error)
-            })
-            request.imageCropAndScaleOption = .centerCrop
-            return request
-        } catch {
-            fatalError("Failed to load Vision ML model: \(error)")
-        }
-    }() */
-    
     var classificationResult: [String] = []
     var didGetFirstLocation = false
     var coordinates: [GeoPoint] = []
-    
-    /*init() {
-        self.
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    } */
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
         //fetchMLModelFile() // DELETE THIS LATER
         //downloadedMLModelFile()
+        
+        NotificationCenter.default.addObserver(self,
+                         selector: #selector(presentImagePreviewControls),
+                         name: NSNotification.Name ("sendPreviewImage"),
+                         object: nil)
         
         takePictureButton.backgroundColor = #colorLiteral(red: 0.3058823529, green: 0.04705882353, blue: 0.03921568627, alpha: 1)
         
@@ -122,11 +107,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         request.transportType = .walking
     }
     
+    @IBAction func presentCameraView(_ sender: UIButton) {
+        segueToCameraView()
+    }
+    
+    @objc func segueToCameraView() {
+        performSegue(withIdentifier: "mapToCamera", sender: self)
+    }
+    
     func downloadedMLModelFile() -> (StorageDownloadTask, URL) {
         let storage = Storage.storage()
-        let modelRef = storage.reference(forURL: "gs://tamu-building-seeker-6115e.appspot.com/UpdatedV2ThirteenCampusBuildings.mlmodel")
+        let modelRef = storage.reference(forURL: "gs://tamu-building-seeker-6115e.appspot.com/CampusLandmarksModel.mlmodel")
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let localURL = documentsURL.appendingPathComponent("model/BuildingModel.mlmodel")
+        let localURL = documentsURL.appendingPathComponent("model/CampusLandmarksModel.mlmodel")
         let downloadTask = modelRef.write(toFile: localURL) { (URL, error) -> Void in
             if (error != nil) {
                 print("Uh-oh, an error occurred!")
@@ -171,39 +164,63 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return renderer
     }
     
-    @IBAction func takePicture(_ sender: UIButton) {
-        // Show options for the source picker only if the camera is available.
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            presentPhotoPicker(sourceType: .photoLibrary)
-            return
-        }
-        
-        var alertStyle = UIAlertController.Style.actionSheet
-        if(UIDevice.current.userInterfaceIdiom == .pad) {
-            alertStyle = UIAlertController.Style.alert
-        }
-        
-        let photoSourcePicker = UIAlertController(title: nil, message: nil, preferredStyle: alertStyle)
-        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
-            self.presentPhotoPicker(sourceType: .camera)
-        }
-        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
-            self.presentPhotoPicker(sourceType: .photoLibrary)
-        }
-        
-        photoSourcePicker.addAction(takePhoto)
-        photoSourcePicker.addAction(choosePhoto)
-        photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        present(photoSourcePicker, animated: true)
+    @IBAction func presentPictureTakingView(_ sender: UIButton) {
+        print("BING CHILLING")
+        segueToCameraView()
     }
     
-    func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = false
-        picker.delegate = self
-        picker.sourceType = sourceType
-        present(picker, animated: true)
+    // removes the UIView and camera button
+    // presents the image preview with continue and retake buttons
+    @objc func presentImagePreviewControls(notification: Notification) {
+        takePictureButton.isHidden = true
+        takePictureButton.isUserInteractionEnabled = false
+        
+        print("BING CHILLING 8")
+//        for each in self.view.subviews {
+//            if each.tag == 101 {
+//                each.removeFromSuperview()
+//            }
+//        }
+        
+        print("BINGGG")
+        let image = (notification.userInfo as! Dictionary<String, UIImage>)["previewImage"]!
+        print("Image: \(image)")
+        capturedImage = image
+        
+        previewImageView = UIImageView()
+        previewImageView.image = image
+        previewImageView.tag = 101
+        //previewImageView.layer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        previewImageView.frame = CGRect(x: self.view.frame.maxX/7, y: self.view.frame.maxY/6, width: self.view.frame.width/1.5, height: self.view.frame.height/1.5)
+        previewImageView.layer.borderWidth = 17.0
+        previewImageView.layer.borderColor = #colorLiteral(red: 0.4470588235, green: 0.6078431373, blue: 0.4745098039, alpha: 1)
+        print("FRAME: \(self.view.frame) OTHER THING: \(self.view.frame.origin)")
+        
+//        let previewBorder = UIImageView(image: UIImage(named: "Picture Border"))
+//        previewBorder.frame = CGRect(x: self.view.frame.maxX/7, y: self.view.frame.maxY/6, width: self.view.frame.width/1.5 + 17, height: self.view.frame.height/1.5 + 17)
+//        previewBorder.layer.zPosition = 1
+        
+        let takeAgainButton: UIButton = UIButton(type: .custom)
+        takeAgainButton.setImage(UIImage(named: "Take Again Button"), for: .normal)
+        takeAgainButton.tag = 101
+        takeAgainButton.isUserInteractionEnabled = true
+        takeAgainButton.frame = CGRect(x: self.view.frame.maxX - 166, y: self.view.frame.maxY - 91, width: 126, height: 53)
+        takeAgainButton.layer.cornerRadius = 25
+        takeAgainButton.addTarget(self, action: #selector(self.segueToCameraView), for: .touchUpInside)
+        
+        let confirmButton: UIButton = UIButton(type: .custom)
+        confirmButton.setImage(UIImage(named: "Confirm Button"), for: .normal)
+        confirmButton.tag = 101
+        confirmButton.isUserInteractionEnabled = true
+        confirmButton.frame = CGRect(x: self.view.frame.maxX - 336, y: self.view.frame.maxY - 91, width: 126, height: 53)
+        confirmButton.layer.cornerRadius = 25
+        confirmButton.addTarget(self, action: #selector(self.confirmButtonPressed), for: .touchUpInside)
+        
+        self.view.addSubview(previewImageView)
+        //self.view.addSubview(previewBorder)
+        self.view.addSubview(takeAgainButton)
+        self.view.addSubview(confirmButton)
+        print("BING CHILLING 9")
     }
     
     func processClassifications(for request: VNRequest, error: Error?) {
@@ -244,6 +261,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 } */
                 self.performSegue(withIdentifier: "mapToTable", sender: nil)
                 //print("DESCRIPTIONS: " + descriptions.description)
+            }
+        }
+    }
+    
+    @objc func confirmButtonPressed() {
+        takePictureButton.isUserInteractionEnabled = true
+        takePictureButton.isHidden = false
+        //updateClassifications(for: capturedImage!)
+        for view in self.view.subviews {
+            if(view.tag == 101) {
+                view.removeFromSuperview()
             }
         }
     }
@@ -334,16 +362,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     print("error!!")
                 }
             }
-            /*do {
-                //try handler.perform([self.classificationRequest])
-                //try handler.perform([self.fetchMLModelFile()])
-            } catch {
-                print("Failed to perform classification.\n\(error.localizedDescription)")
-            } */
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    /*func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         
         var capturedImage = UIImage()
@@ -351,7 +373,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             capturedImage = pickedImage
         }
         updateClassifications(for: capturedImage)
-    }
+    } */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? UINavigationController {

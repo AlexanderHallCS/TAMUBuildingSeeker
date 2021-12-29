@@ -14,8 +14,8 @@
 		11A82A0027023F320005FF3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A829FE27023F320005FF3B /* Main.storyboard */; };
 		11A82A0227023F380005FF3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0127023F380005FF3B /* Assets.xcassets */; };
 		11A82A0527023F380005FF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0327023F380005FF3B /* LaunchScreen.storyboard */; };
-		11A82A0D270241D50005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 11A82A0C270241D40005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel */; };
 		11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABF35F270AB387000EDAE8 /* MapViewController.swift */; };
+		11B885272770232A00788483 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B885262770232A00788483 /* CameraViewController.swift */; };
 		11FE42A22718709F0094162C /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A12718709F0094162C /* SelectViewController.swift */; };
 		11FE42A6271890B30094162C /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A5271890B30094162C /* ResultsTableViewController.swift */; };
 		510530B53B23EB73C849661E /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940473BD002F4BC38DF39F24 /* Pods_TAMUBuildingSeeker.framework */; };
@@ -31,8 +31,10 @@
 		11A82A0127023F380005FF3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11A82A0427023F380005FF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11A82A0627023F380005FF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11A82A0C270241D40005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = UpdatedV2ThirteenCampusBuildings.mlmodel; sourceTree = "<group>"; };
 		11ABF35F270AB387000EDAE8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		11B885262770232A00788483 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		11B8852C2770833600788483 /* Concept Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Concept Bold.ttf"; sourceTree = "<group>"; };
+		11B8852D2770833800788483 /* Concept Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Concept Medium.ttf"; sourceTree = "<group>"; };
 		11FE42A12718709F0094162C /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		11FE42A5271890B30094162C /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		19B91BAFC131050DE2070C3C /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,13 +75,14 @@
 		11A829F727023F320005FF3B /* TAMUBuildingSeeker */ = {
 			isa = PBXGroup;
 			children = (
-				11A82A0C270241D40005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel */,
+				11B8852B277082B200788483 /* Fonts */,
 				11FE42A5271890B30094162C /* ResultsTableViewController.swift */,
 				11A829F827023F320005FF3B /* AppDelegate.swift */,
 				11A829FA27023F320005FF3B /* SceneDelegate.swift */,
 				11A829FC27023F320005FF3B /* StartViewController.swift */,
 				11ABF35F270AB387000EDAE8 /* MapViewController.swift */,
 				11A829FE27023F320005FF3B /* Main.storyboard */,
+				11B885262770232A00788483 /* CameraViewController.swift */,
 				11FE42A12718709F0094162C /* SelectViewController.swift */,
 				11A82A0127023F380005FF3B /* Assets.xcassets */,
 				11A82A0327023F380005FF3B /* LaunchScreen.storyboard */,
@@ -87,6 +90,15 @@
 				11A82A0627023F380005FF3B /* Info.plist */,
 			);
 			path = TAMUBuildingSeeker;
+			sourceTree = "<group>";
+		};
+		11B8852B277082B200788483 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				11B8852C2770833600788483 /* Concept Bold.ttf */,
+				11B8852D2770833800788483 /* Concept Medium.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		5D5CFA5476B87C3DD4EFA539 /* Pods */ = {
@@ -222,11 +234,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11A82A0D270241D50005FF3B /* UpdatedV2ThirteenCampusBuildings.mlmodel in Sources */,
 				11FE42A6271890B30094162C /* ResultsTableViewController.swift in Sources */,
 				11A829FD27023F320005FF3B /* StartViewController.swift in Sources */,
 				11A829F927023F320005FF3B /* AppDelegate.swift in Sources */,
 				11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */,
+				11B885272770232A00788483 /* CameraViewController.swift in Sources */,
 				11FE42A22718709F0094162C /* SelectViewController.swift in Sources */,
 				11A829FB27023F320005FF3B /* SceneDelegate.swift in Sources */,
 			);

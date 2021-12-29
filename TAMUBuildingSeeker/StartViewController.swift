@@ -9,12 +9,12 @@ import UIKit
 
 class StartViewController: UIViewController {
     
-    @IBOutlet var startButton: UIButton!
+    
+    @IBOutlet var groupCodeSelector: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        startButton.backgroundColor = #colorLiteral(red: 0.3058823529, green: 0.04705882353, blue: 0.03921568627, alpha: 1)
     }
     
     @IBAction func unwindToStart(segue: UIStoryboardSegue) {}
