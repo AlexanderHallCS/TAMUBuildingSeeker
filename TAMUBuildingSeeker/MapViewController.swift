@@ -248,7 +248,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 // TODO: Make database private for writing <<<<<<<<<<<<<<<<<<
                /* var ref: DocumentReference? = nil
-                ref = db.collection("WalkingPaths").addDocument(data: [
+                ref = db.collection("users").addDocument(data: [
                     "coordinatesOfUser": self.coordinates,
                     "responseToQuestion0#" : "Yes",
                     "responseToQuestion1#" : "5"

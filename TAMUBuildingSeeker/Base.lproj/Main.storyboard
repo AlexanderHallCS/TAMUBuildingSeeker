@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -25,8 +25,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Are You Sure Background" translatesAutoresizingMaskIntoConstraints="NO" id="es6-y5-Ok4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU BUILDING SEEKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ves-hk-b9U">
-                                <rect key="frame" x="31.666666666666657" y="164.66666666666666" width="351" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU NAVIGATION AID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ves-hk-b9U">
+                                <rect key="frame" x="31.5" y="164.5" width="351" height="48"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="32"/>
                                 <color key="textColor" red="1" green="0.9137254901960784" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -34,8 +34,8 @@
                                     <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="73"/>
                                 </variation>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter 4 Digit Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvi-X7-cUs">
-                                <rect key="frame" x="117" y="766" width="180" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter 4-Digit Code" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvi-X7-cUs">
+                                <rect key="frame" x="117" y="431" width="180" height="34"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -50,8 +50,8 @@
                             <constraint firstItem="nvi-X7-cUs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6hI-wg-Y4i"/>
                             <constraint firstItem="ves-hk-b9U" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" multiplier="221/896" id="6yL-Kx-9pX"/>
                             <constraint firstItem="nvi-X7-cUs" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0379464" id="9qc-ft-xtt"/>
-                            <constraint firstItem="nvi-X7-cUs" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" multiplier="800/896" id="ABx-Ds-bAU"/>
                             <constraint firstItem="ves-hk-b9U" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0535714" id="Crz-u4-fTE"/>
+                            <constraint firstItem="nvi-X7-cUs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ImM-bH-m5I"/>
                             <constraint firstItem="es6-y5-Ok4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PGR-qu-9vv"/>
                             <constraint firstItem="es6-y5-Ok4" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="XM8-mG-lbh"/>
                             <constraint firstItem="nvi-X7-cUs" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.434783" id="k1i-Q7-L5h"/>
@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtH-bk-SpM">
-                                <rect key="frame" x="15" y="44" width="82.666666666666671" height="31"/>
+                                <rect key="frame" x="15" y="44" width="83" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                 <connections>
@@ -152,7 +152,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgj-Jf-lg9" userLabel="TakePictureButton">
-                                <rect key="frame" x="161.66666666666666" y="763" width="91" height="99"/>
+                                <rect key="frame" x="161.5" y="763" width="91" height="99"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Survey Notification Button"/>
                                 <connections>
@@ -200,14 +200,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BuildingData" textLabel="gYy-3t-lKA" style="IBUITableViewCellStyleDefault" id="nVD-2B-jBh">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="59.666667938232422"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="59.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVD-2B-jBh" id="HpL-oY-zED">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="gYy-3t-lKA">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="59.666667938232422"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="textColor"/>
@@ -277,7 +277,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSP-Zr-i7U">
-                                <rect key="frame" x="20" y="44" width="82.666666666666671" height="31"/>
+                                <rect key="frame" x="20" y="44" width="83" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
                                 <connections>
@@ -334,7 +334,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Are You Sure Background" width="414" height="736"/>
+        <image name="Are You Sure Background" width="375" height="667"/>
         <image name="Picture Taking Guidelines" width="1175" height="2067"/>
         <image name="Survey Notification Button" width="265" height="285"/>
         <systemColor name="systemBackgroundColor">
