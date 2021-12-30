@@ -13,7 +13,6 @@ import ImageIO
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
-import GeoFire
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate  {
 

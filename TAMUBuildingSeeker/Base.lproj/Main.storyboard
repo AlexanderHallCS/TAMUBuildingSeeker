@@ -62,11 +62,14 @@
                     <navigationItem key="navigationItem" id="QhZ-oy-GLp"/>
                     <connections>
                         <outlet property="groupCodeSelector" destination="nvi-X7-cUs" id="YqA-ej-0F8"/>
+                        <segue destination="Mqj-1G-c72" kind="presentation" identifier="startToGroupAC" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="yHe-rp-V1X"/>
+                        <segue destination="9RT-K2-Pr6" kind="presentation" identifier="startToGroupB" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Qav-AH-rFc"/>
+                        <segue destination="RkS-bZ-c98" kind="presentation" identifier="startToGroupD" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lMt-uB-mBm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="742.02898550724649" y="83.705357142857139"/>
+            <point key="canvasLocation" x="-417" y="84"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="yqf-tG-5kC">
@@ -237,6 +240,62 @@
             </objects>
             <point key="canvasLocation" x="4619.53125" y="83.455344070278173"/>
         </scene>
+        <!--AC View Controller-->
+        <scene sceneID="i59-1l-Zmw">
+            <objects>
+                <viewController id="Mqj-1G-c72" userLabel="AC View Controller" customClass="ACViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Vv-2R-rOy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomepageBG" translatesAutoresizingMaskIntoConstraints="NO" id="gfy-x8-II5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YJo-up-CD9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gfy-x8-II5" firstAttribute="height" secondItem="5Vv-2R-rOy" secondAttribute="height" id="1G7-UW-q4f"/>
+                            <constraint firstItem="gfy-x8-II5" firstAttribute="centerX" secondItem="5Vv-2R-rOy" secondAttribute="centerX" id="FVz-Ic-GZd"/>
+                            <constraint firstItem="gfy-x8-II5" firstAttribute="width" secondItem="5Vv-2R-rOy" secondAttribute="width" id="cSC-bT-4R8"/>
+                            <constraint firstItem="gfy-x8-II5" firstAttribute="centerY" secondItem="5Vv-2R-rOy" secondAttribute="centerY" id="mH3-Gh-Ul8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Snw-GA-cck" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724.63768115942037" y="-599.33035714285711"/>
+        </scene>
+        <!--B View Controller-->
+        <scene sceneID="tRk-E9-eYL">
+            <objects>
+                <viewController id="9RT-K2-Pr6" userLabel="B View Controller" customClass="BViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tDy-zw-RJT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="z7u-Av-Cuv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zy1-xj-HiI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="84"/>
+        </scene>
+        <!--D View Controller-->
+        <scene sceneID="mkc-XN-0Wh">
+            <objects>
+                <viewController id="RkS-bZ-c98" userLabel="D View Controller" customClass="DViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oE1-mE-2pL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="vOu-xp-Ogk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b6G-wl-yjd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="763"/>
+        </scene>
         <!--Select View Controller-->
         <scene sceneID="vtV-Ly-moo">
             <objects>
@@ -335,6 +394,7 @@
     </scenes>
     <resources>
         <image name="Are You Sure Background" width="375" height="667"/>
+        <image name="HomepageBG" width="750" height="1334"/>
         <image name="Picture Taking Guidelines" width="1175" height="2067"/>
         <image name="Survey Notification Button" width="265" height="285"/>
         <systemColor name="systemBackgroundColor">

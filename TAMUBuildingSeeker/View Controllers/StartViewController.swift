@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import Firebase
+import Firebase
 
 class StartViewController: UIViewController, UITextFieldDelegate {
     
@@ -15,15 +15,7 @@ class StartViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-//        Auth.auth().signInAnonymously(completion: { authResult, error in
-//            guard let user = authResult?.user else {
-//                print(authResult!.user)
-//                return
-//            }
-//            let uid = user.uid
-//            print(uid)
-//        })
+        
         groupCodeSelector.delegate = self
         groupCodeSelector.autocapitalizationType = .allCharacters
     }
@@ -93,7 +85,38 @@ class StartViewController: UIViewController, UITextFieldDelegate {
     // segues to appropriate group VC
     // stores anonymous uid and group letter in database
     private func prepareAppGroup() {
+        // check second character of inputted text
+        // segue to respective group VC
         
+        let groupCode = groupCodeSelector.text!
+        UserData.groupCode = groupCode
+        UserData.group = String(groupCode[groupCode.index(groupCode.startIndex, offsetBy: 1)])
+        
+        switch UserData.group {
+        case "A":
+            fallthrough
+        case "C":
+            performSegue(withIdentifier: "startToGroupAC", sender: self)
+        case "B":
+            performSegue(withIdentifier: "startToGroupB", sender: self)
+        default:
+            performSegue(withIdentifier: "startToGroupD", sender: self)
+        }
+        
+//        Auth.auth().signInAnonymously(completion: { authResult, error in
+//            guard let user = authResult?.user else {
+//                print(authResult!.user)
+//                return
+//            }
+//
+//            let db = Firestore.firestore()
+//
+//            db.collection("user").addDocument(data: ["group":group, "groupCode":group, "uid":user.uid]) { error in
+//                if error != nil {
+//                    print("Error saving user data")
+//                }
+//            }
+//        })
     }
     
     @IBAction func unwindToStart(segue: UIStoryboardSegue) {}
