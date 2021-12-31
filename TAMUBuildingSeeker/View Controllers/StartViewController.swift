@@ -51,16 +51,21 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         
         if(textField.text?.count != 4) {
-            showTooShortAlert()
+            showErrorAlert(message: "Code must be four characters!")
         } else {
-            showConfirmAlert()
+            let groupCode = textField.text![textField.text!.index(textField.text!.startIndex, offsetBy: 1)]
+            if(groupCode.asciiValue! > 68) { // if code's second letter is not A-D
+                showErrorAlert(message: "Code was typed incorrectly!")
+            } else {
+                showConfirmAlert()
+            }
         }
         
         return true
     }
     
-    private func showTooShortAlert() {
-        let alert = UIAlertController(title: "Error", message: "Code must be four characters.", preferredStyle: .alert)
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
             alert.removeFromParent()
         })
@@ -71,11 +76,11 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         groupCodeSelector.isHidden = true
         
         let alert = UIAlertController(title: "Are you sure?", message: "Once you have confirmed your code (\(groupCodeSelector.text!)) you cannot return to this page.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default) {(action: UIAlertAction) -> Void in
+        alert.addAction(UIAlertAction(title: "CANCEL", style: .default) {(action: UIAlertAction) -> Void in
             alert.removeFromParent()
             self.groupCodeSelector.isHidden = false
         })
-        alert.addAction(UIAlertAction(title: "Confirm", style: .default) {(action: UIAlertAction) -> Void in
+        alert.addAction(UIAlertAction(title: "AGREE", style: .default) {(action: UIAlertAction) -> Void in
             alert.removeFromParent()
             self.prepareAppGroup()
         })
