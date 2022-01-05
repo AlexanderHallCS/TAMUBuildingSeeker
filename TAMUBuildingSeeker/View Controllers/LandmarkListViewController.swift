@@ -1,13 +1,13 @@
 //
-//  TutorialViewController.swift
+//  LandmarkListViewController.swift
 //  TAMUBuildingSeeker
 //
-//  Created by Alexander Hall on 12/30/21.
+//  Created by Alexander Hall on 1/1/22.
 //
 
 import UIKit
 
-class TutorialViewController: UIViewController {
+class LandmarkListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +20,12 @@ class TutorialViewController: UIViewController {
             case "A":
                 fallthrough
             case "C":
-                performSegue(withIdentifier: "unwindToACVCFromTutorial", sender: self)
+                performSegue(withIdentifier: "unwindToACVCFromList", sender: self)
             case "B":
-                performSegue(withIdentifier: "unwindToBVCFromTutorial", sender: self)
+                performSegue(withIdentifier: "unwindToBVCFromList", sender: self)
             default:
-                performSegue(withIdentifier: "unwindToDVCFromTutorial", sender: self)
+                performSegue(withIdentifier: "unwindToDVCFromList", sender: self)
         }
     }
-
+    
 }

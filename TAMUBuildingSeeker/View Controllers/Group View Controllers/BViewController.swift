@@ -15,6 +15,7 @@ class BViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func unwindToBVC(segue: UIStoryboardSegue) {}
 
     /*
     // MARK: - Navigation
