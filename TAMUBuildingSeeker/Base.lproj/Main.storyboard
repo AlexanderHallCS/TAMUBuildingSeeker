@@ -258,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mmb-GU-aao" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2824.6376811594205" y="833.70535714285711"/>
+            <point key="canvasLocation" x="3763" y="978"/>
         </scene>
         <!--Results Table View Controller-->
         <scene sceneID="5vl-Xr-xQs">
@@ -438,6 +438,9 @@
                             <constraint firstItem="LwZ-x5-bRK" firstAttribute="centerX" secondItem="5Vv-2R-rOy" secondAttribute="centerX" id="x7L-PZ-1lk"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="landmarkSearchField" destination="FKS-rm-xYq" id="LCi-zD-GOY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Snw-GA-cck" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -471,43 +474,176 @@
                                     <action selector="goToHomeVC:" destination="FuN-wc-LZM" eventType="touchUpInside" id="w9c-e7-w2d"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Freedom from Terrorism Memorial" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqN-qm-Ubh">
-                                <rect key="frame" x="20" y="212" width="259" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freedom from Terrorism Memorial" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hqN-qm-Ubh">
+                                <rect key="frame" x="20.666666666666657" y="214" width="320" height="29"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-vF-Lgb">
-                                <rect key="frame" x="20" y="241" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2008" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-vF-Lgb">
+                                <rect key="frame" x="20.666666666666671" y="248.66666666666663" width="36" height="20"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Urg-bm-MF4">
+                                <rect key="frame" x="20.666666666666657" y="274.33333333333331" width="388" height="103"/>
+                                <string key="text">A gift from Texas A&amp;M's classes of 1968 and 2003, the memorial is dedicated to Aggies "who have made the ultimate sacrifice in the fight against terrorism" and Aggies who have served and continue to serve to provide us "Freedom From Terrorism".</string>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Engineering Activity Building" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Odf-H4-Sdj">
+                                <rect key="frame" x="20.666666666666657" y="436" width="320" height="29"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tLi-GU-cC1">
+                                <rect key="frame" x="20.666666666666671" y="471" width="36" height="20"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qCf-7i-1f5">
+                                <rect key="frame" x="20.666666666666657" y="492.66666666666674" width="388" height="86"/>
+                                <string key="text">Comprising any one of three buildings, Engineering Activity Buildings A-C, they serve as classrooms and labs for many engineering majors. Building A also contains the advising office for the Computer Science department.</string>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bolton Hall" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pfr-k3-ThI">
+                                <rect key="frame" x="20.666666666666671" y="637.66666666666663" width="130" height="29"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1912" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="slL-3I-uoj">
+                                <rect key="frame" x="20.666666666666671" y="672.33333333333337" width="36" height="20"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nh7-gp-CO6">
+                                <rect key="frame" x="20.666666666666657" y="698" width="388" height="103"/>
+                                <string key="text">Originally constructed as the Mechanical and Electrical Engineering Building, today it houses the the communication department in the College of Liberal Arts. It is also said that the nation's first play-by-play of a football game was broadcast here in 1921. </string>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="39"/>
+                                </variation>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yi0-3O-2Af"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="qCf-7i-1f5" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="560/896" id="05g-yp-otq">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="qCf-7i-1f5" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="0W1-se-4vN"/>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qCf-7i-1f5" secondAttribute="trailing" symbolic="YES" id="1YC-by-9qZ"/>
+                            <constraint firstItem="Nh7-gp-CO6" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="2JU-nX-VtJ"/>
                             <constraint firstItem="rJb-v7-E3i" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" id="2PO-h4-Xk1"/>
+                            <constraint firstItem="Urg-bm-MF4" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.111231" id="4Ma-VD-g6P"/>
+                            <constraint firstItem="slL-3I-uoj" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="4xW-VH-QcX"/>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tLi-GU-cC1" secondAttribute="trailing" symbolic="YES" id="7Ra-30-DK7"/>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Odf-H4-Sdj" secondAttribute="trailing" symbolic="YES" id="80Q-Fb-cp7"/>
+                            <constraint firstItem="Odf-H4-Sdj" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0313175" id="8YB-yh-shJ"/>
+                            <constraint firstItem="slL-3I-uoj" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="670/896" id="8zA-dT-WEC">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="Nh7-gp-CO6" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.111231" id="9Kf-p4-rjX"/>
+                            <constraint firstItem="hqN-qm-Ubh" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="235/896" id="C06-rB-0S1">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
                             <constraint firstItem="xC0-mK-a1h" firstAttribute="centerX" secondItem="EcG-Uv-nHd" secondAttribute="centerX" id="CFx-qc-7N0"/>
+                            <constraint firstItem="Odf-H4-Sdj" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.747664" id="Cug-f7-tPh"/>
+                            <constraint firstItem="hqN-qm-Ubh" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="FoY-rz-fqH"/>
+                            <constraint firstItem="Odf-H4-Sdj" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="450/896" id="GOg-Qx-Dqy">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
                             <constraint firstItem="rJb-v7-E3i" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.142857" id="Gcr-pX-8E6">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
+                            <constraint firstItem="slL-3I-uoj" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0215983" id="HGe-yw-aAE"/>
+                            <constraint firstItem="slL-3I-uoj" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.0841121" id="HXg-ud-dQm"/>
+                            <constraint firstItem="hqN-qm-Ubh" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0313175" id="IBG-P3-8ch"/>
+                            <constraint firstItem="fNm-vF-Lgb" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="ILS-eh-40Q"/>
+                            <constraint firstItem="Nh7-gp-CO6" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.906542" id="IX7-5U-GAH"/>
+                            <constraint firstItem="tLi-GU-cC1" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.0841121" id="MAa-1D-zQE"/>
+                            <constraint firstItem="Urg-bm-MF4" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.906542" id="Q0R-wG-MDD"/>
+                            <constraint firstItem="fNm-vF-Lgb" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="260/896" id="Qi9-Ab-tBB">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hqN-qm-Ubh" secondAttribute="trailing" symbolic="YES" id="RHN-S1-tZB"/>
+                            <constraint firstItem="tLi-GU-cC1" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0215983" id="SRu-05-9NJ"/>
+                            <constraint firstItem="Odf-H4-Sdj" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="SzP-3n-OEx"/>
+                            <constraint firstItem="qCf-7i-1f5" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0928726" id="WL0-QW-OPA"/>
+                            <constraint firstItem="Urg-bm-MF4" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="Wcz-xl-Jg3"/>
+                            <constraint firstItem="tLi-GU-cC1" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="WlE-VP-gJb"/>
                             <constraint firstItem="3l8-Gv-M8L" firstAttribute="trailing" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="395/414" id="c3B-o6-ecQ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-22"/>
                             </constraint>
                             <constraint firstItem="3l8-Gv-M8L" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.04" id="dba-Qc-ULc"/>
                             <constraint firstItem="3l8-Gv-M8L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yi0-3O-2Af" secondAttribute="leading" symbolic="YES" id="gGK-nR-1WT"/>
+                            <constraint firstItem="hqN-qm-Ubh" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.747664" id="gn5-Nh-uTJ"/>
+                            <constraint firstItem="Pfr-k3-ThI" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="h8M-zX-XXi"/>
+                            <constraint firstItem="Nh7-gp-CO6" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="775/896" id="hLG-gL-BsJ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Urg-bm-MF4" secondAttribute="trailing" symbolic="YES" id="hyb-yP-D2T"/>
                             <constraint firstItem="xC0-mK-a1h" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" id="i5D-Q3-WkV"/>
+                            <constraint firstItem="qCf-7i-1f5" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.906542" id="ibU-yD-yKj"/>
+                            <constraint firstItem="Pfr-k3-ThI" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="645/896" id="kMI-7T-JoG">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="Urg-bm-MF4" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="365/896" id="lZW-Ut-nl3">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
                             <constraint firstItem="xC0-mK-a1h" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" id="lpV-Dd-Jqu"/>
                             <constraint firstItem="3l8-Gv-M8L" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.13" id="mXh-bp-WIR"/>
+                            <constraint firstItem="Pfr-k3-ThI" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0313175" id="moF-ND-bR6"/>
                             <constraint firstItem="xC0-mK-a1h" firstAttribute="centerY" secondItem="EcG-Uv-nHd" secondAttribute="centerY" id="oPQ-JH-cam"/>
+                            <constraint firstItem="Pfr-k3-ThI" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.303738" id="ph6-Ex-PeE"/>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pfr-k3-ThI" secondAttribute="trailing" symbolic="YES" id="psW-hV-2d3"/>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fNm-vF-Lgb" secondAttribute="trailing" symbolic="YES" id="qt9-4n-64X"/>
                             <constraint firstItem="rJb-v7-E3i" firstAttribute="centerX" secondItem="EcG-Uv-nHd" secondAttribute="centerX" id="r56-b3-fRe"/>
                             <constraint firstItem="3l8-Gv-M8L" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="55/896" id="r7K-bV-toK">
                                 <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                             </constraint>
+                            <constraint firstItem="fNm-vF-Lgb" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.0841121" id="rG8-cE-Ndg"/>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="slL-3I-uoj" secondAttribute="trailing" symbolic="YES" id="rk6-cV-ebj"/>
                             <constraint firstItem="rJb-v7-E3i" firstAttribute="top" secondItem="EcG-Uv-nHd" secondAttribute="top" id="sGR-7x-Ire"/>
+                            <constraint firstItem="tLi-GU-cC1" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="475/896" id="y8O-rn-jyE">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
+                            <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Nh7-gp-CO6" secondAttribute="trailing" symbolic="YES" id="yTy-18-j6i"/>
+                            <constraint firstItem="fNm-vF-Lgb" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0215983" id="zcD-bV-mKR"/>
                         </constraints>
                     </view>
                     <connections>
@@ -519,7 +655,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cse-GL-vUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="bED-li-Pch" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1873.913043478261" y="-599.33035714285711"/>
+            <point key="canvasLocation" x="1872.8971962616822" y="-599.35205183585322"/>
         </scene>
         <!--B View Controller-->
         <scene sceneID="tRk-E9-eYL">
@@ -626,6 +762,9 @@
                             <constraint firstItem="wbo-VU-oQE" firstAttribute="width" secondItem="tDy-zw-RJT" secondAttribute="width" id="vw6-SW-OMO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="landmarkSearchField" destination="xG3-rV-Gr9" id="53P-KC-No7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zy1-xj-HiI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -690,6 +829,9 @@
                                 <rect key="frame" x="224.33333333333337" y="475.33333333333326" width="181" height="274"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="TakePictureButton"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="RkS-bZ-c98" eventType="touchUpInside" id="ICb-bt-fe8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUILDING" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JyJ-FC-ahr">
                                 <rect key="frame" x="20.666666666666671" y="486.00000000000006" width="192.33333333333331" height="92.666666666666686"/>
@@ -779,6 +921,10 @@
                             <constraint firstItem="wRF-Im-h6x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DfL-MF-wee" secondAttribute="trailing" constant="8" symbolic="YES" id="zqc-p0-VEs"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="landmarkSearchField" destination="gpH-Bo-DAD" id="EnG-oF-YsF"/>
+                        <outlet property="takePhotoButton" destination="N7c-6K-FfK" id="g4k-ZB-ZL7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6G-wl-yjd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -814,16 +960,16 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteBox" translatesAutoresizingMaskIntoConstraints="NO" id="egc-c1-vbu" userLabel="WhiteBoxTop">
-                                <rect key="frame" x="0.0" y="206.33333333333337" width="428" height="176"/>
+                                <rect key="frame" x="0.0" y="225" width="428" height="157.33333333333337"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteBox" translatesAutoresizingMaskIntoConstraints="NO" id="nve-pp-pNM" userLabel="WhiteBoxBottom">
-                                <rect key="frame" x="0.0" y="673.66666666666663" width="428" height="176"/>
+                                <rect key="frame" x="0.0" y="674.66666666666663" width="428" height="157.33333333333337"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Taking Tutorial Icon" translatesAutoresizingMaskIntoConstraints="NO" id="5en-fd-JnM">
                                 <rect key="frame" x="36" y="357.66666666666674" width="356" height="345"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take pictures close to the building and avoid capturing any other buildings in the background." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mwm-1w-Fs0">
-                                <rect key="frame" x="0.0" y="231.33333333333337" width="428" height="120"/>
+                                <rect key="frame" x="0.0" y="241.66666666666663" width="428" height="120"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -832,8 +978,8 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avoid large obstructions in the image such as trees or lamp posts that take up a large portion of the image." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vxp-aH-Ld2">
-                                <rect key="frame" x="0.0" y="706.66666666666663" width="428" height="120"/>
-                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="26"/>
+                                <rect key="frame" x="10.666666666666657" y="696.33333333333337" width="406.66666666666674" height="120"/>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular">
@@ -849,25 +995,29 @@
                             </constraint>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="28X-dc-RE5"/>
                             <constraint firstItem="nve-pp-pNM" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="30R-oL-fIt"/>
-                            <constraint firstItem="egc-c1-vbu" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.19" id="525-WD-sjr"/>
+                            <constraint firstItem="egc-c1-vbu" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.17" id="525-WD-sjr">
+                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                            </constraint>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.12959" id="5v4-OR-v7M"/>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="E3M-j8-PC1"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.04" id="FGN-4C-efq"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2RA-4u-chT" secondAttribute="leading" symbolic="YES" id="JCp-WN-UeO"/>
                             <constraint firstItem="egc-c1-vbu" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="370/896" id="JtB-zC-X0M"/>
                             <constraint firstItem="vxp-aH-Ld2" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.12959" id="KBW-UF-Xtg"/>
-                            <constraint firstItem="nve-pp-pNM" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="822/896" id="Klm-Hz-Am8">
-                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            <constraint firstItem="nve-pp-pNM" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="805/896" id="Klm-Hz-Am8">
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                             </constraint>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="PHV-b2-tyg"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.13" id="PfA-Rq-Jcw"/>
-                            <constraint firstItem="Mwm-1w-Fs0" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="340/896" id="Pje-8W-yc1">
+                            <constraint firstItem="Mwm-1w-Fs0" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="350/896" id="Pje-8W-yc1">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-10"/>
                             </constraint>
                             <constraint firstItem="X6h-To-aWJ" firstAttribute="centerY" secondItem="d5f-cA-qqX" secondAttribute="centerY" id="QdO-i0-nV6"/>
-                            <constraint firstItem="nve-pp-pNM" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.19" id="R7q-tL-mxY"/>
-                            <constraint firstItem="vxp-aH-Ld2" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="800/896" id="Ua7-0o-hgQ">
-                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            <constraint firstItem="nve-pp-pNM" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.17" id="R7q-tL-mxY">
+                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="vxp-aH-Ld2" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="790/896" id="Ua7-0o-hgQ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="X6h-To-aWJ" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" id="VIq-bA-8hR"/>
                             <constraint firstItem="egc-c1-vbu" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="XLH-sO-6fX"/>
@@ -877,7 +1027,7 @@
                             </constraint>
                             <constraint firstItem="nve-pp-pNM" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="gxR-Hb-99q"/>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="he8-xw-WEv"/>
-                            <constraint firstItem="vxp-aH-Ld2" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="j36-gE-q4M"/>
+                            <constraint firstItem="vxp-aH-Ld2" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.95" id="j36-gE-q4M"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="trailing" secondItem="d5f-cA-qqX" secondAttribute="trailing" multiplier="395/414" id="maw-Yo-kXZ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-22"/>
                             </constraint>
@@ -1005,7 +1155,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="edY-7q-Ud8"/>
-        <segue reference="Lul-uL-ukz"/>
+        <segue reference="Ivo-2v-oaH"/>
         <segue reference="faW-XD-JZz"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -7,12 +7,26 @@
 
 import UIKit
 
-class DViewController: UIViewController {
+class DViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var landmarkSearchField: UITextField!
+    @IBOutlet var takePhotoButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        landmarkSearchField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        landmarkSearchField.resignFirstResponder()
+        
+        return true
+    }
+    
+    @IBAction func takePhoto(_ sender: UIButton) {
+        
     }
     
     @IBAction func unwindToDVC(segue: UIStoryboardSegue) {}
