@@ -154,10 +154,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Bank Banner" translatesAutoresizingMaskIntoConstraints="NO" id="DHJ-dg-cPv">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="132.33333333333334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="148"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xm-6U-chP">
-                                <rect key="frame" x="352.66666666666669" y="19.666666666666668" width="55.666666666666686" height="37.333333333333329"/>
+                                <rect key="frame" x="345" y="31.333333333333332" width="68.666666666666686" height="46.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Home">
@@ -175,20 +175,20 @@
                         <viewLayoutGuide key="safeArea" id="JEs-iX-tvy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7xm-6U-chP" firstAttribute="width" secondItem="mny-aT-sQB" secondAttribute="width" multiplier="0.13" id="Ayz-ih-CqX"/>
+                            <constraint firstItem="7xm-6U-chP" firstAttribute="width" secondItem="mny-aT-sQB" secondAttribute="width" multiplier="0.16" id="Ayz-ih-CqX"/>
                             <constraint firstItem="425-RA-JRb" firstAttribute="height" secondItem="mny-aT-sQB" secondAttribute="height" id="Bj8-OJ-ecR"/>
-                            <constraint firstItem="7xm-6U-chP" firstAttribute="bottom" secondItem="mny-aT-sQB" secondAttribute="bottom" multiplier="55/896" id="IRE-WT-kT3">
+                            <constraint firstItem="7xm-6U-chP" firstAttribute="bottom" secondItem="mny-aT-sQB" secondAttribute="bottom" multiplier="75/896" id="IRE-WT-kT3">
                                 <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                             </constraint>
                             <constraint firstItem="425-RA-JRb" firstAttribute="width" secondItem="mny-aT-sQB" secondAttribute="width" id="PGs-kB-cqR"/>
                             <constraint firstItem="7xm-6U-chP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JEs-iX-tvy" secondAttribute="leading" symbolic="YES" id="daB-lp-C14"/>
                             <constraint firstItem="425-RA-JRb" firstAttribute="centerX" secondItem="mny-aT-sQB" secondAttribute="centerX" id="guS-x0-8R9"/>
-                            <constraint firstItem="7xm-6U-chP" firstAttribute="trailing" secondItem="mny-aT-sQB" secondAttribute="trailing" multiplier="395/414" id="ham-8W-dRz">
+                            <constraint firstItem="7xm-6U-chP" firstAttribute="trailing" secondItem="mny-aT-sQB" secondAttribute="trailing" multiplier="400/414" id="ham-8W-dRz">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-22"/>
                             </constraint>
                             <constraint firstItem="DHJ-dg-cPv" firstAttribute="width" secondItem="mny-aT-sQB" secondAttribute="width" id="jya-j6-ked"/>
-                            <constraint firstItem="7xm-6U-chP" firstAttribute="height" secondItem="mny-aT-sQB" secondAttribute="height" multiplier="0.04" id="pFv-Hr-nJS"/>
-                            <constraint firstItem="DHJ-dg-cPv" firstAttribute="height" secondItem="mny-aT-sQB" secondAttribute="height" multiplier="0.142909" id="uth-Gy-HqQ">
+                            <constraint firstItem="7xm-6U-chP" firstAttribute="height" secondItem="mny-aT-sQB" secondAttribute="height" multiplier="0.05" id="pFv-Hr-nJS"/>
+                            <constraint firstItem="DHJ-dg-cPv" firstAttribute="height" secondItem="mny-aT-sQB" secondAttribute="height" multiplier="0.16" id="uth-Gy-HqQ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="DHJ-dg-cPv" firstAttribute="centerX" secondItem="mny-aT-sQB" secondAttribute="centerX" id="vtD-De-oaU"/>
@@ -307,6 +307,21 @@
             </objects>
             <point key="canvasLocation" x="5558" y="110"/>
         </scene>
+        <!--Survey View Controller-->
+        <scene sceneID="bHe-Du-dVO">
+            <objects>
+                <viewController id="sIV-gL-G69" customClass="SurveyViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XZa-fV-RSk">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="y5T-px-Bnf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Buc-cI-C6U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6467" y="110"/>
+        </scene>
         <!--AC View Controller-->
         <scene sceneID="i59-1l-Zmw">
             <objects>
@@ -343,7 +358,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="List of Buildings"/>
                                 <connections>
-                                    <segue destination="FuN-wc-LZM" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="iLO-wX-S5z"/>
+                                    <segue destination="FuN-wc-LZM" kind="presentation" identifier="" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="iLO-wX-S5z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-zd-YwE" userLabel="Photo Taking Tutorial">
@@ -351,7 +366,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Taking Tutorial Button"/>
                                 <connections>
-                                    <segue destination="thI-nd-p8v" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="laJ-ga-JLD"/>
+                                    <segue destination="thI-nd-p8v" kind="presentation" identifier="" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="laJ-ga-JLD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phv-ox-gl2" userLabel="Photo Bank">
@@ -458,10 +473,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="List Of Bldg in Route Banner" translatesAutoresizingMaskIntoConstraints="NO" id="rJb-v7-E3i">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="132.33333333333334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="148"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3l8-Gv-M8L">
-                                <rect key="frame" x="352.66666666666669" y="19.666666666666668" width="55.666666666666686" height="37.333333333333329"/>
+                                <rect key="frame" x="345" y="31.333333333333332" width="68.666666666666686" height="46.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Home">
@@ -587,7 +602,7 @@
                             <constraint firstItem="Odf-H4-Sdj" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="450/896" id="GOg-Qx-Dqy">
                                 <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                             </constraint>
-                            <constraint firstItem="rJb-v7-E3i" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.142857" id="Gcr-pX-8E6">
+                            <constraint firstItem="rJb-v7-E3i" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.16" id="Gcr-pX-8E6">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="slL-3I-uoj" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0215983" id="HGe-yw-aAE"/>
@@ -606,10 +621,10 @@
                             <constraint firstItem="qCf-7i-1f5" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0928726" id="WL0-QW-OPA"/>
                             <constraint firstItem="Urg-bm-MF4" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="Wcz-xl-Jg3"/>
                             <constraint firstItem="tLi-GU-cC1" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="WlE-VP-gJb"/>
-                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="trailing" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="395/414" id="c3B-o6-ecQ">
+                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="trailing" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="400/414" id="c3B-o6-ecQ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-22"/>
                             </constraint>
-                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.04" id="dba-Qc-ULc"/>
+                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.05" id="dba-Qc-ULc"/>
                             <constraint firstItem="3l8-Gv-M8L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yi0-3O-2Af" secondAttribute="leading" symbolic="YES" id="gGK-nR-1WT"/>
                             <constraint firstItem="hqN-qm-Ubh" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.747664" id="gn5-Nh-uTJ"/>
                             <constraint firstItem="Pfr-k3-ThI" firstAttribute="leading" secondItem="EcG-Uv-nHd" secondAttribute="trailing" multiplier="20/414" id="h8M-zX-XXi"/>
@@ -626,14 +641,14 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                             </constraint>
                             <constraint firstItem="xC0-mK-a1h" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" id="lpV-Dd-Jqu"/>
-                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.13" id="mXh-bp-WIR"/>
+                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.16" id="mXh-bp-WIR"/>
                             <constraint firstItem="Pfr-k3-ThI" firstAttribute="height" secondItem="EcG-Uv-nHd" secondAttribute="height" multiplier="0.0313175" id="moF-ND-bR6"/>
                             <constraint firstItem="xC0-mK-a1h" firstAttribute="centerY" secondItem="EcG-Uv-nHd" secondAttribute="centerY" id="oPQ-JH-cam"/>
                             <constraint firstItem="Pfr-k3-ThI" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.303738" id="ph6-Ex-PeE"/>
                             <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pfr-k3-ThI" secondAttribute="trailing" symbolic="YES" id="psW-hV-2d3"/>
                             <constraint firstItem="yi0-3O-2Af" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fNm-vF-Lgb" secondAttribute="trailing" symbolic="YES" id="qt9-4n-64X"/>
                             <constraint firstItem="rJb-v7-E3i" firstAttribute="centerX" secondItem="EcG-Uv-nHd" secondAttribute="centerX" id="r56-b3-fRe"/>
-                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="55/896" id="r7K-bV-toK">
+                            <constraint firstItem="3l8-Gv-M8L" firstAttribute="bottom" secondItem="EcG-Uv-nHd" secondAttribute="bottom" multiplier="75/896" id="r7K-bV-toK">
                                 <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                             </constraint>
                             <constraint firstItem="fNm-vF-Lgb" firstAttribute="width" secondItem="EcG-Uv-nHd" secondAttribute="width" multiplier="0.0841121" id="rG8-cE-Ndg"/>
@@ -942,10 +957,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Taking Tutorial Banner" translatesAutoresizingMaskIntoConstraints="NO" id="ySC-l7-UNr">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="132.33333333333334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="148"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw3-a2-LOc">
-                                <rect key="frame" x="352.66666666666669" y="19.666666666666668" width="55.666666666666686" height="37.333333333333329"/>
+                                <rect key="frame" x="345" y="31.333333333333332" width="68.666666666666686" height="46.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Home">
@@ -990,7 +1005,7 @@
                         <viewLayoutGuide key="safeArea" id="2RA-4u-chT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="55/896" id="1Rh-n6-LHL">
+                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="75/896" id="1Rh-n6-LHL">
                                 <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                             </constraint>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="28X-dc-RE5"/>
@@ -1000,7 +1015,7 @@
                             </constraint>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.12959" id="5v4-OR-v7M"/>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="E3M-j8-PC1"/>
-                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.04" id="FGN-4C-efq"/>
+                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.05" id="FGN-4C-efq"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2RA-4u-chT" secondAttribute="leading" symbolic="YES" id="JCp-WN-UeO"/>
                             <constraint firstItem="egc-c1-vbu" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="370/896" id="JtB-zC-X0M"/>
                             <constraint firstItem="vxp-aH-Ld2" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.12959" id="KBW-UF-Xtg"/>
@@ -1008,7 +1023,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                             </constraint>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="PHV-b2-tyg"/>
-                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.13" id="PfA-Rq-Jcw"/>
+                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.16" id="PfA-Rq-Jcw"/>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="350/896" id="Pje-8W-yc1">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-10"/>
                             </constraint>
@@ -1022,13 +1037,13 @@
                             <constraint firstItem="X6h-To-aWJ" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" id="VIq-bA-8hR"/>
                             <constraint firstItem="egc-c1-vbu" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="XLH-sO-6fX"/>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="top" secondItem="d5f-cA-qqX" secondAttribute="top" id="er6-IS-Nwi"/>
-                            <constraint firstItem="ySC-l7-UNr" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.142909" id="fZU-Iv-TVG">
+                            <constraint firstItem="ySC-l7-UNr" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.16" id="fZU-Iv-TVG">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="nve-pp-pNM" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="gxR-Hb-99q"/>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="he8-xw-WEv"/>
                             <constraint firstItem="vxp-aH-Ld2" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.95" id="j36-gE-q4M"/>
-                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="trailing" secondItem="d5f-cA-qqX" secondAttribute="trailing" multiplier="395/414" id="maw-Yo-kXZ">
+                            <constraint firstItem="Zw3-a2-LOc" firstAttribute="trailing" secondItem="d5f-cA-qqX" secondAttribute="trailing" multiplier="400/414" id="maw-Yo-kXZ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-22"/>
                             </constraint>
                             <constraint firstItem="egc-c1-vbu" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="mga-Q9-pJP"/>
@@ -1154,9 +1169,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="edY-7q-Ud8"/>
-        <segue reference="Ivo-2v-oaH"/>
-        <segue reference="faW-XD-JZz"/>
+        <segue reference="laJ-ga-JLD"/>
+        <segue reference="iLO-wX-S5z"/>
+        <segue reference="v6R-2b-tcd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Are You Sure Background" width="414" height="736"/>

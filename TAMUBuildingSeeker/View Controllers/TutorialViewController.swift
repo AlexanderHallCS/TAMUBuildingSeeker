@@ -16,7 +16,7 @@ class TutorialViewController: UIViewController {
     }
     
     @IBAction func goToHomeVC(_ sender: UIButton) {
-        switch UserData.groupCode {
+        switch UserData.group {
             case "A":
                 fallthrough
             case "C":
