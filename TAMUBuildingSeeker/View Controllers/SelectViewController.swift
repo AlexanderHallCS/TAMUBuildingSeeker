@@ -54,7 +54,7 @@ class SelectViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let vc = segue.destination as? MapViewController {
-            vc.selectedBuilding = selectedBuilding
+            //vc.selectedBuilding = selectedBuilding
         }
     }
 
