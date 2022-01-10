@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11105D642786E96700B34712 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11105D632786E96600B34712 /* SurveyViewController.swift */; };
 		111FB5B42721BCC30052D9CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */; };
 		1150EB0427813BF900DA0253 /* LandmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */; };
 		1150EB06278143BA00DA0253 /* PhotoBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */; };
@@ -24,13 +23,10 @@
 		11E16334277D251C0074A782 /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16333277D251C0074A782 /* BViewController.swift */; };
 		11E16336277D25360074A782 /* DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16335277D25360074A782 /* DViewController.swift */; };
 		11E16338277E639F0074A782 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16337277E639F0074A782 /* TutorialViewController.swift */; };
-		11FE42A22718709F0094162C /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A12718709F0094162C /* SelectViewController.swift */; };
-		11FE42A6271890B30094162C /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE42A5271890B30094162C /* ResultsTableViewController.swift */; };
 		9078DB11DE612171D5D95F6A /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67479C3B37B1536F3B8C49A /* Pods_TAMUBuildingSeeker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11105D632786E96600B34712 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\U0013SurveyViewController.swift"; sourceTree = "<group>"; };
 		111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListViewController.swift; sourceTree = "<group>"; };
 		1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBankViewController.swift; sourceTree = "<group>"; };
@@ -51,8 +47,6 @@
 		11E16333277D251C0074A782 /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
 		11E16335277D25360074A782 /* DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DViewController.swift; sourceTree = "<group>"; };
 		11E16337277E639F0074A782 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		11FE42A12718709F0094162C /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
-		11FE42A5271890B30094162C /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		8C780ED758472FC67FC094EC /* Pods-TAMUBuildingSeeker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.debug.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.debug.xcconfig"; sourceTree = "<group>"; };
 		D24B98259EBA9CCDC63C1F85 /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
 		D67479C3B37B1536F3B8C49A /* Pods_TAMUBuildingSeeker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAMUBuildingSeeker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,15 +120,12 @@
 			isa = PBXGroup;
 			children = (
 				11E16330277D24E20074A782 /* Group View Controllers */,
-				11FE42A5271890B30094162C /* ResultsTableViewController.swift */,
 				11A829FC27023F320005FF3B /* StartViewController.swift */,
 				11ABF35F270AB387000EDAE8 /* MapViewController.swift */,
 				11B885262770232A00788483 /* CameraViewController.swift */,
-				11FE42A12718709F0094162C /* SelectViewController.swift */,
 				1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */,
 				11E16337277E639F0074A782 /* TutorialViewController.swift */,
 				1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */,
-				11105D632786E96600B34712 /* SurveyViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -282,8 +273,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11105D642786E96700B34712 /* SurveyViewController.swift in Sources */,
-				11FE42A6271890B30094162C /* ResultsTableViewController.swift in Sources */,
 				1150EB06278143BA00DA0253 /* PhotoBankViewController.swift in Sources */,
 				11A829FD27023F320005FF3B /* StartViewController.swift in Sources */,
 				11A829F927023F320005FF3B /* AppDelegate.swift in Sources */,
@@ -294,7 +283,6 @@
 				11E1632D277D1C140074A782 /* Globals.swift in Sources */,
 				11E16336277D25360074A782 /* DViewController.swift in Sources */,
 				11B885272770232A00788483 /* CameraViewController.swift in Sources */,
-				11FE42A22718709F0094162C /* SelectViewController.swift in Sources */,
 				11E16338277E639F0074A782 /* TutorialViewController.swift in Sources */,
 				11A829FB27023F320005FF3B /* SceneDelegate.swift in Sources */,
 			);
@@ -449,8 +437,8 @@
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "TAMU Building Seeker requires access to camera for taking pictures of buildings or using photo library building pictures.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to autofill the start/end location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -482,8 +470,8 @@
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "TAMU Building Seeker requires access to camera for taking pictures of buildings or using photo library building pictures.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to autofill the start/end location.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
