@@ -144,6 +144,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             fallthrough
         case .authorizedWhenInUse:
             manager.startUpdatingLocation()
+        case .notDetermined:
+            break
         default:
             let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
