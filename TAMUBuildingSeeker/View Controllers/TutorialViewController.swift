@@ -17,14 +17,12 @@ class TutorialViewController: UIViewController {
     
     @IBAction func goToHomeVC(_ sender: UIButton) {
         switch UserData.group {
-            case "A":
-                fallthrough
-            case "C":
-                performSegue(withIdentifier: "unwindToACVCFromTutorial", sender: self)
             case "B":
-                performSegue(withIdentifier: "unwindToBVCFromTutorial", sender: self)
+                fallthrough
+            case "D":
+                performSegue(withIdentifier: "unwindToBDVCFromTutorial", sender: self)
             default:
-                performSegue(withIdentifier: "unwindToDVCFromTutorial", sender: self)
+                performSegue(withIdentifier: "unwindToCVCFromTutorial", sender: self)
         }
     }
 

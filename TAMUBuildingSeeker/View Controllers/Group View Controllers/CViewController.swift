@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DViewController: UIViewController {
+class CViewController: UIViewController {
 
     @IBOutlet var takePhotoButton: UIButton!
     
@@ -19,7 +19,7 @@ class DViewController: UIViewController {
         
     }
     
-    @IBAction func unwindToDVC(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToCVC(segue: UIStoryboardSegue) {}
 
     /*
     // MARK: - Navigation

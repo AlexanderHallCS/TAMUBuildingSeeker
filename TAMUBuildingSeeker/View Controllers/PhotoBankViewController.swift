@@ -17,12 +17,12 @@ class PhotoBankViewController: UIViewController {
     
     @IBAction func goToHomeVC(_ sender: UIButton) {
         switch UserData.group {
-            case "A":
+            case "B":
                 fallthrough
-            case "C":
-                performSegue(withIdentifier: "unwindToACVCFromPhotoBank", sender: self)
+            case "D":
+                performSegue(withIdentifier: "unwindToBDVCFromPhotoBank", sender: self)
             default:
-                performSegue(withIdentifier: "unwindToDVCFromPhotoBank", sender: self)
+                performSegue(withIdentifier: "unwindToCVCFromPhotoBank", sender: self)
         }
     }
 

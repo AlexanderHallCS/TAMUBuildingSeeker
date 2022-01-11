@@ -54,7 +54,7 @@ class StartViewController: UIViewController, UITextFieldDelegate {
             showErrorAlert(message: "Code must be four characters!")
         } else {
             let groupCode = textField.text![textField.text!.index(textField.text!.startIndex, offsetBy: 1)]
-            if(groupCode.asciiValue! > 68) { // if code's second letter is not A-D
+            if(groupCode.asciiValue! > 68 || groupCode.asciiValue! < 66) { // if code's second letter is not B-D
                 showErrorAlert(message: "Code was typed incorrectly!")
             } else {
                 showConfirmAlert()
@@ -98,14 +98,12 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         UserData.group = String(groupCode[groupCode.index(groupCode.startIndex, offsetBy: 1)])
         
         switch UserData.group {
-        case "A":
-            fallthrough
-        case "C":
-            performSegue(withIdentifier: "startToGroupAC", sender: self)
         case "B":
-            performSegue(withIdentifier: "startToGroupB", sender: self)
+            fallthrough
+        case "D":
+            performSegue(withIdentifier: "startToGroupBD", sender: self)
         default:
-            performSegue(withIdentifier: "startToGroupD", sender: self)
+            performSegue(withIdentifier: "startToGroupC", sender: self)
         }
         
 //        Auth.auth().signInAnonymously(completion: { authResult, error in
