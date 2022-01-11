@@ -26,6 +26,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     let request = MKDirections.Request()
     
+    var shouldUpdateMapRect = false
+    
     var destinationIndex = 0 // specifies what the current destination is
     var shouldShowNearbyNotification = [false, false, false] // only show nearby notif. once per dest
     var mapAnnotations: [MKPointAnnotation] = []
@@ -213,7 +215,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
                         for route in unwrappedResponse.routes {
                             self!.mapView.addOverlay(route.polyline)
-                            self!.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                            if(self!.shouldUpdateMapRect) {
+                                self!.shouldUpdateMapRect = false
+                                self!.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+                            }
                         }
                     }
 //                    didGetFirstLocation = true
@@ -244,6 +249,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.addAnnotation(destinationMarker)
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: LandmarkData.landmarkCoords[destinationIndex]))
         monitorRegionAtLocation(center: LandmarkData.landmarkCoords[destinationIndex])
+        
+        shouldUpdateMapRect = true
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
