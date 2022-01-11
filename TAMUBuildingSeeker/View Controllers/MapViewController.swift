@@ -52,90 +52,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         manager.delegate = self
         
         mapView.mapType = .mutedStandard
+        
         manager.requestAlwaysAuthorization()
-        //manager.requestLocation()
-        //request.requestsAlternateRoutes = true
+        
         request.transportType = .walking
-        
-        
-        
-        //let coordinates = [CLLocationCoordinate2D(latitude: 30.6132970, longitude: -96.3409940), CLLocationCoordinate2D(latitude: 30.614635239430765, longitude: -96.33918907598739),CLLocationCoordinate2D(latitude: 30.614321299604413, longitude: -96.33882430116313),CLLocationCoordinate2D(latitude: 30.615392337642014, longitude: -96.33720420138674),CLLocationCoordinate2D(latitude: 30.614810655204593, longitude: -96.33809472574791),CLLocationCoordinate2D(latitude: 30.616177215386124, longitude: -96.33937144185),CLLocationCoordinate2D(latitude: 30.615743252104618, longitude: -96.34011174809874),CLLocationCoordinate2D(latitude: 30.61573401860394, longitude: -96.3400902902438),CLLocationCoordinate2D(latitude: 30.616288023445797, longitude: -96.34070184020244),CLLocationCoordinate2D(latitude: 30.616204922997778, longitude: -96.3409378787194),CLLocationCoordinate2D(latitude: 30.61633419024504, longitude: -96.34109881435528),CLLocationCoordinate2D(latitude: 30.61620492238295, longitude: -96.3412812072978),CLLocationCoordinate2D(latitude: 30.616297255938285, longitude: -96.34137776902726),CLLocationCoordinate2D(latitude: 30.615235418417686, longitude: -96.34109881128131),CLLocationCoordinate2D(latitude: 30.614939950952216, longitude: -96.34083058876958),CLLocationCoordinate2D(latitude: 30.614302848825638, longitude: -96.34093787685902),CLLocationCoordinate2D(latitude: 30.613998147779352, longitude: -96.34086277522175),CLLocationCoordinate2D(latitude: 30.613665746287364, longitude: -96.34105589232338),CLLocationCoordinate2D(latitude: 30.61347184557696, longitude: -96.34091641869196),CLLocationCoordinate2D(latitude: 30.6132970, longitude: -96.3409940)]
-        
-       // let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
-        //mapView.addOverlay(polyline)
-        
-        
-//        var regionRect = polyline.boundingMapRect
-//
-//
-//                var wPadding = regionRect.size.width * 0.25
-//                var hPadding = regionRect.size.height * 0.25
-//
-//                //Add padding to the region
-//                regionRect.size.width += wPadding
-//                regionRect.size.height += hPadding
-//
-//                //Center the region on the line
-//                regionRect.origin.x -= wPadding / 2
-//                regionRect.origin.y -= hPadding / 2
-
-        //mapView.setRegion(MKCoordinateRegion(regionRect), animated: true)
-        
-//        let startEndMarker = MKPointAnnotation()
-//        startEndMarker.coordinate = CLLocationCoordinate2D(latitude: 30.6132970, longitude: -96.3409940)
-//        startEndMarker.title = "Start/End"
-        //mapView.addAnnotation(startEndMarker)
-        
-        
-        //let buildingMarker = MKPointAnnotation()
-//        switch(selectedBuilding) {
-//        case "Evans Library Annex":
-//            buildingMarker.coordinate = buildingCoordinates["ANNEX_LIBR"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["ANNEX_LIBR"]!))
-//        case "Butler Hall":
-//            buildingMarker.coordinate = buildingCoordinates["BTLR"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["BTLR"]!))
-//        case "Biological Sciences Building West":
-//            buildingMarker.coordinate = buildingCoordinates["BSBW"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["BSBW"]!))
-//        case "Engineering Activity Building A":
-//            buildingMarker.coordinate = buildingCoordinates["EABAA"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["EABAA"]!))
-//        case "Engineering Activity Building B":
-//            buildingMarker.coordinate = buildingCoordinates["EABAB"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["EABAB"]!))
-//        case "Engineering Activity Building C":
-//            buildingMarker.coordinate = buildingCoordinates["EABAC"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["EABAC"]!))
-//        case "Heldenfelds":
-//            buildingMarker.coordinate = buildingCoordinates["HELD"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["HELD"]!))
-//        case "Liberal Arts & Humanities Building":
-//            buildingMarker.coordinate = buildingCoordinates["LAAH"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["LAAH"]!))
-//        case "Pavilion":
-//            buildingMarker.coordinate = buildingCoordinates["PAV"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["PAV"]!))
-//        case "Peterson Building":
-//            buildingMarker.coordinate = buildingCoordinates["PETR"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["PETR"]!))
-//        case "Rudder Tower":
-//            buildingMarker.coordinate = buildingCoordinates["RDER"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["RDER"]!))
-//        case "SBISA":
-//            buildingMarker.coordinate = buildingCoordinates["SBISA"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["SBISA"]!))
-//        case "Student Computing Center":
-//            buildingMarker.coordinate = buildingCoordinates["SCC"]!
-//            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: buildingCoordinates["SCC"]!))
-//        default:
-//            break
-//        }
-        
-        //buildingMarker.title = selectedBuilding
-        //mapView.addAnnotation(buildingMarker)
-        
-       
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -205,27 +125,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            if let location = locations.first {
-                //if(!didGetFirstLocation) {
-                    request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
-                    let directions = MKDirections(request: request)
+        if let location = locations.first {
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
+            let directions = MKDirections(request: request)
 
-                    directions.calculate { [weak self] response, error in
-                        guard let unwrappedResponse = response else { return }
+            directions.calculate { [weak self] response, error in
+                guard let unwrappedResponse = response else { return }
 
-                        for route in unwrappedResponse.routes {
-                            self!.mapView.addOverlay(route.polyline)
-                            if(self!.shouldUpdateMapRect) {
-                                self!.shouldUpdateMapRect = false
-                                self!.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-                            }
-                        }
+                for route in unwrappedResponse.routes {
+                    self!.mapView.addOverlay(route.polyline)
+                    if(self!.shouldUpdateMapRect) {
+                        self!.shouldUpdateMapRect = false
+                        self!.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
                     }
-//                    didGetFirstLocation = true
-//                }
-                coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
+                }
             }
-        
+            coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -280,6 +196,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // TODO: nearby notifications if correct group
         // TODO: create button and uiimageview (or make unhidden)
     }
+    
+    // TODO: Disable app from starting again once study completes (UserDefaults boolean)
     
 //    @objc func confirmButtonPressed() {
 //        takePictureButton.isUserInteractionEnabled = true
