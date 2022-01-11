@@ -98,7 +98,7 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" backgroundImage="TakePictureButton"/>
                                 <connections>
-                                    <action selector="presentCameraView:" destination="qzH-oK-ewC" eventType="touchUpInside" id="0vZ-ZX-SUe"/>
+                                    <action selector="takePicture:" destination="qzH-oK-ewC" eventType="touchUpInside" id="A5t-s1-wNt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -124,7 +124,6 @@
                     <connections>
                         <outlet property="mapView" destination="z4n-yJ-ITK" id="JD0-eV-idp"/>
                         <outlet property="takePictureButton" destination="lDg-MQ-Vpr" id="Vu6-ug-xK4"/>
-                        <segue destination="3qH-St-c2t" kind="presentation" identifier="mapToCamera" modalPresentationStyle="fullScreen" id="G2K-0a-hCb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUm-zX-EGA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -195,60 +194,6 @@
                 <exit id="5A1-5Z-idw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1872.8971962616822" y="762.63498920086397"/>
-        </scene>
-        <!--Camera View Controller-->
-        <scene sceneID="zNF-9D-dQF">
-            <objects>
-                <viewController id="3qH-St-c2t" customClass="CameraViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TLt-MO-fYj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CF-Le-HaA">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Picture Taking Guidelines" translatesAutoresizingMaskIntoConstraints="NO" id="E0a-tk-gbY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgj-Jf-lg9" userLabel="TakePictureButton">
-                                <rect key="frame" x="161.5" y="763" width="91" height="99"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="Survey Notification Button"/>
-                                <connections>
-                                    <action selector="takePicture:" destination="3qH-St-c2t" eventType="touchUpInside" id="szS-uM-PfK"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="E5U-as-6uZ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="8CF-Le-HaA" firstAttribute="width" secondItem="TLt-MO-fYj" secondAttribute="width" id="0Yy-Cm-Kc7"/>
-                            <constraint firstItem="E0a-tk-gbY" firstAttribute="width" secondItem="E5U-as-6uZ" secondAttribute="width" id="E3D-w2-xYb"/>
-                            <constraint firstItem="Pgj-Jf-lg9" firstAttribute="centerX" secondItem="E5U-as-6uZ" secondAttribute="centerX" id="EfZ-JL-3tv"/>
-                            <constraint firstItem="E0a-tk-gbY" firstAttribute="centerX" secondItem="E5U-as-6uZ" secondAttribute="centerX" id="SgP-ns-PKg"/>
-                            <constraint firstItem="Pgj-Jf-lg9" firstAttribute="height" secondItem="E5U-as-6uZ" secondAttribute="height" multiplier="0.121027" id="ZHf-Nm-RQU">
-                                <variation key="heightClass=regular-widthClass=regular" constant="80"/>
-                            </constraint>
-                            <constraint firstItem="8CF-Le-HaA" firstAttribute="height" secondItem="TLt-MO-fYj" secondAttribute="height" id="ZUe-qU-ENL"/>
-                            <constraint firstItem="Pgj-Jf-lg9" firstAttribute="width" secondItem="E5U-as-6uZ" secondAttribute="width" multiplier="0.219807" id="Zys-ht-fUk"/>
-                            <constraint firstItem="E0a-tk-gbY" firstAttribute="centerY" secondItem="E5U-as-6uZ" secondAttribute="centerY" id="gZh-Wg-XWI"/>
-                            <constraint firstItem="8CF-Le-HaA" firstAttribute="centerX" secondItem="TLt-MO-fYj" secondAttribute="centerX" id="mG6-uH-gZ0"/>
-                            <constraint firstItem="E5U-as-6uZ" firstAttribute="bottom" secondItem="Pgj-Jf-lg9" secondAttribute="bottom" id="ojX-Ak-ePf"/>
-                            <constraint firstItem="8CF-Le-HaA" firstAttribute="centerY" secondItem="TLt-MO-fYj" secondAttribute="centerY" id="qsj-Zr-d5w"/>
-                            <constraint firstItem="E0a-tk-gbY" firstAttribute="height" secondItem="E5U-as-6uZ" secondAttribute="height" id="sKE-yB-B69"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="FeJ-39-zio"/>
-                    <connections>
-                        <outlet property="pictureTakingBorder" destination="E0a-tk-gbY" id="8xc-uz-z2R"/>
-                        <outlet property="takePictureButton" destination="Pgj-Jf-lg9" id="YxC-d7-ROy"/>
-                        <outlet property="videoPreviewView" destination="8CF-Le-HaA" id="qyE-UD-FSu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mmb-GU-aao" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3763" y="978"/>
         </scene>
         <!--AC View Controller-->
         <scene sceneID="i59-1l-Zmw">
@@ -1109,8 +1054,6 @@
         <image name="Photo Taking Tutorial Banner" width="375" height="106.5"/>
         <image name="Photo Taking Tutorial Button" width="317" height="522"/>
         <image name="Photo Taking Tutorial Icon" width="552" height="521"/>
-        <image name="Picture Taking Guidelines" width="1175" height="2067"/>
-        <image name="Survey Notification Button" width="265" height="285"/>
         <image name="TAMUHighlightBG" width="375" height="667"/>
         <image name="TakePictureButton" width="107" height="142"/>
         <image name="WhiteBox" width="100" height="100"/>

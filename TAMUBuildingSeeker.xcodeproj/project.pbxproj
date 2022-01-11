@@ -17,7 +17,6 @@
 		11A82A0227023F380005FF3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0127023F380005FF3B /* Assets.xcassets */; };
 		11A82A0527023F380005FF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0327023F380005FF3B /* LaunchScreen.storyboard */; };
 		11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABF35F270AB387000EDAE8 /* MapViewController.swift */; };
-		11B885272770232A00788483 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B885262770232A00788483 /* CameraViewController.swift */; };
 		11E1632D277D1C140074A782 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1632C277D1C140074A782 /* Globals.swift */; };
 		11E16332277D250D0074A782 /* ACViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16331277D250D0074A782 /* ACViewController.swift */; };
 		11E16334277D251C0074A782 /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16333277D251C0074A782 /* BViewController.swift */; };
@@ -39,7 +38,6 @@
 		11A82A0427023F380005FF3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11A82A0627023F380005FF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11ABF35F270AB387000EDAE8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		11B885262770232A00788483 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		11B8852C2770833600788483 /* Concept Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Concept Bold.ttf"; sourceTree = "<group>"; };
 		11B8852D2770833800788483 /* Concept Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Concept Medium.ttf"; sourceTree = "<group>"; };
 		11E1632C277D1C140074A782 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				11E16330277D24E20074A782 /* Group View Controllers */,
 				11A829FC27023F320005FF3B /* StartViewController.swift */,
 				11ABF35F270AB387000EDAE8 /* MapViewController.swift */,
-				11B885262770232A00788483 /* CameraViewController.swift */,
 				1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */,
 				11E16337277E639F0074A782 /* TutorialViewController.swift */,
 				1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */,
@@ -282,7 +279,6 @@
 				1150EB0427813BF900DA0253 /* LandmarkListViewController.swift in Sources */,
 				11E1632D277D1C140074A782 /* Globals.swift in Sources */,
 				11E16336277D25360074A782 /* DViewController.swift in Sources */,
-				11B885272770232A00788483 /* CameraViewController.swift in Sources */,
 				11E16338277E639F0074A782 /* TutorialViewController.swift in Sources */,
 				11A829FB27023F320005FF3B /* SceneDelegate.swift in Sources */,
 			);
