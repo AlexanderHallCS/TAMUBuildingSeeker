@@ -7,21 +7,10 @@
 
 import UIKit
 
-class BViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet var landmarkSearchField: UITextField!
+class BViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        landmarkSearchField.delegate = self
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        landmarkSearchField.resignFirstResponder()
-        
-        return true
     }
     
     @IBAction func unwindToBVC(segue: UIStoryboardSegue) {}
