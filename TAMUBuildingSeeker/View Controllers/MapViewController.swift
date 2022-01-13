@@ -19,6 +19,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var takePictureButton: UIButton!
     
+    @IBOutlet var nearbyNotifImageView: UIImageView!
+    @IBOutlet var nearbyTakePictureButton: UIButton!
+    
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
     
@@ -193,8 +196,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         mapRegions[destinationIndex].notifyOnEntry = false
-        // TODO: nearby notifications if correct group
-        // TODO: create button and uiimageview (or make unhidden)
+        nearbyNotifImageView.isHidden = false
+        nearbyTakePictureButton.isHidden = false
     }
     
     // TODO: Disable app from starting again once study completes (UserDefaults boolean)
