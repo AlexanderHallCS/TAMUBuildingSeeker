@@ -53,8 +53,8 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         if(textField.text?.count != 4) {
             showErrorAlert(message: "Code must be four characters!")
         } else {
-            let groupCode = textField.text![textField.text!.index(textField.text!.startIndex, offsetBy: 1)]
-            if(groupCode.asciiValue! > 68 || groupCode.asciiValue! < 66) { // if code's second letter is not B-D
+            let groupCode = (textField.text!.uppercased())[textField.text!.index(textField.text!.startIndex, offsetBy: 1)]
+            if(groupCode.asciiValue! > 68 || groupCode.asciiValue! < 65) { // if code's second letter is not A-D
                 showErrorAlert(message: "Code was typed incorrectly!")
             } else {
                 showConfirmAlert()
@@ -94,16 +94,18 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         // segue to respective group VC
         
         let groupCode = groupCodeSelector.text!
-        UserData.groupCode = groupCode
-        UserData.group = String(groupCode[groupCode.index(groupCode.startIndex, offsetBy: 1)])
+        UserData.groupCode = groupCode.uppercased()
+        UserData.group = String(groupCode[groupCode.index(groupCode.startIndex, offsetBy: 1)]).uppercased()
         
         switch UserData.group {
-        case "B":
+        case "A":
             fallthrough
-        case "D":
-            performSegue(withIdentifier: "startToGroupBD", sender: self)
+        case "C":
+            performSegue(withIdentifier: "startToGroupAC", sender: self)
+        case "B":
+            performSegue(withIdentifier: "startToGroupB", sender: self)
         default:
-            performSegue(withIdentifier: "startToGroupC", sender: self)
+            performSegue(withIdentifier: "startToGroupD", sender: self)
         }
         
 //        Auth.auth().signInAnonymously(completion: { authResult, error in
@@ -121,8 +123,6 @@ class StartViewController: UIViewController, UITextFieldDelegate {
 //            }
 //        })
     }
-    
-    @IBAction func unwindToStart(segue: UIStoryboardSegue) {}
     
 }
 

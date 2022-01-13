@@ -65,8 +65,9 @@
                     <navigationItem key="navigationItem" id="QhZ-oy-GLp"/>
                     <connections>
                         <outlet property="groupCodeSelector" destination="nvi-X7-cUs" id="YqA-ej-0F8"/>
-                        <segue destination="Mqj-1G-c72" kind="presentation" identifier="startToGroupBD" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="yHe-rp-V1X"/>
-                        <segue destination="RkS-bZ-c98" kind="presentation" identifier="startToGroupC" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lMt-uB-mBm"/>
+                        <segue destination="Mqj-1G-c72" kind="presentation" identifier="startToGroupD" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="yHe-rp-V1X"/>
+                        <segue destination="RkS-bZ-c98" kind="presentation" identifier="startToGroupAC" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lMt-uB-mBm"/>
+                        <segue destination="9RT-K2-Pr6" kind="presentation" identifier="startToGroupB" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Z3o-v5-1n6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -110,11 +111,39 @@
                     <connections>
                         <outlet property="mapView" destination="z4n-yJ-ITK" id="JD0-eV-idp"/>
                         <outlet property="takePictureButton" destination="lDg-MQ-Vpr" id="Vu6-ug-xK4"/>
+                        <segue destination="2Oy-eU-sUh" kind="presentation" identifier="mapToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4VF-eg-EMd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUm-zX-EGA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3762.6168224299063" y="82.937365010799141"/>
+            <point key="canvasLocation" x="3001" y="83"/>
+        </scene>
+        <!--End View Controller-->
+        <scene sceneID="5IP-Xx-9Jf">
+            <objects>
+                <viewController id="2Oy-eU-sUh" customClass="EndViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GqJ-Za-Srz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Complete!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erz-T1-MjT">
+                                <rect key="frame" x="143" y="442.5" width="128" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XIT-Yw-ajy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="erz-T1-MjT" firstAttribute="centerY" secondItem="XIT-Yw-ajy" secondAttribute="centerY" id="NUc-g7-rJT"/>
+                            <constraint firstItem="erz-T1-MjT" firstAttribute="centerX" secondItem="XIT-Yw-ajy" secondAttribute="centerX" id="c3G-UM-cNo"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MYb-7y-Wmj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4003" y="84"/>
         </scene>
         <!--Photo Bank View Controller-->
         <scene sceneID="r6Y-xh-Jww">
@@ -143,6 +172,7 @@
                                 <connections>
                                     <action selector="goToHomeVC:" destination="FuN-wc-LZM" eventType="touchUpInside" id="BGi-e5-gxs"/>
                                     <action selector="goToHomeVC:" destination="bKS-IT-5dM" eventType="touchUpInside" id="Bx0-Lb-V5S"/>
+                                    <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToBVCFromPhotoBank" unwindAction="unwindToBVCWithSegue:" id="cix-n0-rYE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -171,8 +201,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToBDVCFromPhotoBank" unwindAction="unwindToBDVCWithSegue:" id="OwK-1y-S6r"/>
-                        <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToCVCFromPhotoBank" unwindAction="unwindToCVCWithSegue:" id="my4-UP-kAH"/>
+                        <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToDVCFromPhotoBank" unwindAction="unwindToDVCWithSegue:" id="OwK-1y-S6r"/>
+                        <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToACVCFromPhotoBank" unwindAction="unwindToACVCWithSegue:" id="my4-UP-kAH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l0-VP-g42" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -180,10 +210,10 @@
             </objects>
             <point key="canvasLocation" x="1872.8971962616822" y="762.63498920086397"/>
         </scene>
-        <!--BD View Controller-->
+        <!--D View Controller-->
         <scene sceneID="i59-1l-Zmw">
             <objects>
-                <viewController id="Mqj-1G-c72" userLabel="BD View Controller" customClass="BDViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Mqj-1G-c72" userLabel="D View Controller" customClass="DViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Vv-2R-rOy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -511,8 +541,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToBDVCFromList" unwindAction="unwindToBDVCWithSegue:" id="hfU-fm-lji"/>
-                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToCVCFromList" unwindAction="unwindToCVCWithSegue:" id="F88-pc-R2G"/>
+                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToDVCFromList" unwindAction="unwindToDVCWithSegue:" id="hfU-fm-lji"/>
+                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToACVCFromList" unwindAction="unwindToACVCWithSegue:" id="F88-pc-R2G"/>
+                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToBVCFromList" unwindAction="unwindToBVCWithSegue:" id="7lN-Pc-4Su"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cse-GL-vUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -624,10 +655,10 @@
             </objects>
             <point key="canvasLocation" x="723.36448598130835" y="83.585313174946009"/>
         </scene>
-        <!--C View Controller-->
+        <!--AC View Controller-->
         <scene sceneID="mkc-XN-0Wh">
             <objects>
-                <viewController id="RkS-bZ-c98" userLabel="C View Controller" customClass="CViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RkS-bZ-c98" userLabel="AC View Controller" customClass="ACViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oE1-mE-2pL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -798,6 +829,7 @@
                                 <connections>
                                     <action selector="goToHomeVC:" destination="FuN-wc-LZM" eventType="touchUpInside" id="Y7D-Ij-DWC"/>
                                     <action selector="goToHomeVC:" destination="thI-nd-p8v" eventType="touchUpInside" id="fYn-On-ulX"/>
+                                    <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToBVCFromTutorial" unwindAction="unwindToBVCWithSegue:" id="r7I-fV-JDo"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteBox" translatesAutoresizingMaskIntoConstraints="NO" id="egc-c1-vbu" userLabel="WhiteBoxTop">
@@ -889,8 +921,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToBDVCFromTutorial" unwindAction="unwindToBDVCWithSegue:" id="hD4-MK-WnF"/>
-                        <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToCVCFromTutorial" unwindAction="unwindToCVCWithSegue:" id="qFW-L8-KM0"/>
+                        <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToDVCFromTutorial" unwindAction="unwindToDVCWithSegue:" id="hD4-MK-WnF"/>
+                        <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToACVCFromTutorial" unwindAction="unwindToACVCWithSegue:" id="qFW-L8-KM0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctN-8Z-J7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -898,89 +930,12 @@
             </objects>
             <point key="canvasLocation" x="1872.8971962616822" y="83.585313174946009"/>
         </scene>
-        <!--Select View Controller-->
-        <scene sceneID="vtV-Ly-moo">
-            <objects>
-                <viewController id="ZiM-Dh-PCw" customClass="SelectViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1Cd-1o-fvp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Building" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dUm-sI-hgM">
-                                <rect key="frame" x="75" y="84" width="264" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sgh-Wv-P3X">
-                                <rect key="frame" x="0.0" y="348" width="414" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhz-E6-0c1">
-                                <rect key="frame" x="140" y="796" width="134" height="48"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" red="0.30588235289999999" green="0.046052336690000001" blue="0.03839996457" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </backgroundConfiguration>
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Go To Map">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="20" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="qzH-oK-ewC" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="dQn-ER-IVo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSP-Zr-i7U">
-                                <rect key="frame" x="20" y="44" width="83" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Go Back"/>
-                                <connections>
-                                    <segue destination="prn-IO-wha" kind="unwind" unwindAction="unwindToStartWithSegue:" id="KK3-TI-cAN"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="nvP-4n-GNA"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Nhz-E6-0c1" firstAttribute="width" secondItem="1Cd-1o-fvp" secondAttribute="width" multiplier="0.323671" id="4gt-r6-2QY"/>
-                            <constraint firstItem="dUm-sI-hgM" firstAttribute="height" secondItem="1Cd-1o-fvp" secondAttribute="height" multiplier="0.0457589" id="5PA-e7-kWI"/>
-                            <constraint firstItem="dUm-sI-hgM" firstAttribute="top" secondItem="1Cd-1o-fvp" secondAttribute="bottom" multiplier="84/896" id="63L-bB-L8f"/>
-                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="height" secondItem="1Cd-1o-fvp" secondAttribute="height" multiplier="0.0345982" id="8qs-k3-5hZ"/>
-                            <constraint firstItem="Nhz-E6-0c1" firstAttribute="height" secondItem="1Cd-1o-fvp" secondAttribute="height" multiplier="0.0535714" id="CEj-4b-3tv"/>
-                            <constraint firstItem="dUm-sI-hgM" firstAttribute="centerX" secondItem="1Cd-1o-fvp" secondAttribute="centerX" id="Dp3-B9-7xY"/>
-                            <constraint firstItem="dUm-sI-hgM" firstAttribute="width" secondItem="1Cd-1o-fvp" secondAttribute="width" multiplier="0.637681" id="Zd5-h9-Jdj"/>
-                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="width" secondItem="1Cd-1o-fvp" secondAttribute="width" multiplier="0.2" id="acB-3W-2Se"/>
-                            <constraint firstItem="Nhz-E6-0c1" firstAttribute="top" secondItem="1Cd-1o-fvp" secondAttribute="bottom" multiplier="796/896" id="dPh-sR-5Bs"/>
-                            <constraint firstItem="nvP-4n-GNA" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DSP-Zr-i7U" secondAttribute="trailing" symbolic="YES" id="oJt-sr-Gi7"/>
-                            <constraint firstItem="Nhz-E6-0c1" firstAttribute="centerX" secondItem="nvP-4n-GNA" secondAttribute="centerX" id="shH-Jj-Kif"/>
-                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="leading" secondItem="nvP-4n-GNA" secondAttribute="leading" constant="20" id="uZl-Fq-ywR"/>
-                            <constraint firstItem="DSP-Zr-i7U" firstAttribute="top" secondItem="nvP-4n-GNA" secondAttribute="top" id="v7N-L1-UNq"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="WrQ-qm-RcT"/>
-                    <connections>
-                        <outlet property="buildingPickerView" destination="Sgh-Wv-P3X" id="qqR-rc-g8Q"/>
-                        <outlet property="goToMapButton" destination="Nhz-E6-0c1" id="ge0-dM-Ah5"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ye4-Tf-Q6R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="prn-IO-wha" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2797" y="84"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="edY-7q-Ud8"/>
+        <segue reference="laJ-ga-JLD"/>
         <segue reference="iLO-wX-S5z"/>
-        <segue reference="faW-XD-JZz"/>
-        <segue reference="dQn-ER-IVo"/>
+        <segue reference="v6R-2b-tcd"/>
+        <segue reference="gpP-xT-v8x"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Building Seeker Button (Words)" width="1077" height="552"/>

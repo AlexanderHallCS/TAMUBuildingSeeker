@@ -1,20 +1,21 @@
 //
-//  ACViewController.swift
+//  EndViewController.swift
 //  TAMUBuildingSeeker
 //
-//  Created by Alexander Hall on 12/29/21.
+//  Created by Alexander Hall on 1/13/22.
 //
 
 import UIKit
 
-class BDViewController: UIViewController {
-    
+class EndViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
     
-    @IBAction func unwindToBDVC(segue: UIStoryboardSegue) {}
-    
+
     /*
     // MARK: - Navigation
 

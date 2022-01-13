@@ -7,20 +7,14 @@
 
 import UIKit
 
-class CViewController: UIViewController {
-
-    @IBOutlet var takePhotoButton: UIButton!
+class DViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func takePhoto(_ sender: UIButton) {
-        
-    }
+    @IBAction func unwindToDVC(segue: UIStoryboardSegue) {}
     
-    @IBAction func unwindToCVC(segue: UIStoryboardSegue) {}
-
     /*
     // MARK: - Navigation
 
