@@ -9,7 +9,6 @@ import UIKit
 import MapKit
 import Vision
 import CoreML
-import ImageIO
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
@@ -21,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBOutlet var nearbyNotifImageView: UIImageView!
     @IBOutlet var nearbyTakePictureButton: UIButton!
+    @IBOutlet var takePhotoActivityMonitor: UIActivityIndicatorView!
     
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
@@ -38,6 +38,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var coordinates: [GeoPoint] = []
     
+    let modelManager = MLModelManager()
+    
     var modelDownloadTask: StorageDownloadTask?
     var modelDownloadUrl = URL(string: "")
     
@@ -47,7 +49,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let mlModelFileData = downloadMLModelFile()
+        let mlModelFileData = modelManager.downloadMLModelFile()
         modelDownloadTask = mlModelFileData.0
         modelDownloadUrl = mlModelFileData.1
         
@@ -59,6 +61,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         manager.requestAlwaysAuthorization()
         
         request.transportType = .walking
+        
+        // no photo taking feature for group B unless nearby destination
+        if(UserData.group == "B") {
+            takePictureButton.isHidden = true
+            takePhotoActivityMonitor.isHidden = true
+        }
+        
+        // only allow photo taking for group D once ML model is downloaded
+        if(UserData.group == "D") {
+            takePhotoActivityMonitor.startAnimating()
+            takePictureButton.isEnabled = false
+            modelDownloadTask?.observe(.success) { _ in
+                self.takePhotoActivityMonitor.stopAnimating()
+                self.takePhotoActivityMonitor.isHidden = true
+                self.takePictureButton.isEnabled = true
+            }
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -124,8 +143,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         updateClassifications(for: capturedImage)
     }
-    
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -246,23 +263,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //        }
 //    }
     
-    func downloadMLModelFile() -> (StorageDownloadTask, URL) {
-        let storage = Storage.storage()
-        let modelRef = storage.reference(forURL: "gs://tamu-building-seeker-6115e.appspot.com/CampusLandmarksModel.mlmodel")
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let localURL = documentsURL.appendingPathComponent("model/CampusLandmarksModel.mlmodel")
-        let downloadTask = modelRef.write(toFile: localURL) { (URL, error) -> Void in
-            if (error != nil) {
-                print("Uh-oh, an error occurred!")
-                print(error)
-            } else {
-                print("Local file URL is returned")
-            }
-        }
-        
-        return (downloadTask, localURL)
-    }
-    
     // TODO: DISPLAY NOTIFICATION IF RESULT IS SUCCESSFUL OR NOT OR NEEDS ANOTHER PICTURE
     func processClassifications(for request: VNRequest, error: Error?) -> Dictionary<String, Double> {
         
@@ -281,6 +281,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let resultPercentages = topClassifications.map { classification in
             return Double(String(format: "%.2f", classification.confidence * 100))!
         }
+        
+        print("NAMES: \(names)")
+        print("RESULT PERCENTAGES: \(resultPercentages)")
         
         return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
     }

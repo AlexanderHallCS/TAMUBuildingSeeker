@@ -6,9 +6,31 @@
 //
 
 import Foundation
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseStorage
 
 class MLModelManager {
-      static  func renameResult(result: String) -> String {
+    
+    public func downloadMLModelFile() -> (StorageDownloadTask, URL) {
+        let storage = Storage.storage()
+        let modelRef = storage.reference(forURL: "gs://tamu-building-seeker-6115e.appspot.com/CampusLandmarksModel.mlmodel")
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let localURL = documentsURL.appendingPathComponent("model/CampusLandmarksModel.mlmodel")
+        let downloadTask = modelRef.write(toFile: localURL) { (URL, error) -> Void in
+            if (error != nil) {
+                print("Uh-oh, an error occurred!")
+                print(error)
+            } else {
+                print("Local file URL is returned")
+                
+            }
+        }
+        
+        return (downloadTask, localURL)
+    }
+    
+    public func renameResult(result: String) -> String {
         switch result {
         case "ANNEX_LIBR":
             return "Evans Library Annex"

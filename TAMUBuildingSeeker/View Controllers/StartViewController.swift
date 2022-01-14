@@ -26,8 +26,6 @@ class StartViewController: UIViewController, UITextFieldDelegate {
             return true
         }
         
-        //textField.text = (textField.text as NSString).replace
-        
         let expectedLength = 4
         
         // calculate how long the input is after it is added to / removed from

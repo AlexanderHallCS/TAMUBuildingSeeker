@@ -91,6 +91,7 @@
 				11E1632E277D1C740074A782 /* Supporting Files */,
 				11B8852B277082B200788483 /* Fonts */,
 				11E1632C277D1C140074A782 /* Globals.swift */,
+				1154A58B27916FAD000D59DE /* MLModelManager.swift */,
 				11A829FE27023F320005FF3B /* Main.storyboard */,
 				11A82A0127023F380005FF3B /* Assets.xcassets */,
 				111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */,
@@ -128,7 +129,6 @@
 				11E16337277E639F0074A782 /* TutorialViewController.swift */,
 				1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */,
 				1154A58927904A27000D59DE /* EndViewController.swift */,
-				1154A58B27916FAD000D59DE /* MLModelManager.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

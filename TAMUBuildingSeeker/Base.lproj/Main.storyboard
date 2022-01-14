@@ -85,7 +85,10 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4n-yJ-ITK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-MQ-Vpr">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="kSC-YU-HiJ">
+                                <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-MQ-Vpr" userLabel="GlobalPhotoButton">
                                 <rect key="frame" x="276.5" y="720.5" width="103.5" height="134.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" backgroundImage="TakePictureButton"/>
@@ -96,7 +99,7 @@
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nearby Notification" translatesAutoresizingMaskIntoConstraints="NO" id="o6I-xo-Avv">
                                 <rect key="frame" x="101" y="270" width="212" height="356"/>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv2-DT-fRg" userLabel="Take Photo Button">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv2-DT-fRg" userLabel="NearbyPhotoButton">
                                 <rect key="frame" x="137.5" y="648" width="139" height="58"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
@@ -106,9 +109,9 @@
                                     <action selector="takePicture:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Rt2-s1-dCB"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="kSC-YU-HiJ">
-                                <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
-                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="L5E-dW-k8I">
+                                <rect key="frame" x="308.5" y="768" width="40" height="40"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="511-9Q-2Gc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -124,15 +127,19 @@
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="trailing" secondItem="sJC-Tk-78Q" secondAttribute="trailing" multiplier="380/414" id="Bth-E9-xQa"/>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.25" id="D7R-xn-deF"/>
                             <constraint firstItem="o6I-xo-Avv" firstAttribute="centerY" secondItem="sJC-Tk-78Q" secondAttribute="centerY" id="I0I-F1-jW3"/>
+                            <constraint firstItem="L5E-dW-k8I" firstAttribute="centerY" secondItem="lDg-MQ-Vpr" secondAttribute="centerY" id="Id7-zp-BNf"/>
                             <constraint firstItem="Dv2-DT-fRg" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="N5h-Kw-i4z"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" id="Qx4-Cb-vWl"/>
+                            <constraint firstItem="L5E-dW-k8I" firstAttribute="width" secondItem="lDg-MQ-Vpr" secondAttribute="width" multiplier="0.386473" id="SC6-AM-Fnf"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" id="TFd-Lx-zeK"/>
                             <constraint firstItem="Dv2-DT-fRg" firstAttribute="top" secondItem="o6I-xo-Avv" secondAttribute="bottom" constant="22" id="VY7-6h-stj"/>
+                            <constraint firstItem="L5E-dW-k8I" firstAttribute="centerX" secondItem="lDg-MQ-Vpr" secondAttribute="centerX" id="Y74-Ef-XN9"/>
                             <constraint firstItem="Dv2-DT-fRg" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.335749" id="aSo-MQ-pq0"/>
                             <constraint firstItem="Dv2-DT-fRg" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.0647321" id="coE-3h-EEg"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerY" secondItem="sJC-Tk-78Q" secondAttribute="centerY" id="jIj-S2-IYd"/>
                             <constraint firstItem="kSC-YU-HiJ" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.092" id="k3C-QT-kZ6"/>
                             <constraint firstItem="o6I-xo-Avv" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.397321" id="pGj-pc-0WO"/>
+                            <constraint firstItem="L5E-dW-k8I" firstAttribute="height" secondItem="lDg-MQ-Vpr" secondAttribute="height" multiplier="0.297398" id="xYr-LP-aDa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JHb-jO-ze2"/>
@@ -140,6 +147,7 @@
                         <outlet property="mapView" destination="z4n-yJ-ITK" id="JD0-eV-idp"/>
                         <outlet property="nearbyNotifImageView" destination="o6I-xo-Avv" id="9yi-dz-wxW"/>
                         <outlet property="nearbyTakePictureButton" destination="Dv2-DT-fRg" id="lpw-jP-6r6"/>
+                        <outlet property="takePhotoActivityMonitor" destination="L5E-dW-k8I" id="ROW-93-gqO"/>
                         <outlet property="takePictureButton" destination="lDg-MQ-Vpr" id="Vu6-ug-xK4"/>
                         <segue destination="2Oy-eU-sUh" kind="presentation" identifier="mapToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4VF-eg-EMd"/>
                     </connections>
@@ -758,10 +766,14 @@
                                     <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="100"/>
                                 </variation>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="fBo-pk-hQj">
+                                <rect key="frame" x="280.5" y="568.5" width="48" height="48"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vOu-xp-Ogk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="fBo-pk-hQj" firstAttribute="width" secondItem="N7c-6K-FfK" secondAttribute="width" multiplier="0.274286" id="2Mj-z5-IoL"/>
                             <constraint firstItem="cH3-ee-C7o" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.13" id="3Oc-Gu-bc9"/>
                             <constraint firstItem="mds-Gd-oqf" firstAttribute="bottom" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="85/896" id="45l-Vy-NAh"/>
                             <constraint firstItem="JyJ-FC-ahr" firstAttribute="leading" secondItem="oE1-mE-2pL" secondAttribute="trailing" multiplier="20/414" id="4s3-zQ-5sR"/>
@@ -784,9 +796,11 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
                             <constraint firstItem="cH3-ee-C7o" firstAttribute="centerX" secondItem="oE1-mE-2pL" secondAttribute="centerX" id="LkB-bp-6XJ"/>
+                            <constraint firstItem="fBo-pk-hQj" firstAttribute="centerX" secondItem="N7c-6K-FfK" secondAttribute="centerX" id="Mqd-tf-J9I"/>
                             <constraint firstItem="GfM-US-HzY" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.333333" id="N2H-7j-Fej"/>
                             <constraint firstItem="wRF-Im-h6x" firstAttribute="trailing" secondItem="oE1-mE-2pL" secondAttribute="trailing" multiplier="392/414" id="PZu-cM-BQ3"/>
                             <constraint firstItem="wRF-Im-h6x" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.26087" id="Pbz-hd-fIs"/>
+                            <constraint firstItem="fBo-pk-hQj" firstAttribute="height" secondItem="N7c-6K-FfK" secondAttribute="height" multiplier="0.181132" id="VfT-6s-yPN"/>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JyJ-FC-ahr" secondAttribute="trailing" constant="8" symbolic="YES" id="YUj-r9-CNj"/>
                             <constraint firstItem="GfM-US-HzY" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.1" id="Yfk-SE-2fg"/>
                             <constraint firstItem="PgQ-nq-7CT" firstAttribute="top" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="200/896" id="Z15-Yx-lBS"/>
@@ -796,6 +810,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                             </constraint>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="trailing" secondItem="oE1-mE-2pL" secondAttribute="trailing" multiplier="392/414" id="bKS-sg-e7Q"/>
+                            <constraint firstItem="fBo-pk-hQj" firstAttribute="centerY" secondItem="N7c-6K-FfK" secondAttribute="centerY" id="eea-LL-j0V"/>
                             <constraint firstItem="PgQ-nq-7CT" firstAttribute="trailing" secondItem="oE1-mE-2pL" secondAttribute="trailing" multiplier="130/414" id="g5p-PL-SQl"/>
                             <constraint firstItem="mds-Gd-oqf" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.847352" id="gO2-wz-5ca"/>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GfM-US-HzY" secondAttribute="trailing" constant="8" symbolic="YES" id="hUD-cI-XkQ"/>
@@ -825,6 +840,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="takePhotoActivityMonitor" destination="fBo-pk-hQj" id="Pqq-kb-6Wg"/>
                         <outlet property="takePhotoButton" destination="N7c-6K-FfK" id="g4k-ZB-ZL7"/>
                     </connections>
                 </viewController>
@@ -962,9 +978,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="laJ-ga-JLD"/>
-        <segue reference="Lul-uL-ukz"/>
-        <segue reference="v6R-2b-tcd"/>
+        <segue reference="edY-7q-Ud8"/>
+        <segue reference="Ivo-2v-oaH"/>
+        <segue reference="faW-XD-JZz"/>
         <segue reference="aKH-Pe-sDX"/>
     </inferredMetricsTieBreakers>
     <resources>
