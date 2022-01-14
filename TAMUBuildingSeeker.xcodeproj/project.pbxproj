@@ -12,6 +12,7 @@
 		1150EB06278143BA00DA0253 /* PhotoBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */; };
 		1154A588279015EC000D59DE /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A587279015EC000D59DE /* BViewController.swift */; };
 		1154A58A27904A27000D59DE /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58927904A27000D59DE /* EndViewController.swift */; };
+		1154A58C27916FAD000D59DE /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58B27916FAD000D59DE /* MLModelManager.swift */; };
 		11A829F927023F320005FF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829F827023F320005FF3B /* AppDelegate.swift */; };
 		11A829FB27023F320005FF3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829FA27023F320005FF3B /* SceneDelegate.swift */; };
 		11A829FD27023F320005FF3B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829FC27023F320005FF3B /* StartViewController.swift */; };
@@ -32,6 +33,7 @@
 		1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBankViewController.swift; sourceTree = "<group>"; };
 		1154A587279015EC000D59DE /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
 		1154A58927904A27000D59DE /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
+		1154A58B27916FAD000D59DE /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
 		11A829F527023F320005FF3B /* TAMUBuildingSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAMUBuildingSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A829F827023F320005FF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A829FA27023F320005FF3B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				11E16337277E639F0074A782 /* TutorialViewController.swift */,
 				1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */,
 				1154A58927904A27000D59DE /* EndViewController.swift */,
+				1154A58B27916FAD000D59DE /* MLModelManager.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				11A829FD27023F320005FF3B /* StartViewController.swift in Sources */,
 				11A829F927023F320005FF3B /* AppDelegate.swift in Sources */,
 				11E16332277D250D0074A782 /* DViewController.swift in Sources */,
+				1154A58C27916FAD000D59DE /* MLModelManager.swift in Sources */,
 				11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */,
 				1150EB0427813BF900DA0253 /* LandmarkListViewController.swift in Sources */,
 				11E1632D277D1C140074A782 /* Globals.swift in Sources */,
