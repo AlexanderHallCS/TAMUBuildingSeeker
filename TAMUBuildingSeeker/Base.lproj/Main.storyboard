@@ -943,6 +943,13 @@
                                     <action selector="takePhoto:" destination="8kL-oF-nFM" eventType="touchUpInside" id="out-gV-shn"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ZKe-35-lNU" userLabel="FoundLandmarkActivityIndicator">
+                                <rect key="frame" x="87.5" y="571.5" width="42" height="42"/>
+                            </activityIndicatorView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="myW-N7-VHd" userLabel="TakePhotoActivityIndicator">
+                                <rect key="frame" x="283" y="571" width="42" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PYU-ng-mfX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -950,6 +957,7 @@
                             <constraint firstItem="cQY-ik-Db9" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.422705" id="0Sw-wI-dOR">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-50"/>
                             </constraint>
+                            <constraint firstItem="ZKe-35-lNU" firstAttribute="height" secondItem="saY-YW-agX" secondAttribute="height" multiplier="0.158491" id="3qq-9q-ThD"/>
                             <constraint firstItem="nCk-Ne-xVP" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="top" id="728-A6-kZU"/>
                             <constraint firstItem="Dml-Ce-wfn" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.190848" id="7Zs-ND-fZa">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
@@ -982,10 +990,13 @@
                             </constraint>
                             <constraint firstItem="saY-YW-agX" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="196/414" id="gui-aE-MLN"/>
                             <constraint firstItem="bam-Xx-qp5" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" id="iMG-FE-57I"/>
+                            <constraint firstItem="ZKe-35-lNU" firstAttribute="centerX" secondItem="saY-YW-agX" secondAttribute="centerX" id="ikC-Q6-XIC"/>
                             <constraint firstItem="cQY-ik-Db9" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="392/414" id="kH3-0d-IOD"/>
                             <constraint firstItem="saY-YW-agX" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.295759" id="oMx-W1-ylU">
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
+                            <constraint firstItem="ZKe-35-lNU" firstAttribute="width" secondItem="saY-YW-agX" secondAttribute="width" multiplier="0.24" id="pTA-Ld-bRs"/>
+                            <constraint firstItem="ZKe-35-lNU" firstAttribute="centerY" secondItem="saY-YW-agX" secondAttribute="centerY" id="pun-O1-N7Y"/>
                             <constraint firstItem="tj9-AX-9Wc" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.0535714" id="rfR-Zz-igA"/>
                             <constraint firstItem="Lpd-as-36e" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="200/896" id="rw5-cU-fuV"/>
                             <constraint firstItem="cQY-ik-Db9" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="460/896" id="uVn-GX-ZAp">
@@ -1002,13 +1013,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="foundLandmarkActivityIndicator" destination="ZKe-35-lNU" id="Rwm-1J-8MC"/>
                         <outlet property="foundLandmarkButton" destination="saY-YW-agX" id="8fu-1D-3Gs"/>
+                        <outlet property="takePhotoActivityIndicator" destination="myW-N7-VHd" id="wY7-Yd-796"/>
                         <outlet property="takePhotoButton" destination="cQY-ik-Db9" id="fvK-Vt-Wle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bkl-ja-7dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725" y="1485"/>
+            <point key="canvasLocation" x="724.63768115942037" y="1484.5982142857142"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="bgG-CI-Lkg">
