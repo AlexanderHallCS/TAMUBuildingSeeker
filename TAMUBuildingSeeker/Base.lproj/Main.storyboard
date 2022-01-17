@@ -89,7 +89,7 @@
                                 <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-MQ-Vpr" userLabel="GlobalPhotoButton">
-                                <rect key="frame" x="276.5" y="720.5" width="103.5" height="134.5"/>
+                                <rect key="frame" x="276.5" y="705.5" width="103.5" height="134.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" backgroundImage="TakePictureButton"/>
                                 <connections>
@@ -103,14 +103,14 @@
                                 <rect key="frame" x="137.5" y="648" width="139" height="58"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" image="Take Photo Notification Button"/>
+                                    <backgroundConfiguration key="background" image="FoundBuildingButton2"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="takePicture:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Rt2-s1-dCB"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="L5E-dW-k8I">
-                                <rect key="frame" x="308.5" y="768" width="40" height="40"/>
+                                <rect key="frame" x="308.5" y="753" width="40" height="40"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="511-9Q-2Gc"/>
@@ -119,7 +119,7 @@
                             <constraint firstItem="kSC-YU-HiJ" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="1Pi-7c-ndH"/>
                             <constraint firstItem="kSC-YU-HiJ" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" id="3LX-KN-XNY"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="3x5-bl-uDh"/>
-                            <constraint firstItem="lDg-MQ-Vpr" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="855/896" id="6oK-dy-fXi"/>
+                            <constraint firstItem="lDg-MQ-Vpr" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="840/896" id="6oK-dy-fXi"/>
                             <constraint firstItem="kSC-YU-HiJ" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" id="7Ac-7f-gcJ"/>
                             <constraint firstItem="o6I-xo-Avv" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="81V-he-bLG"/>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.15" id="AIa-DU-gPC"/>
@@ -213,16 +213,39 @@
                                     <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToBVCFromPhotoBank" unwindAction="unwindToBVCWithSegue:" id="cix-n0-rYE"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxs-HI-c3g">
+                                <rect key="frame" x="0.0" y="143.5" width="414" height="752.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnj-Qb-Du6" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="752.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="5lp-jM-HwA" firstAttribute="top" secondItem="rnj-Qb-Du6" secondAttribute="top" id="8i6-uE-SIa"/>
+                                    <constraint firstAttribute="trailing" secondItem="rnj-Qb-Du6" secondAttribute="trailing" id="IPg-Ob-Yv0"/>
+                                    <constraint firstItem="rnj-Qb-Du6" firstAttribute="width" secondItem="X8Y-v1-dTH" secondAttribute="width" id="Irx-LY-VLr"/>
+                                    <constraint firstItem="rnj-Qb-Du6" firstAttribute="trailing" secondItem="5lp-jM-HwA" secondAttribute="trailing" id="dOK-gV-l9O"/>
+                                    <constraint firstItem="rnj-Qb-Du6" firstAttribute="leading" secondItem="5lp-jM-HwA" secondAttribute="leading" id="dom-lH-WLq"/>
+                                    <constraint firstItem="rnj-Qb-Du6" firstAttribute="bottom" secondItem="5lp-jM-HwA" secondAttribute="bottom" id="ucF-CB-ojW"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="5lp-jM-HwA"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="X8Y-v1-dTH"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JEs-iX-tvy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rnj-Qb-Du6" firstAttribute="height" secondItem="mny-aT-sQB" secondAttribute="height" multiplier="0.84" id="3FN-G3-FBL"/>
+                            <constraint firstItem="Cxs-HI-c3g" firstAttribute="top" secondItem="DHJ-dg-cPv" secondAttribute="bottom" id="8DC-Ad-h7w"/>
                             <constraint firstItem="7xm-6U-chP" firstAttribute="width" secondItem="mny-aT-sQB" secondAttribute="width" multiplier="0.16" id="Ayz-ih-CqX"/>
                             <constraint firstItem="425-RA-JRb" firstAttribute="height" secondItem="mny-aT-sQB" secondAttribute="height" id="Bj8-OJ-ecR"/>
                             <constraint firstItem="7xm-6U-chP" firstAttribute="bottom" secondItem="mny-aT-sQB" secondAttribute="bottom" multiplier="75/896" id="IRE-WT-kT3">
                                 <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                             </constraint>
+                            <constraint firstItem="Cxs-HI-c3g" firstAttribute="width" secondItem="mny-aT-sQB" secondAttribute="width" id="KjC-AM-I4U"/>
                             <constraint firstItem="425-RA-JRb" firstAttribute="width" secondItem="mny-aT-sQB" secondAttribute="width" id="PGs-kB-cqR"/>
+                            <constraint firstItem="Cxs-HI-c3g" firstAttribute="centerX" secondItem="mny-aT-sQB" secondAttribute="centerX" id="c1j-Cz-8MU"/>
                             <constraint firstItem="7xm-6U-chP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JEs-iX-tvy" secondAttribute="leading" symbolic="YES" id="daB-lp-C14"/>
                             <constraint firstItem="425-RA-JRb" firstAttribute="centerX" secondItem="mny-aT-sQB" secondAttribute="centerX" id="guS-x0-8R9"/>
                             <constraint firstItem="7xm-6U-chP" firstAttribute="trailing" secondItem="mny-aT-sQB" secondAttribute="trailing" multiplier="400/414" id="ham-8W-dRz">
@@ -235,10 +258,14 @@
                             </constraint>
                             <constraint firstItem="DHJ-dg-cPv" firstAttribute="centerX" secondItem="mny-aT-sQB" secondAttribute="centerX" id="vtD-De-oaU"/>
                             <constraint firstItem="DHJ-dg-cPv" firstAttribute="top" secondItem="mny-aT-sQB" secondAttribute="top" id="wle-VP-4O7"/>
+                            <constraint firstAttribute="bottom" secondItem="Cxs-HI-c3g" secondAttribute="bottom" id="x1E-Za-Sv3"/>
                             <constraint firstItem="425-RA-JRb" firstAttribute="centerY" secondItem="mny-aT-sQB" secondAttribute="centerY" id="zLm-oM-GkQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="background" destination="425-RA-JRb" id="262-UT-bE2"/>
+                        <outlet property="contentView" destination="rnj-Qb-Du6" id="ZBU-r5-dCm"/>
+                        <outlet property="contentViewHeightConstraint" destination="3FN-G3-FBL" id="K3x-Jq-kcp"/>
                         <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToDVCFromPhotoBank" unwindAction="unwindToDVCWithSegue:" id="OwK-1y-S6r"/>
                         <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToACVCFromPhotoBank" unwindAction="unwindToACVCWithSegue:" id="my4-UP-kAH"/>
                     </connections>
@@ -246,7 +273,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l0-VP-g42" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="5A1-5Z-idw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1872.8971962616822" y="762.63498920086397"/>
+            <point key="canvasLocation" x="1872.4637681159422" y="762.05357142857144"/>
         </scene>
         <!--D View Controller-->
         <scene sceneID="i59-1l-Zmw">
@@ -985,6 +1012,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Building Seeker Button (Words)" width="1077" height="552"/>
+        <image name="FoundBuildingButton2" width="327" height="125"/>
         <image name="GrayRectangle" width="750" height="150"/>
         <image name="Grey Buildings Background" width="375" height="667"/>
         <image name="List Of Bldg in Route Banner" width="621" height="176"/>
@@ -998,8 +1026,7 @@
         <image name="Photo Taking Tutorial Button" width="317" height="522"/>
         <image name="Photo Taking Tutorial Icon" width="552" height="521"/>
         <image name="TAMUHighlightBG" width="375" height="667"/>
-        <image name="Take Photo Notification Button" width="327" height="125"/>
-        <image name="TakePictureButton" width="107" height="142"/>
+        <image name="TakePictureButton" width="107" height="141"/>
         <image name="WhiteBox" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

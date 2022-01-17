@@ -17,10 +17,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var takePictureButton: UIButton!
+    @IBOutlet var takePhotoActivityMonitor: UIActivityIndicatorView!
     
     @IBOutlet var nearbyNotifImageView: UIImageView!
     @IBOutlet var nearbyTakePictureButton: UIButton!
-    @IBOutlet var takePhotoActivityMonitor: UIActivityIndicatorView!
     
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
@@ -142,6 +142,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         updateClassifications(for: capturedImage)
+        UserData.picturesTaken.append(capturedImage)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -275,7 +276,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let topClassifications = classifications.prefix(3) // get top 3 results
     
         let names = topClassifications.map { classification in
-            return classification.identifier
+            return modelManager.renameResult(result: classification.identifier)
         }
     
         let resultPercentages = topClassifications.map { classification in
@@ -317,9 +318,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     print("test1")
                     let mlModelObject = try MLModel(contentsOf: compiledModelURL)
                     print("test2")
-                    let modelTest = try VNCoreMLModel(for: mlModelObject)
+                    let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
                     print("WOOO BABY")
-                    let request = VNCoreMLRequest(model: modelTest, completionHandler: { [weak self] request, error in
+                    let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
                         self?.processClassifications(for: request, error: error)
                     })
                     request.imageCropAndScaleOption = .centerCrop
