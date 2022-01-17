@@ -1,5 +1,5 @@
 //
-//  ACViewController.swift
+//  AViewController.swift
 //  TAMUBuildingSeeker
 //
 //  Created by Alexander Hall on 12/29/21.
@@ -12,10 +12,10 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
 
-class ACViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet var takePhotoButton: UIButton!
-    @IBOutlet var takePhotoActivityMonitor: UIActivityIndicatorView!
+    @IBOutlet var foundLandmarkButton: UIButton!
+    @IBOutlet var foundLandmarkActivityMonitor: UIActivityIndicatorView!
     
     let modelManager = MLModelManager()
     
@@ -29,21 +29,13 @@ class ACViewController: UIViewController, UIImagePickerControllerDelegate, UINav
         modelDownloadTask = mlModelFileData.0
         modelDownloadUrl = mlModelFileData.1
         
-        // group A can only take photos from the nearby notification
-        if(UserData.group == "A") {
-            takePhotoButton.isHidden = true
-            takePhotoActivityMonitor.isHidden = true
-        }
+        foundLandmarkActivityMonitor.startAnimating()
+        foundLandmarkButton.isEnabled = false
         
-        if(UserData.group == "C") {
-            takePhotoActivityMonitor.startAnimating()
-            takePhotoButton.isEnabled = false
-            
-            modelDownloadTask?.observe(.success) { _ in
-                self.takePhotoActivityMonitor.stopAnimating()
-                self.takePhotoActivityMonitor.isHidden = true
-                self.takePhotoButton.isEnabled = true
-            }
+        modelDownloadTask?.observe(.success) { _ in
+            self.foundLandmarkActivityMonitor.stopAnimating()
+            self.foundLandmarkActivityMonitor.isHidden = true
+            self.foundLandmarkButton.isEnabled = true
         }
     }
     
@@ -145,18 +137,14 @@ class ACViewController: UIViewController, UIImagePickerControllerDelegate, UINav
                 // Download completed successfully
                 do {
                     let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
-                    print("test1")
                     let mlModelObject = try MLModel(contentsOf: compiledModelURL)
-                    print("test2")
                     let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
-                    print("WOOO BABY")
                     let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
                         self?.processClassifications(for: request, error: error)
                     })
                     request.imageCropAndScaleOption = .centerCrop
                     do {
                         try handler.perform([request])
-                        print("WE REQUESTING!")
                     } catch {
                         print("Failed to perform classification.\n\(error.localizedDescription)")
                     }
@@ -167,6 +155,6 @@ class ACViewController: UIViewController, UIImagePickerControllerDelegate, UINav
         }
     }
     
-    @IBAction func unwindToACVC(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToAVC(segue: UIStoryboardSegue) {}
 
 }

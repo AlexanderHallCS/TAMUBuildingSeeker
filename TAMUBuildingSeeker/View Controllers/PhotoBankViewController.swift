@@ -63,11 +63,11 @@ class PhotoBankViewController: UIViewController {
     @IBAction func goToHomeVC(_ sender: UIButton) {
         switch UserData.group {
         case "A":
-            fallthrough
-        case "C":
-            performSegue(withIdentifier: "unwindToACVCFromPhotoBank", sender: self)
+            performSegue(withIdentifier: "unwindToAVCFromPhotoBank", sender: self)
         case "B":
             performSegue(withIdentifier: "unwindToBVCFromPhotoBank", sender: self)
+        case "C":
+            performSegue(withIdentifier: "unwindToCVCFromPhotoBank", sender: self)
         default:
             performSegue(withIdentifier: "unwindToDVCFromPhotoBank", sender: self)
         }
@@ -76,6 +76,8 @@ class PhotoBankViewController: UIViewController {
 }
 
 extension NSLayoutConstraint {
+    // recreates a constraint with the specified multiplier
+    // used to increases height when photos go off screen 
     func recreateConstraint(multiplier: CGFloat) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: self.firstItem!, attribute: self.firstAttribute, relatedBy: self.relation, toItem: self.secondItem, attribute: self.secondAttribute, multiplier: multiplier, constant: self.constant)
     }

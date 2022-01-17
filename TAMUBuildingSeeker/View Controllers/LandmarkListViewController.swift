@@ -18,11 +18,11 @@ class LandmarkListViewController: UIViewController {
     @IBAction func goToHomeVC(_ sender: UIButton) {
         switch UserData.group {
         case "A":
-            fallthrough
-        case "C":
-            performSegue(withIdentifier: "unwindToACVCFromList", sender: self)
+            performSegue(withIdentifier: "unwindToAVCFromList", sender: self)
         case "B":
             performSegue(withIdentifier: "unwindToBVCFromList", sender: self)
+        case "C":
+            performSegue(withIdentifier: "unwindToCVCFromList", sender: self)
         default:
             performSegue(withIdentifier: "unwindToDVCFromList", sender: self)
         }

@@ -66,8 +66,9 @@
                     <connections>
                         <outlet property="groupCodeSelector" destination="nvi-X7-cUs" id="YqA-ej-0F8"/>
                         <segue destination="Mqj-1G-c72" kind="presentation" identifier="startToGroupD" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="yHe-rp-V1X"/>
-                        <segue destination="RkS-bZ-c98" kind="presentation" identifier="startToGroupAC" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lMt-uB-mBm"/>
+                        <segue destination="RkS-bZ-c98" kind="presentation" identifier="startToGroupA" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="lMt-uB-mBm"/>
                         <segue destination="9RT-K2-Pr6" kind="presentation" identifier="startToGroupB" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Z3o-v5-1n6"/>
+                        <segue destination="8kL-oF-nFM" kind="presentation" identifier="startToGroupC" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="6MO-l7-VlJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -267,7 +268,8 @@
                         <outlet property="contentView" destination="rnj-Qb-Du6" id="ZBU-r5-dCm"/>
                         <outlet property="contentViewHeightConstraint" destination="3FN-G3-FBL" id="K3x-Jq-kcp"/>
                         <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToDVCFromPhotoBank" unwindAction="unwindToDVCWithSegue:" id="OwK-1y-S6r"/>
-                        <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToACVCFromPhotoBank" unwindAction="unwindToACVCWithSegue:" id="my4-UP-kAH"/>
+                        <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToAVCFromPhotoBank" unwindAction="unwindToAVCWithSegue:" id="JsB-KN-E1b"/>
+                        <segue destination="5A1-5Z-idw" kind="unwind" identifier="unwindToCVCFromPhotoBank" unwindAction="unwindToCVCWithSegue:" id="FmA-mC-lae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3l0-VP-g42" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -607,8 +609,9 @@
                     </view>
                     <connections>
                         <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToDVCFromList" unwindAction="unwindToDVCWithSegue:" id="hfU-fm-lji"/>
-                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToACVCFromList" unwindAction="unwindToACVCWithSegue:" id="F88-pc-R2G"/>
                         <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToBVCFromList" unwindAction="unwindToBVCWithSegue:" id="7lN-Pc-4Su"/>
+                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToAVCFromList" unwindAction="unwindToAVCWithSegue:" id="c7C-uH-wVI"/>
+                        <segue destination="bED-li-Pch" kind="unwind" identifier="unwindToCVCFromList" unwindAction="unwindToCVCWithSegue:" id="TeX-fG-QGY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cse-GL-vUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -720,10 +723,10 @@
             </objects>
             <point key="canvasLocation" x="723.36448598130835" y="83.585313174946009"/>
         </scene>
-        <!--AC View Controller-->
+        <!--A View Controller-->
         <scene sceneID="mkc-XN-0Wh">
             <objects>
-                <viewController id="RkS-bZ-c98" userLabel="AC View Controller" customClass="ACViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RkS-bZ-c98" userLabel="A View Controller" customClass="AViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oE1-mE-2pL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -767,10 +770,10 @@
                                     <segue destination="bKS-IT-5dM" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="faW-XD-JZz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7c-6K-FfK" userLabel="TakePhotoButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7c-6K-FfK" userLabel="FoundLandmarkButton">
                                 <rect key="frame" x="217" y="460" width="175" height="265"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="TakePictureButton"/>
+                                <state key="normal" backgroundImage="FoundBuildingButton"/>
                                 <connections>
                                     <action selector="takePhoto:" destination="RkS-bZ-c98" eventType="touchUpInside" id="ICb-bt-fe8"/>
                                 </connections>
@@ -867,13 +870,145 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="takePhotoActivityMonitor" destination="fBo-pk-hQj" id="Pqq-kb-6Wg"/>
-                        <outlet property="takePhotoButton" destination="N7c-6K-FfK" id="g4k-ZB-ZL7"/>
+                        <outlet property="foundLandmarkActivityMonitor" destination="fBo-pk-hQj" id="Pqq-kb-6Wg"/>
+                        <outlet property="foundLandmarkButton" destination="N7c-6K-FfK" id="g4k-ZB-ZL7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6G-wl-yjd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="724.63768115942037" y="762.72321428571422"/>
+        </scene>
+        <!--C View Controller-->
+        <scene sceneID="kZU-Vv-pVT">
+            <objects>
+                <viewController id="8kL-oF-nFM" userLabel="C View Controller" customClass="CViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qBT-Tv-898">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="bam-Xx-qp5">
+                                <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Maroon Search and Title Bar" translatesAutoresizingMaskIntoConstraints="NO" id="nCk-Ne-xVP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU BUILDING SEEKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tj9-AX-9Wc">
+                                <rect key="frame" x="31.5" y="37" width="351" height="48"/>
+                                <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="32"/>
+                                <color key="textColor" red="1" green="0.91372549020000005" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="73"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpd-as-36e" userLabel="List of Buildings in Route">
+                                <rect key="frame" x="22" y="200" width="108" height="171"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="List of Buildings"/>
+                                <connections>
+                                    <segue destination="FuN-wc-LZM" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="W9d-zn-THW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dml-Ce-wfn" userLabel="Photo Taking Tutorial">
+                                <rect key="frame" x="153" y="200" width="108" height="171"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="Photo Taking Tutorial Button"/>
+                                <connections>
+                                    <segue destination="thI-nd-p8v" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="by3-Ha-hac"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8l-zB-WIg" userLabel="Photo Bank">
+                                <rect key="frame" x="284" y="200" width="108" height="171"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="Photo Bank Button"/>
+                                <connections>
+                                    <segue destination="bKS-IT-5dM" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="yf8-aV-TnX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQY-ik-Db9" userLabel="TakePhotoButton">
+                                <rect key="frame" x="217" y="460" width="175" height="265"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="TakePictureButton"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="RkS-bZ-c98" eventType="touchUpInside" id="Vh9-nl-cx9"/>
+                                    <action selector="takePhoto:" destination="8kL-oF-nFM" eventType="touchUpInside" id="zJx-eb-mYj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saY-YW-agX" userLabel="FoundLandmarkButton">
+                                <rect key="frame" x="21" y="460" width="175" height="265"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="FoundBuildingButton"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="RkS-bZ-c98" eventType="touchUpInside" id="WI1-SC-EJo"/>
+                                    <action selector="takePhoto:" destination="8kL-oF-nFM" eventType="touchUpInside" id="out-gV-shn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PYU-ng-mfX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cQY-ik-Db9" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.422705" id="0Sw-wI-dOR">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-50"/>
+                            </constraint>
+                            <constraint firstItem="nCk-Ne-xVP" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="top" id="728-A6-kZU"/>
+                            <constraint firstItem="Dml-Ce-wfn" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.190848" id="7Zs-ND-fZa">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="Dml-Ce-wfn" firstAttribute="centerX" secondItem="qBT-Tv-898" secondAttribute="centerX" id="9QS-12-76h"/>
+                            <constraint firstItem="Dml-Ce-wfn" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="200/896" id="CGi-se-dq1"/>
+                            <constraint firstItem="cQY-ik-Db9" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.295759" id="Fjg-O2-FrK">
+                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="saY-YW-agX" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="460/896" id="GiF-jb-60l">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="bam-Xx-qp5" firstAttribute="bottom" secondItem="qBT-Tv-898" secondAttribute="bottom" id="IGR-Bg-OLI"/>
+                            <constraint firstItem="bam-Xx-qp5" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.092" id="Oy0-l3-TtZ">
+                                <variation key="heightClass=regular-widthClass=regular" constant="10"/>
+                            </constraint>
+                            <constraint firstItem="F8l-zB-WIg" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.26087" id="P5v-oh-AdE"/>
+                            <constraint firstItem="tj9-AX-9Wc" firstAttribute="bottom" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="85/896" id="Q0g-Uk-oqJ"/>
+                            <constraint firstItem="Dml-Ce-wfn" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.26087" id="SNO-2I-zNE"/>
+                            <constraint firstItem="nCk-Ne-xVP" firstAttribute="centerX" secondItem="qBT-Tv-898" secondAttribute="centerX" id="UNV-x7-JZn"/>
+                            <constraint firstItem="Lpd-as-36e" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.26087" id="VuG-k1-HlL"/>
+                            <constraint firstItem="Lpd-as-36e" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.190848" id="WmH-Ay-m4n">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="nCk-Ne-xVP" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.13" id="YDi-Hx-8na"/>
+                            <constraint firstItem="nCk-Ne-xVP" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" id="cab-iA-FmV"/>
+                            <constraint firstItem="tj9-AX-9Wc" firstAttribute="centerX" secondItem="PYU-ng-mfX" secondAttribute="centerX" id="cw8-Ih-uJg"/>
+                            <constraint firstItem="saY-YW-agX" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.422705" id="gmQ-PZ-OWm">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-50"/>
+                            </constraint>
+                            <constraint firstItem="saY-YW-agX" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="196/414" id="gui-aE-MLN"/>
+                            <constraint firstItem="bam-Xx-qp5" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" id="iMG-FE-57I"/>
+                            <constraint firstItem="cQY-ik-Db9" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="392/414" id="kH3-0d-IOD"/>
+                            <constraint firstItem="saY-YW-agX" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.295759" id="oMx-W1-ylU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                            </constraint>
+                            <constraint firstItem="tj9-AX-9Wc" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.0535714" id="rfR-Zz-igA"/>
+                            <constraint firstItem="Lpd-as-36e" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="200/896" id="rw5-cU-fuV"/>
+                            <constraint firstItem="cQY-ik-Db9" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="460/896" id="uVn-GX-ZAp">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="F8l-zB-WIg" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.190848" id="vc6-ui-oIX">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="F8l-zB-WIg" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="200/896" id="vlP-hZ-iMb"/>
+                            <constraint firstItem="Lpd-as-36e" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="130/414" id="wGS-mz-9dk"/>
+                            <constraint firstItem="F8l-zB-WIg" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="392/414" id="whM-N8-70Y"/>
+                            <constraint firstItem="bam-Xx-qp5" firstAttribute="centerX" secondItem="qBT-Tv-898" secondAttribute="centerX" id="x2L-Mv-g1P"/>
+                            <constraint firstItem="tj9-AX-9Wc" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.847826" id="zdB-rk-3Rt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="foundLandmarkButton" destination="saY-YW-agX" id="8fu-1D-3Gs"/>
+                        <outlet property="takePhotoButton" destination="cQY-ik-Db9" id="fvK-Vt-Wle"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bkl-ja-7dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725" y="1485"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="bgG-CI-Lkg">
@@ -995,7 +1130,8 @@
                     </view>
                     <connections>
                         <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToDVCFromTutorial" unwindAction="unwindToDVCWithSegue:" id="hD4-MK-WnF"/>
-                        <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToACVCFromTutorial" unwindAction="unwindToACVCWithSegue:" id="qFW-L8-KM0"/>
+                        <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToAVCFromTutorial" unwindAction="unwindToAVCWithSegue:" id="F9z-Dw-Ujo"/>
+                        <segue destination="Ft8-wa-Wy5" kind="unwind" identifier="unwindToCVCFromTutorial" unwindAction="unwindToCVCWithSegue:" id="Kw1-Fv-C8u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctN-8Z-J7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1005,13 +1141,14 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="edY-7q-Ud8"/>
-        <segue reference="Ivo-2v-oaH"/>
-        <segue reference="faW-XD-JZz"/>
+        <segue reference="by3-Ha-hac"/>
+        <segue reference="W9d-zn-THW"/>
+        <segue reference="yf8-aV-TnX"/>
         <segue reference="aKH-Pe-sDX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Building Seeker Button (Words)" width="1077" height="552"/>
+        <image name="FoundBuildingButton" width="107" height="141"/>
         <image name="FoundBuildingButton2" width="327" height="125"/>
         <image name="GrayRectangle" width="750" height="150"/>
         <image name="Grey Buildings Background" width="375" height="667"/>

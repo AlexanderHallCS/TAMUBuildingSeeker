@@ -97,11 +97,11 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         
         switch UserData.group {
         case "A":
-            fallthrough
-        case "C":
-            performSegue(withIdentifier: "startToGroupAC", sender: self)
+            performSegue(withIdentifier: "startToGroupA", sender: self)
         case "B":
             performSegue(withIdentifier: "startToGroupB", sender: self)
+        case "C":
+            performSegue(withIdentifier: "startToGroupC", sender: self)
         default:
             performSegue(withIdentifier: "startToGroupD", sender: self)
         }
