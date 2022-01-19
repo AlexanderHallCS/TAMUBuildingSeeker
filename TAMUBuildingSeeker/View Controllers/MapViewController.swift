@@ -17,7 +17,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var takePictureButton: UIButton!
-    @IBOutlet var takePhotoActivityMonitor: UIActivityIndicatorView!
+    @IBOutlet var takePhotoActivityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet var foundLandmarkButton: UIButton!
+    @IBOutlet var foundLandmarkActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var nearbyNotifImageView: UIImageView!
     @IBOutlet var nearbyTakePictureButton: UIButton!
@@ -49,6 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("called!")
         let mlModelFileData = modelManager.downloadMLModelFile()
         modelDownloadTask = mlModelFileData.0
         modelDownloadUrl = mlModelFileData.1
@@ -62,21 +66,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         request.transportType = .walking
         
-        // no photo taking feature for group B unless nearby destination
+        foundLandmarkButton.isEnabled = false
+        
+        // no photo taking feature for group B
         if(UserData.group == "B") {
             takePictureButton.isHidden = true
-            takePhotoActivityMonitor.isHidden = true
+            takePhotoActivityIndicator.isHidden = true
         }
         
         // only allow photo taking for group D once ML model is downloaded
         if(UserData.group == "D") {
-            takePhotoActivityMonitor.startAnimating()
+            takePhotoActivityIndicator.startAnimating()
             takePictureButton.isEnabled = false
             modelDownloadTask?.observe(.success) { _ in
-                self.takePhotoActivityMonitor.stopAnimating()
-                self.takePhotoActivityMonitor.isHidden = true
+                self.takePhotoActivityIndicator.stopAnimating()
+                self.takePhotoActivityIndicator.isHidden = true
                 self.takePictureButton.isEnabled = true
             }
+        }
+        
+        // group B and D have access to the "Found Landmark" button
+        modelDownloadTask?.observe(.success) { _ in
+            self.foundLandmarkActivityIndicator.stopAnimating()
+            self.foundLandmarkActivityIndicator.isHidden = true
+            self.foundLandmarkButton.isEnabled = true
         }
     }
     
@@ -124,6 +137,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         present(photoSourcePicker, animated: true)
     }
+    
+    @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func pressNotifContinueButton(_ sender: UIButton) {
+    }
+    @IBAction func pressNotifFoundLandmarkButton(_ sender: UIButton) {
+    }
+    
     
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
@@ -336,5 +359,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         }
     }
-
+    
+    @IBAction func goToHomeVC(_ sender: UIButton) {
+        switch UserData.group {
+        case "B":
+            performSegue(withIdentifier: "mapToBVC", sender: self)
+        default:
+            performSegue(withIdentifier: "mapToDVC", sender: self)
+        }
+    }
 }
