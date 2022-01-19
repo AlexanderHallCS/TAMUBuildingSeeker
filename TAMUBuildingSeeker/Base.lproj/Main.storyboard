@@ -198,7 +198,6 @@
                         <outlet property="nearbyNotifImageView" destination="o6I-xo-Avv" id="9yi-dz-wxW"/>
                         <outlet property="nearbyTakePictureButton" destination="Dv2-DT-fRg" id="lpw-jP-6r6"/>
                         <outlet property="takePhotoActivityIndicator" destination="L5E-dW-k8I" id="mSD-Wy-ZVm"/>
-                        <outlet property="takePhotoActivityMonitor" destination="L5E-dW-k8I" id="ROW-93-gqO"/>
                         <outlet property="takePictureButton" destination="lDg-MQ-Vpr" id="Vu6-ug-xK4"/>
                         <segue destination="2Oy-eU-sUh" kind="presentation" identifier="mapToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4VF-eg-EMd"/>
                         <segue destination="9RT-K2-Pr6" kind="presentation" identifier="mapToBVC" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="d4N-WR-apa"/>
@@ -1208,10 +1207,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="by3-Ha-hac"/>
         <segue reference="d4N-WR-apa"/>
-        <segue reference="W9d-zn-THW"/>
+        <segue reference="Lul-uL-ukz"/>
         <segue reference="gqJ-5T-FCv"/>
         <segue reference="yf8-aV-TnX"/>
-        <segue reference="aKH-Pe-sDX"/>
+        <segue reference="ogk-8h-LLW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Building Seeker Button (Words)" width="1077" height="552"/>

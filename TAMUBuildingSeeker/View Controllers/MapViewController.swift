@@ -66,6 +66,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         request.transportType = .walking
         
+        foundLandmarkActivityIndicator.startAnimating()
         foundLandmarkButton.isEnabled = false
         
         // no photo taking feature for group B
