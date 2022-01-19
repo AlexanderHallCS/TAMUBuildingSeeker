@@ -110,10 +110,8 @@
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gua-K7-CoF" userLabel="MidFoundLandmark">
                                 <rect key="frame" x="82.666666666666686" y="508" width="120.33333333333331" height="44"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" image="FoundBuildingButton2"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="FoundBuildingButton2"/>
                                 <connections>
                                     <action selector="pressNotifFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="GgF-w6-hmJ"/>
                                 </connections>
@@ -134,10 +132,8 @@
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv2-DT-fRg" userLabel="ContinueButton">
                                 <rect key="frame" x="211.00000000000003" y="508" width="120.33333333333334" height="44"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" image="Continue Notification Button"/>
-                                </buttonConfiguration>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="Continue Notification Button"/>
                                 <connections>
                                     <action selector="pressNotifContinueButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Y17-Zu-atn"/>
                                 </connections>
@@ -195,8 +191,9 @@
                         <outlet property="foundLandmarkActivityIndicator" destination="2Ib-LP-GpP" id="RdQ-Xy-xGu"/>
                         <outlet property="foundLandmarkButton" destination="hWX-z3-GV6" id="nAn-0E-Oci"/>
                         <outlet property="mapView" destination="z4n-yJ-ITK" id="JD0-eV-idp"/>
+                        <outlet property="nearbyContinueButton" destination="Dv2-DT-fRg" id="cuD-Qd-Wsu"/>
+                        <outlet property="nearbyFoundLandmarkButton" destination="gua-K7-CoF" id="3kv-OD-eZF"/>
                         <outlet property="nearbyNotifImageView" destination="o6I-xo-Avv" id="9yi-dz-wxW"/>
-                        <outlet property="nearbyTakePictureButton" destination="Dv2-DT-fRg" id="lpw-jP-6r6"/>
                         <outlet property="takePhotoActivityIndicator" destination="L5E-dW-k8I" id="mSD-Wy-ZVm"/>
                         <outlet property="takePictureButton" destination="lDg-MQ-Vpr" id="Vu6-ug-xK4"/>
                         <segue destination="2Oy-eU-sUh" kind="presentation" identifier="mapToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4VF-eg-EMd"/>

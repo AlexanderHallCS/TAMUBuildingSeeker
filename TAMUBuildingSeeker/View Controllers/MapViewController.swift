@@ -23,7 +23,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var foundLandmarkActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet var nearbyNotifImageView: UIImageView!
-    @IBOutlet var nearbyTakePictureButton: UIButton!
+    @IBOutlet var nearbyFoundLandmarkButton: UIButton!
+    @IBOutlet var nearbyContinueButton: UIButton!
     
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
@@ -62,6 +63,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         mapView.mapType = .mutedStandard
         
+        //manager.distanceFilter = 1
+        manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
         
         request.transportType = .walking
@@ -144,6 +147,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func pressNotifContinueButton(_ sender: UIButton) {
+        foundLandmarkButton.isHidden = false
+        nearbyNotifImageView.isHidden = true
+        nearbyFoundLandmarkButton.isHidden = true
+        nearbyContinueButton.isHidden = true
+        
     }
     @IBAction func pressNotifFoundLandmarkButton(_ sender: UIButton) {
     }
@@ -171,6 +179,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+            //print("Location: \(location.coordinate)")
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
             let directions = MKDirections(request: request)
 
@@ -210,6 +219,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.addAnnotation(destinationMarker)
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: LandmarkData.landmarkCoords[destinationIndex]))
         monitorRegionAtLocation(center: LandmarkData.landmarkCoords[destinationIndex])
+        print("CENTER: \(LandmarkData.landmarkCoords[destinationIndex])")
         
         shouldUpdateMapRect = true
         
@@ -224,7 +234,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
-            let maxDistance: CLLocationDistance = 60 // 60 meters radius from landmark
+            let maxDistance: CLLocationDistance = 140 // 60 meters radius from landmark
             let region = CLCircularRegion(center: center,
                                           radius: maxDistance, identifier: "")
             region.notifyOnEntry = true
@@ -232,15 +242,28 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             mapRegions.append(region)
             
             manager.startMonitoring(for: region)
-            
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         mapRegions[destinationIndex].notifyOnEntry = false
         nearbyNotifImageView.isHidden = false
-        nearbyTakePictureButton.isHidden = false
+        nearbyFoundLandmarkButton.isHidden = false
+        nearbyContinueButton.isHidden = false
+        foundLandmarkButton.isHidden = true
     }
+    
+    /*func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        //print("DETERMINED STATE: \(state.rawValue) FOR REGION: \(region)")
+        switch state {
+        case .inside:
+            print("inside")
+        case .outside:
+            print("outside")
+        default:
+            print("unknown")
+        }
+    } */
     
     // TODO: Disable app from starting again once study completes (UserDefaults boolean)
     
