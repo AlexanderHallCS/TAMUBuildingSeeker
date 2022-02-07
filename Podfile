@@ -13,5 +13,5 @@ target 'TAMUBuildingSeeker' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'GeoFire/Utils'
-
+  pod 'ResearchKit'
 end

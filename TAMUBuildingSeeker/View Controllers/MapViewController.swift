@@ -9,11 +9,13 @@ import UIKit
 import MapKit
 import Vision
 import CoreML
+import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
+import ResearchKit
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ORKTaskViewControllerDelegate  {
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var takePictureButton: UIButton!
@@ -47,8 +49,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var modelDownloadTask: StorageDownloadTask?
     var modelDownloadUrl = URL(string: "")
     
-    //var timer: Timer? = nil
-    //var currentTime = 0.0
+    var timer: Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(incrementTimeInterval), userInfo: nil, repeats: true)
+    var currentTime = 0.0
+    var shouldRecordLocation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +106,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             fallthrough
         case .authorizedWhenInUse:
             manager.startUpdatingLocation()
+            shouldRecordLocation = true
             prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
         case .notDetermined:
             break
@@ -151,9 +155,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         nearbyNotifImageView.isHidden = true
         nearbyFoundLandmarkButton.isHidden = true
         nearbyContinueButton.isHidden = true
-        
     }
+    
     @IBAction func pressNotifFoundLandmarkButton(_ sender: UIButton) {
+        
     }
     
     
@@ -194,7 +199,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     }
                 }
             }
-            coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
+            if(shouldRecordLocation) {
+                UserData.coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
+                shouldRecordLocation = false
+            }
         }
     }
     
@@ -251,6 +259,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         nearbyFoundLandmarkButton.isHidden = false
         nearbyContinueButton.isHidden = false
         foundLandmarkButton.isHidden = true
+    }
+    
+    @objc func incrementTimeInterval() {
+        currentTime += 1.0
+        shouldRecordLocation = true
+    }
+    
+    func startTimer() {
+        timer.fire()
+    }
+    
+    func pauseTimer() {
+        timer.invalidate()
     }
     
     /*func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
@@ -384,6 +405,57 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    // creates an anonymous user and stores study data
+    // called after final destination has a correct picture taken
+    func saveData() {
+        Auth.auth().signInAnonymously(completion: { authResult, error in
+            guard let user = authResult?.user else {
+                print(authResult!.user)
+                return
+            }
+
+            let db = Firestore.firestore()
+
+            db.collection("user").addDocument(data: [
+                "group":UserData.group,
+                "groupCode":UserData.groupCode,
+                "totalTimeElapsed":UserData.totalTimeElapsed,
+                "coordinates":UserData.coordinates,
+                "coordinateTimestamps":UserData.coordinateTimestamps,
+                "destinationTimes":UserData.destinationTimes,
+                "surveyStartTimes":UserData.surveyStartTimes,
+                "surveyStopTimes":UserData.surveyStopTimes,
+                "numPicturesTaken":UserData.numPicturesTaken
+                    ]) { error in
+                if error != nil {
+                    print("Error saving user data")
+                }
+            }
+        })
+    }
+    
+    // MARK: Mid-App Survey ResearchKit
+    
+    func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        taskViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func taskViewController(_ taskViewController: ORKTaskViewController, stepViewControllerWillAppear stepViewController: ORKStepViewController) {
+        stepViewController.cancelButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.nothingPlaceholderForInvisCancelButton))
+    }
+    
+    @objc func nothingPlaceholderForInvisCancelButton() {}
+    
+    func showSurvey(_ sender: UIButton) {
+        let taskViewController = ORKTaskViewController(task: MidAppSurveyTask, taskRun: nil)
+        taskViewController.delegate = self
+        taskViewController.modalPresentationStyle = .fullScreen
+        taskViewController.navigationBar.prefersLargeTitles = false
+        taskViewController.navigationBar.backgroundColor = .white
+        present(taskViewController, animated: true, completion: nil)
+    }
+    
+    // TODO: (DELETE)
     @IBAction func goToHomeVC(_ sender: UIButton) {
         switch UserData.group {
         case "B":

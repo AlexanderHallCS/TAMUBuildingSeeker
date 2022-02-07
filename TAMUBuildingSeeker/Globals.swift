@@ -10,13 +10,19 @@ import FirebaseFirestore
 import CoreLocation
 
 struct UserData {
+    // stored in database
     static var group = ""
     static var groupCode = ""
+    static var numPicturesTaken = 0
     static var totalTimeElapsed = 0.0
-    static var timestampedCoords: [(GeoPoint, Double)] = [] // coordinates of the user with timestamps
-    static var times: [Double] = [] // [Freedom from Terrorism Memorial identification time, EAB identification time, Bolton Hall identification time]
+    static var coordinates: [GeoPoint] = [] // coordinates of the user
+    static var coordinateTimestamps: [Double] = [] // timestamps associated with above coordinates
+    static var destinationTimes: [Double] = [] // [Freedom from Terrorism Memorial identification time, EAB identification time, Bolton Hall identification time]
+    static var surveyStartTimes: [Double] = []
+    static var surveyStopTimes: [Double] = []
     
-    // used to load in the Photo Bank; not stored in database
+    // not stored in data
+    // used to load in the Photo Bank
     static var picturesTaken: [UIImage] = []
 }
 

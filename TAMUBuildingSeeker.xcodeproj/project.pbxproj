@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CAED1D9177EE8C5DDD27CC9 /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8EA22843ABD0310B0EF175 /* Pods_TAMUBuildingSeeker.framework */; };
 		111FB5B42721BCC30052D9CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */; };
 		1150EB0427813BF900DA0253 /* LandmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */; };
 		1150EB06278143BA00DA0253 /* PhotoBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */; };
@@ -14,6 +15,7 @@
 		1154A58A27904A27000D59DE /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58927904A27000D59DE /* EndViewController.swift */; };
 		1154A58C27916FAD000D59DE /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58B27916FAD000D59DE /* MLModelManager.swift */; };
 		1154A58E27950715000D59DE /* CViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58D27950714000D59DE /* CViewController.swift */; };
+		117C481327A837B8000497BD /* MidAppSurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C481227A837B8000497BD /* MidAppSurveyTask.swift */; };
 		11A829F927023F320005FF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829F827023F320005FF3B /* AppDelegate.swift */; };
 		11A829FB27023F320005FF3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829FA27023F320005FF3B /* SceneDelegate.swift */; };
 		11A829FD27023F320005FF3B /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829FC27023F320005FF3B /* StartViewController.swift */; };
@@ -25,7 +27,6 @@
 		11E16332277D250D0074A782 /* DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16331277D250D0074A782 /* DViewController.swift */; };
 		11E16336277D25360074A782 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16335277D25360074A782 /* AViewController.swift */; };
 		11E16338277E639F0074A782 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16337277E639F0074A782 /* TutorialViewController.swift */; };
-		9078DB11DE612171D5D95F6A /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67479C3B37B1536F3B8C49A /* Pods_TAMUBuildingSeeker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,9 @@
 		1154A58927904A27000D59DE /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		1154A58B27916FAD000D59DE /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
 		1154A58D27950714000D59DE /* CViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CViewController.swift; sourceTree = "<group>"; };
+		117C481227A837B8000497BD /* MidAppSurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MidAppSurveyTask.swift; path = TAMUBuildingSeeker/MidAppSurveyTask.swift; sourceTree = SOURCE_ROOT; };
+		117C481427A84255000497BD /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		117C481827A84579000497BD /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A829F527023F320005FF3B /* TAMUBuildingSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAMUBuildingSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A829F827023F320005FF3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11A829FA27023F320005FF3B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,9 +55,9 @@
 		11E16331277D250D0074A782 /* DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DViewController.swift; sourceTree = "<group>"; };
 		11E16335277D25360074A782 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
 		11E16337277E639F0074A782 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		8C780ED758472FC67FC094EC /* Pods-TAMUBuildingSeeker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.debug.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.debug.xcconfig"; sourceTree = "<group>"; };
-		D24B98259EBA9CCDC63C1F85 /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
-		D67479C3B37B1536F3B8C49A /* Pods_TAMUBuildingSeeker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAMUBuildingSeeker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A8EA22843ABD0310B0EF175 /* Pods_TAMUBuildingSeeker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAMUBuildingSeeker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99025309C751FB86AE7B15AF /* Pods-TAMUBuildingSeeker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.debug.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.debug.xcconfig"; sourceTree = "<group>"; };
+		B1BB7BC0B826ADA46C32CF0F /* Pods-TAMUBuildingSeeker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAMUBuildingSeeker.release.xcconfig"; path = "Target Support Files/Pods-TAMUBuildingSeeker/Pods-TAMUBuildingSeeker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9078DB11DE612171D5D95F6A /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
+				0CAED1D9177EE8C5DDD27CC9 /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +93,7 @@
 		11A829F727023F320005FF3B /* TAMUBuildingSeeker */ = {
 			isa = PBXGroup;
 			children = (
+				117C481227A837B8000497BD /* MidAppSurveyTask.swift */,
 				11E1632F277D1C970074A782 /* View Controllers */,
 				11E1632E277D1C740074A782 /* Supporting Files */,
 				11B8852B277082B200788483 /* Fonts */,
@@ -149,8 +154,8 @@
 		5D5CFA5476B87C3DD4EFA539 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8C780ED758472FC67FC094EC /* Pods-TAMUBuildingSeeker.debug.xcconfig */,
-				D24B98259EBA9CCDC63C1F85 /* Pods-TAMUBuildingSeeker.release.xcconfig */,
+				99025309C751FB86AE7B15AF /* Pods-TAMUBuildingSeeker.debug.xcconfig */,
+				B1BB7BC0B826ADA46C32CF0F /* Pods-TAMUBuildingSeeker.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -158,7 +163,9 @@
 		8EE0322F4E031585D108613E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D67479C3B37B1536F3B8C49A /* Pods_TAMUBuildingSeeker.framework */,
+				117C481827A84579000497BD /* ResearchKit.framework */,
+				117C481427A84255000497BD /* ResearchKit.framework */,
+				2A8EA22843ABD0310B0EF175 /* Pods_TAMUBuildingSeeker.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,11 +177,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11A82A0927023F380005FF3B /* Build configuration list for PBXNativeTarget "TAMUBuildingSeeker" */;
 			buildPhases = (
-				316CE0B9FDB0361C3A4994DE /* [CP] Check Pods Manifest.lock */,
+				5522AB7A99629B0812D8CDA8 /* [CP] Check Pods Manifest.lock */,
 				11A829F127023F320005FF3B /* Sources */,
 				11A829F227023F320005FF3B /* Frameworks */,
 				11A829F327023F320005FF3B /* Resources */,
-				938DF0D604FBA7EAB621387B /* [CP] Embed Pods Frameworks */,
+				8AC6104C74639A1E93F2FFE5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,7 +240,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		316CE0B9FDB0361C3A4994DE /* [CP] Check Pods Manifest.lock */ = {
+		5522AB7A99629B0812D8CDA8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -255,7 +262,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		938DF0D604FBA7EAB621387B /* [CP] Embed Pods Frameworks */ = {
+		8AC6104C74639A1E93F2FFE5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,6 +292,7 @@
 				11A829FD27023F320005FF3B /* StartViewController.swift in Sources */,
 				11A829F927023F320005FF3B /* AppDelegate.swift in Sources */,
 				11E16332277D250D0074A782 /* DViewController.swift in Sources */,
+				117C481327A837B8000497BD /* MidAppSurveyTask.swift in Sources */,
 				1154A58C27916FAD000D59DE /* MLModelManager.swift in Sources */,
 				11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */,
 				1150EB0427813BF900DA0253 /* LandmarkListViewController.swift in Sources */,
@@ -369,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -424,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -436,7 +444,7 @@
 		};
 		11A82A0A27023F380005FF3B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C780ED758472FC67FC094EC /* Pods-TAMUBuildingSeeker.debug.xcconfig */;
+			baseConfigurationReference = 99025309C751FB86AE7B15AF /* Pods-TAMUBuildingSeeker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -469,7 +477,7 @@
 		};
 		11A82A0B27023F380005FF3B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D24B98259EBA9CCDC63C1F85 /* Pods-TAMUBuildingSeeker.release.xcconfig */;
+			baseConfigurationReference = B1BB7BC0B826ADA46C32CF0F /* Pods-TAMUBuildingSeeker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

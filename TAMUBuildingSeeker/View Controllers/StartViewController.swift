@@ -10,7 +10,6 @@ import Firebase
 
 class StartViewController: UIViewController, UITextFieldDelegate {
     
-    
     @IBOutlet var groupCodeSelector: UITextField!
     
     override func viewDidLoad() {
@@ -86,7 +85,7 @@ class StartViewController: UIViewController, UITextFieldDelegate {
     }
     
     // segues to appropriate group VC
-    // stores anonymous uid and group letter in database
+    // sets globals for group code and group letter
     private func prepareAppGroup() {
         // check second character of inputted text
         // segue to respective group VC
@@ -106,21 +105,6 @@ class StartViewController: UIViewController, UITextFieldDelegate {
             performSegue(withIdentifier: "startToGroupD", sender: self)
         }
         
-//        Auth.auth().signInAnonymously(completion: { authResult, error in
-//            guard let user = authResult?.user else {
-//                print(authResult!.user)
-//                return
-//            }
-//
-//            let db = Firestore.firestore()
-//
-//            db.collection("user").addDocument(data: ["group":group, "groupCode":group, "uid":user.uid]) { error in
-//                if error != nil {
-//                    print("Error saving user data")
-//                }
-//            }
-//        })
     }
-    
 }
 
