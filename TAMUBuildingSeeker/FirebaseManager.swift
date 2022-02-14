@@ -73,7 +73,39 @@ class FirebaseManager {
     
     public func saveSurveyResults() {
         db.collection("user").document(UserData.groupCode).updateData([
-            "surveyResults":UserData.surveyResults
+            "surveyResults":UserData.surveyResults,
+            "surveyStartTimes":UserData.surveyStartTimes,
+            "surveyStopTimes":UserData.surveyStopTimes
+        ]) { error in
+            if error != nil {
+                print("Error saving user data")
+            }
+        }
+    }
+    
+    public func saveDestinationTimes() {
+        db.collection("user").document(UserData.groupCode).updateData([
+            "destinationTimes":UserData.destinationTimes
+        ]) { error in
+            if error != nil {
+                print("Error saving user data")
+            }
+        }
+    }
+    
+    public func saveNumPicturesTaken() {
+        db.collection("user").document(UserData.groupCode).updateData([
+            "numPicturesTaken":UserData.numPicturesTaken
+        ]) { error in
+            if error != nil {
+                print("Error saving user data")
+            }
+        }
+    }
+    
+    public func saveTotalTimeElapsed() {
+        db.collection("user").document(UserData.groupCode).updateData([
+            "totalTimeElapsed":UserData.totalTimeElapsed
         ]) { error in
             if error != nil {
                 print("Error saving user data")

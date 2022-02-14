@@ -63,6 +63,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     var didPressNotifFoundLandmark = false
     
+    // Represents how many times the user has tried to take a picture of the destination
+    var pictureTakingAttempts = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -118,7 +121,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         case .authorizedWhenInUse, .authorizedAlways:
             manager.startUpdatingLocation()
             shouldRecordLocation = true
-            //showSurvey()
             prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
         case .notDetermined:
             break
@@ -222,6 +224,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         updateClassifications(for: capturedImage)
         UserData.picturesTaken.append(capturedImage)
         UserData.numPicturesTaken += 1
+        firebaseManager.saveNumPicturesTaken()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -306,11 +309,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @objc func incrementTimeInterval() {
         currentTime += timeInterval
         shouldRecordLocation = true
-        //print("COORDS: \(UserData.coordinates)")
-        //print("COORDSTIMESTAMP: \(UserData.coordinateTimestamps)")
+        
         // save data to DB every 5 seconds
         if(currentTime.truncatingRemainder(dividingBy: 5.0) == 0.0) {
             firebaseManager.saveCoordsAndTimes()
+            firebaseManager.saveTotalTimeElapsed()
         }
     }
     
@@ -322,17 +325,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         timer.invalidate()
     }
     
-    /*func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        //print("DETERMINED STATE: \(state.rawValue) FOR REGION: \(region)")
-        switch state {
-        case .inside:
-            print("inside")
-        case .outside:
-            print("outside")
-        default:
-            print("unknown")
-        }
-    } */
+    private func prepareEndOfStudy() {
+        let endAlert = UIAlertController(title: "Complete", message: "Thank you for participating in this study! Please head back to Rudder Plaza", preferredStyle: .alert)
+        endAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            endAlert.removeFromParent()
+        })
+        present(endAlert, animated: true, completion: nil)
+        pauseTimer()
+        
+        UserData.totalTimeElapsed = currentTime
+        firebaseManager.saveTotalTimeElapsed()
+    }
     
     // TODO: Disable app from starting again once study completes (UserDefaults boolean)
     
@@ -381,7 +384,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //    }
     
     // MARK: Image classification processing
-    // TODO: DISPLAY NOTIFICATION IF RESULT IS SUCCESSFUL OR NOT OR NEEDS ANOTHER PICTURE
+    
     func processClassifications(for request: VNRequest, error: Error?) {
         
         guard let results = request.results else {
@@ -403,6 +406,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         if(didUseFoundLandmarkFeature) {
             didUseFoundLandmarkFeature = false
+            verifyOrRejectLandmark(names: Array(names.prefix(3)))
         } else if(didUsePhotoTakingFeature) {
             didUsePhotoTakingFeature = false
             showLandmarkInformation(named: names.first ?? "None")
@@ -414,6 +418,76 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         //return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
     }
     
+    // Called when using the Found Landmark buttons
+    // Prepares and updates route to next destination if accurate,
+    // else asks to retry/override picture in alert
+    private func verifyOrRejectLandmark(names: [String]) {
+        pictureTakingAttempts += 1
+        switch LandmarkData.landmarkTitles[destinationIndex] {
+        case "Freedom from Terrorism Memorial":
+            if(names.contains("Freedom from Terrorism Memorial")) {
+                presentPictureSuccessAlert(landmarkName: "Freedom from Terrorism Memorial")
+            } else {
+                presentPictureErrorAlert()
+            }
+        case "Engineering Activity Building":
+            if(names.contains("Engineering Activity Building")) {
+                presentPictureSuccessAlert(landmarkName: "Engineering Activity Buildings")
+            } else {
+                presentPictureErrorAlert()
+            }
+        default:
+            if(names.contains("Bolton Hall")) {
+                presentPictureSuccessAlert(landmarkName: "Bolton Hall")
+            } else {
+                presentPictureErrorAlert()
+            }
+        }
+    }
+    
+    private func presentPictureSuccessAlert(landmarkName: String) {
+        let successAlert = UIAlertController(title: "Correct", message: "You have found \(landmarkName)! Please take a short survey.", preferredStyle: .alert)
+        successAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            UserData.destinationTimes.append(self.currentTime)
+            self.firebaseManager.saveDestinationTimes()
+            self.pictureTakingAttempts = 0
+            self.destinationIndex += 1
+            self.takeSurvey()
+            successAlert.removeFromParent()
+        })
+        present(successAlert, animated: true, completion: nil)
+    }
+    
+    private func presentPictureErrorAlert() {
+        let pictureErrorAlert = UIAlertController(title: "Error", message: pictureTakingAttempts > 2 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
+        // two attempts to retake photo
+        if(pictureTakingAttempts <= 2) {
+            pictureErrorAlert.addAction(UIAlertAction(title: "Retake Photo", style: .default) { _ in
+                pictureErrorAlert.removeFromParent()
+                self.didUseFoundLandmarkFeature = true
+                
+                let photoTakingAlert = self.generatePhotoTakingAlert()
+                let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+                    self.didUseFoundLandmarkFeature = false
+                }
+                photoTakingAlert.addAction(cancelPhotoTaking)
+                self.present(photoTakingAlert, animated: true)
+            })
+        } else {
+            pictureErrorAlert.addAction(UIAlertAction(title: "Continue Anyway", style: .default) { _ in
+                UserData.destinationTimes.append(self.currentTime)
+                self.firebaseManager.saveDestinationTimes()
+                self.pictureTakingAttempts = 0
+                self.destinationIndex += 1
+                self.takeSurvey()
+                pictureErrorAlert.removeFromParent()
+            })
+        }
+        present(pictureErrorAlert, animated: true, completion: nil)
+    }
+    
+    // Called when using general photo taking picture (Take Photo button)
+    // TODO: >>> Displays information about the landmark in a custom pop-up <<<
     private func showLandmarkInformation(named name: String) {
         let landmarkInfoAlert = UIAlertController(title: name == "None" ? "Oops" : "Landmark Found!", message: name == "None" ? "We could not find a landmark in the picture!" : "This landmark is the \(name)!", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Ok", style: .default) { _ in
@@ -474,11 +548,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MARK: Mid-App Survey, ResearchKit
     
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        UserData.surveyStopTimes.append(currentTime)
         surveyHelper.storeSurveyResultsLocally(taskViewController: taskViewController, reason: reason)
         firebaseManager.saveSurveyResults()
         taskViewController.dismiss(animated: true, completion: nil)
         
-        startTimer()
+        if(destinationIndex == 1) {
+            prepareDestination(title: "Continue", message: "Please head to the Engineering Activity Buildings!")
+        } else if(destinationIndex == 2) {
+            prepareDestination(title: "Continue", message: "Please head to Bolton Hall!")
+        } else { // destinationIndex > 2 means finished route
+            prepareEndOfStudy()
+        }
     }
     
     // Delegate function used to make cancel button invisible
@@ -489,9 +570,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // Supporting function to make cancel button invisible
     @objc func nothingPlaceholderForInvisCancelButton() {}
     
-    private func showSurvey() {
-        pauseTimer()
-        
+    private func takeSurvey() {
+        UserData.surveyStartTimes.append(currentTime)
         let taskViewController = ORKTaskViewController(task: surveyHelper.MidAppSurveyTask, taskRun: nil)
         taskViewController.delegate = self
         taskViewController.modalPresentationStyle = .fullScreen
