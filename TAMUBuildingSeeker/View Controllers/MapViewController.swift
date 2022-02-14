@@ -56,6 +56,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var currentTime = 0.0
     var shouldRecordLocation = false
     
+    // Used to indicate which button the user pressed to take a picture.
+    // This is needed to find out how to process the classification results
+    var didUsePhotoTakingFeature = false
+    var didUseFoundLandmarkFeature = false
+    
+    var didPressNotifFoundLandmark = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,10 +132,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func takePicture(_ sender: UIButton) {
+        didUsePhotoTakingFeature = true
+        
+        let photoTakingAlert = generatePhotoTakingAlert()
+        let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+            self.didUsePhotoTakingFeature = false
+        }
+        photoTakingAlert.addAction(cancelPhotoTaking)
+        present(photoTakingAlert, animated: true)
+    }
+    
+    // linked to found landmark buttons from notification and constant one on map
+    @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
+        didUseFoundLandmarkFeature = true
+        
+        let photoTakingAlert = generatePhotoTakingAlert()
+        let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+            self.didUseFoundLandmarkFeature = false
+        }
+        photoTakingAlert.addAction(cancelPhotoTaking)
+        present(photoTakingAlert, animated: true)
+    }
+    
+    private func generatePhotoTakingAlert() -> UIAlertController {
         // Show options for the source picker only if the camera is available.
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             presentPhotoPicker(sourceType: .photoLibrary)
-            return
+            return UIAlertController()
         }
         
         var alertStyle = UIAlertController.Style.actionSheet
@@ -138,32 +168,35 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         let photoSourcePicker = UIAlertController(title: nil, message: nil, preferredStyle: alertStyle)
         let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
+            if(didPressNotifFoundLandmark) {
+                didPressNotifFoundLandmark = false
+                removeNearbyNotification()
+            }
             self.presentPhotoPicker(sourceType: .camera)
         }
         let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
+            if(didPressNotifFoundLandmark) {
+                didPressNotifFoundLandmark = false
+                removeNearbyNotification()
+            }
             self.presentPhotoPicker(sourceType: .photoLibrary)
         }
         
         photoSourcePicker.addAction(takePhoto)
         photoSourcePicker.addAction(choosePhoto)
-        photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        present(photoSourcePicker, animated: true)
-    }
-    
-    // linked to found landmark buttons from notification and constant one on map
-    @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
-        
+        return photoSourcePicker
     }
     
     @IBAction func pressNotifContinueButton(_ sender: UIButton) {
-        foundLandmarkButton.isHidden = false
-        nearbyNotifImageView.isHidden = true
-        nearbyFoundLandmarkButton.isHidden = true
-        nearbyContinueButton.isHidden = true
+        removeNearbyNotification()
     }
     
     @IBAction func pressNotifFoundLandmarkButton(_ sender: UIButton) {
+        didPressNotifFoundLandmark = true
+    }
+    
+    private func removeNearbyNotification() {
         foundLandmarkButton.isHidden = false
         nearbyNotifImageView.isHidden = true
         nearbyFoundLandmarkButton.isHidden = true
@@ -188,6 +221,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         updateClassifications(for: capturedImage)
         UserData.picturesTaken.append(capturedImage)
+        UserData.numPicturesTaken += 1
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -272,19 +306,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @objc func incrementTimeInterval() {
         currentTime += timeInterval
         shouldRecordLocation = true
-        print("COORDS: \(UserData.coordinates)")
-        print("COORDSTIMESTAMP: \(UserData.coordinateTimestamps)")
+        //print("COORDS: \(UserData.coordinates)")
+        //print("COORDSTIMESTAMP: \(UserData.coordinateTimestamps)")
         // save data to DB every 5 seconds
         if(currentTime.truncatingRemainder(dividingBy: 5.0) == 0.0) {
             firebaseManager.saveCoordsAndTimes()
         }
     }
     
-    func startTimer() {
+    private func startTimer() {
         timer.fire()
     }
     
-    func pauseTimer() {
+    private func pauseTimer() {
         timer.invalidate()
     }
     
@@ -346,33 +380,51 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 //        }
 //    }
     
+    // MARK: Image classification processing
     // TODO: DISPLAY NOTIFICATION IF RESULT IS SUCCESSFUL OR NOT OR NEEDS ANOTHER PICTURE
-    func processClassifications(for request: VNRequest, error: Error?) -> Dictionary<String, Double> {
+    func processClassifications(for request: VNRequest, error: Error?) {
         
         guard let results = request.results else {
             fatalError("Could not classify image")
         }
     
-        let classifications = results as! [VNClassificationObservation]
+        // get all classification results whose confidence is greater than 0.01/1.00
+        let classifications = (results as! [VNClassificationObservation]).filter { classification in
+            return classification.confidence > 0.01
+        }
     
-        let topClassifications = classifications.prefix(3) // get top 3 results
-    
-        let names = topClassifications.map { classification in
+        let names = classifications.map { classification in
             return modelManager.renameResult(result: classification.identifier)
         }
     
-        let resultPercentages = topClassifications.map { classification in
+        let resultPercentages = classifications.map { classification in
             return Double(String(format: "%.2f", classification.confidence * 100))!
+        }
+        
+        if(didUseFoundLandmarkFeature) {
+            didUseFoundLandmarkFeature = false
+        } else if(didUsePhotoTakingFeature) {
+            didUsePhotoTakingFeature = false
+            showLandmarkInformation(named: names.first ?? "None")
         }
         
         print("NAMES: \(names)")
         print("RESULT PERCENTAGES: \(resultPercentages)")
         
-        return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
+        //return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
+    }
+    
+    private func showLandmarkInformation(named name: String) {
+        let landmarkInfoAlert = UIAlertController(title: name == "None" ? "Oops" : "Landmark Found!", message: name == "None" ? "We could not find a landmark in the picture!" : "This landmark is the \(name)!", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "Ok", style: .default) { _ in
+            landmarkInfoAlert.removeFromParent()
+        }
+        landmarkInfoAlert.addAction(confirm)
+        present(landmarkInfoAlert, animated: true, completion: nil)
     }
     
     /// - Tag: PerformRequests
-    func updateClassifications(for image: UIImage) {
+    private func updateClassifications(for image: UIImage) {
         
         var orientation: CGImagePropertyOrientation = .down
         switch image.imageOrientation {
@@ -419,7 +471,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    // MARK: Mid-App Survey ResearchKit
+    // MARK: Mid-App Survey, ResearchKit
     
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
         surveyHelper.storeSurveyResultsLocally(taskViewController: taskViewController, reason: reason)
