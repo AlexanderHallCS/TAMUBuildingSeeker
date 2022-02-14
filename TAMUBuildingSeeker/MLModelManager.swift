@@ -41,11 +41,11 @@ class MLModelManager {
         case "BTLR":
             return "Butler Hall"
         case "EABAA":
-            return "Engineering Activity Building A"
+            return "Engineering Activity Building"
         case "EABAB":
-            return "Engineering Activity Building B"
+            return "Engineering Activity Building"
         case "EABAC":
-            return "Engineering Activity Building C"
+            return "Engineering Activity Building"
         case "HELD":
             return "Heldenfelds Hall"
         case "LAAH":

@@ -110,7 +110,8 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="FoundBuildingButton2"/>
                                 <connections>
-                                    <action selector="pressNotifFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="GgF-w6-hmJ"/>
+                                    <action selector="pressFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="AnM-Ys-3yG"/>
+                                    <action selector="pressNotifFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Fjf-dN-w0n"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="L5E-dW-k8I">
@@ -1221,9 +1222,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Jwu-UX-V6z"/>
-        <segue reference="Z3o-v5-1n6"/>
+        <segue reference="d4N-WR-apa"/>
         <segue reference="iXd-WQ-N7E"/>
-        <segue reference="yHe-rp-V1X"/>
+        <segue reference="gqJ-5T-FCv"/>
         <segue reference="veg-iH-GnY"/>
         <segue reference="ogk-8h-LLW"/>
     </inferredMetricsTieBreakers>

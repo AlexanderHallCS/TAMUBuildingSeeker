@@ -45,18 +45,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var coordinates: [GeoPoint] = []
     
     let modelManager = MLModelManager()
+    let firebaseManager = FirebaseManager()
+    let surveyHelper = SurveyHelper()
     
     var modelDownloadTask: StorageDownloadTask?
     var modelDownloadUrl = URL(string: "")
     
-    var timer: Timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(incrementTimeInterval), userInfo: nil, repeats: true)
+    var timer: Timer = Timer()
+    let timeInterval = 1.0 // how often timestamps are taken
     var currentTime = 0.0
     var shouldRecordLocation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("called!")
+        firebaseManager.signInAnonymously()
+        
         let mlModelFileData = modelManager.downloadMLModelFile()
         modelDownloadTask = mlModelFileData.0
         modelDownloadUrl = mlModelFileData.1
@@ -66,7 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         mapView.mapType = .mutedStandard
         
-        //manager.distanceFilter = 1
+        manager.distanceFilter = kCLDistanceFilterNone
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
         
@@ -98,15 +102,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             self.foundLandmarkActivityIndicator.isHidden = true
             self.foundLandmarkButton.isEnabled = true
         }
+        
+        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(incrementTimeInterval), userInfo: nil, repeats: true)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
-        case .authorizedAlways:
-            fallthrough
-        case .authorizedWhenInUse:
+        case .authorizedWhenInUse, .authorizedAlways:
             manager.startUpdatingLocation()
             shouldRecordLocation = true
+            //showSurvey()
             prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
         case .notDetermined:
             break
@@ -146,6 +151,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         present(photoSourcePicker, animated: true)
     }
     
+    // linked to found landmark buttons from notification and constant one on map
     @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
         
     }
@@ -158,9 +164,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func pressNotifFoundLandmarkButton(_ sender: UIButton) {
-        
+        foundLandmarkButton.isHidden = false
+        nearbyNotifImageView.isHidden = true
+        nearbyFoundLandmarkButton.isHidden = true
+        nearbyContinueButton.isHidden = true
     }
-    
     
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
         let picker = UIImagePickerController()
@@ -184,7 +192,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            //print("Location: \(location.coordinate)")
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
             let directions = MKDirections(request: request)
 
@@ -201,6 +208,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             if(shouldRecordLocation) {
                 UserData.coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
+                UserData.coordinateTimestamps.append(currentTime)
                 shouldRecordLocation = false
             }
         }
@@ -242,7 +250,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
-            let maxDistance: CLLocationDistance = 140 // 60 meters radius from landmark
+            let maxDistance: CLLocationDistance = 60 // 60 meters radius from landmark
             let region = CLCircularRegion(center: center,
                                           radius: maxDistance, identifier: "")
             region.notifyOnEntry = true
@@ -262,8 +270,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @objc func incrementTimeInterval() {
-        currentTime += 1.0
+        currentTime += timeInterval
         shouldRecordLocation = true
+        print("COORDS: \(UserData.coordinates)")
+        print("COORDSTIMESTAMP: \(UserData.coordinateTimestamps)")
+        // save data to DB every 5 seconds
+        if(currentTime.truncatingRemainder(dividingBy: 5.0) == 0.0) {
+            firebaseManager.saveCoordsAndTimes()
+        }
     }
     
     func startTimer() {
@@ -405,63 +419,32 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    // creates an anonymous user and stores study data
-    // called after final destination has a correct picture taken
-    func saveData() {
-        Auth.auth().signInAnonymously(completion: { authResult, error in
-            guard let user = authResult?.user else {
-                print(authResult!.user)
-                return
-            }
-
-            let db = Firestore.firestore()
-
-            db.collection("user").addDocument(data: [
-                "group":UserData.group,
-                "groupCode":UserData.groupCode,
-                "totalTimeElapsed":UserData.totalTimeElapsed,
-                "coordinates":UserData.coordinates,
-                "coordinateTimestamps":UserData.coordinateTimestamps,
-                "destinationTimes":UserData.destinationTimes,
-                "surveyStartTimes":UserData.surveyStartTimes,
-                "surveyStopTimes":UserData.surveyStopTimes,
-                "numPicturesTaken":UserData.numPicturesTaken
-                    ]) { error in
-                if error != nil {
-                    print("Error saving user data")
-                }
-            }
-        })
-    }
-    
     // MARK: Mid-App Survey ResearchKit
     
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        surveyHelper.storeSurveyResultsLocally(taskViewController: taskViewController, reason: reason)
+        firebaseManager.saveSurveyResults()
         taskViewController.dismiss(animated: true, completion: nil)
+        
+        startTimer()
     }
     
+    // Delegate function used to make cancel button invisible
     func taskViewController(_ taskViewController: ORKTaskViewController, stepViewControllerWillAppear stepViewController: ORKStepViewController) {
         stepViewController.cancelButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.nothingPlaceholderForInvisCancelButton))
     }
     
+    // Supporting function to make cancel button invisible
     @objc func nothingPlaceholderForInvisCancelButton() {}
     
-    func showSurvey(_ sender: UIButton) {
-        let taskViewController = ORKTaskViewController(task: MidAppSurveyTask, taskRun: nil)
+    private func showSurvey() {
+        pauseTimer()
+        
+        let taskViewController = ORKTaskViewController(task: surveyHelper.MidAppSurveyTask, taskRun: nil)
         taskViewController.delegate = self
         taskViewController.modalPresentationStyle = .fullScreen
         taskViewController.navigationBar.prefersLargeTitles = false
         taskViewController.navigationBar.backgroundColor = .white
         present(taskViewController, animated: true, completion: nil)
-    }
-    
-    // TODO: (DELETE)
-    @IBAction func goToHomeVC(_ sender: UIButton) {
-        switch UserData.group {
-        case "B":
-            performSegue(withIdentifier: "mapToBVC", sender: self)
-        default:
-            performSegue(withIdentifier: "mapToDVC", sender: self)
-        }
     }
 }

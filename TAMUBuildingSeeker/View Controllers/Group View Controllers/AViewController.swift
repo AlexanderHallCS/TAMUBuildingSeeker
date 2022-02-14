@@ -18,6 +18,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet var foundLandmarkActivityMonitor: UIActivityIndicatorView!
     
     let modelManager = MLModelManager()
+    let firebaseManager = FirebaseManager()
     
     var modelDownloadTask: StorageDownloadTask?
     var modelDownloadUrl = URL(string: "")
@@ -37,6 +38,8 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
             self.foundLandmarkActivityMonitor.isHidden = true
             self.foundLandmarkButton.isEnabled = true
         }
+        
+        firebaseManager.signInAnonymously()
     }
     
     @IBAction func takePhoto(_ sender: UIButton) {

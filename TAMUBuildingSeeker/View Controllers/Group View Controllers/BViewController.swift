@@ -9,8 +9,12 @@ import UIKit
 
 class BViewController: UIViewController {
 
+    let firebaseManager = FirebaseManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firebaseManager.signInAnonymously()
     }
     
     @IBAction func unwindToBVC(segue: UIStoryboardSegue) {}

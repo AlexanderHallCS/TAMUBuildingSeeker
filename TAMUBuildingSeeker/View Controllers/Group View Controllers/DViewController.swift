@@ -9,8 +9,12 @@ import UIKit
 
 class DViewController: UIViewController {
     
+    let firebaseManager = FirebaseManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firebaseManager.signInAnonymously()
     }
     
     @IBAction func unwindToDVC(segue: UIStoryboardSegue) {}

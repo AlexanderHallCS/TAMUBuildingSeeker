@@ -21,6 +21,7 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet var takePhotoActivityIndicator: UIActivityIndicatorView!
     
     let modelManager = MLModelManager()
+    let firebaseManager = FirebaseManager()
     
     var modelDownloadTask: StorageDownloadTask?
     var modelDownloadUrl = URL(string: "")
@@ -47,6 +48,8 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
             self.foundLandmarkButton.isEnabled = true
             self.takePhotoButton.isEnabled = true
         }
+        
+        firebaseManager.signInAnonymously()
     }
     
 

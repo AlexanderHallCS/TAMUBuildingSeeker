@@ -20,7 +20,7 @@ struct UserData {
     static var destinationTimes: [Double] = [] // [Freedom from Terrorism Memorial identification time, EAB identification time, Bolton Hall identification time]
     static var surveyStartTimes: [Double] = []
     static var surveyStopTimes: [Double] = []
-    
+    static var surveyResults: [NSString] = []
     // not stored in data
     // used to load in the Photo Bank
     static var picturesTaken: [UIImage] = []
