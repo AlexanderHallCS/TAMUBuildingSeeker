@@ -265,11 +265,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     private func prepareDestination(title: String, message: String) {
+        mapView.removeOverlays(mapView.overlays)
+        
         let destinationMarker = MKPointAnnotation()
         destinationMarker.coordinate = LandmarkData.landmarkCoords[destinationIndex]
         destinationMarker.title = LandmarkData.landmarkTitles[destinationIndex]
         mapAnnotations.append(destinationMarker)
         mapView.addAnnotation(destinationMarker)
+        if(destinationIndex > 0) {
+            mapView.removeAnnotation(mapAnnotations[destinationIndex-1])
+        }
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: LandmarkData.landmarkCoords[destinationIndex]))
         monitorRegionAtLocation(center: LandmarkData.landmarkCoords[destinationIndex])
         print("CENTER: \(LandmarkData.landmarkCoords[destinationIndex])")
@@ -331,6 +336,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             endAlert.removeFromParent()
         })
         present(endAlert, animated: true, completion: nil)
+        mapView.removeAnnotation(mapAnnotations[2]) // remove Bolton Hall map marker
+        mapView.removeOverlays(mapView.overlays)
         pauseTimer()
         
         UserData.totalTimeElapsed = currentTime
