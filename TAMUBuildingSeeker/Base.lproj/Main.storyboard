@@ -123,7 +123,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv2-DT-fRg" userLabel="ContinueButton">
                                 <rect key="frame" x="211.00000000000003" y="508" width="120.33333333333334" height="44"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="Continue Notification Button"/>
+                                <state key="normal" backgroundImage="Keep Searching Notification Button"/>
                                 <connections>
                                     <action selector="pressNotifContinueButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Y17-Zu-atn"/>
                                 </connections>
@@ -1230,11 +1230,11 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Building Seeker Button (Words)" width="1077" height="552"/>
-        <image name="Continue Notification Button" width="327" height="125"/>
         <image name="FoundBuildingButton" width="107" height="141"/>
         <image name="FoundBuildingButton2" width="327" height="125"/>
         <image name="GrayRectangle" width="750" height="150"/>
         <image name="Grey Buildings Background" width="414" height="736"/>
+        <image name="Keep Searching Notification Button" width="327" height="125"/>
         <image name="List Of Bldg in Route Banner" width="414" height="117.33333587646484"/>
         <image name="List of Buildings" width="317" height="522"/>
         <image name="Maroon Search and Title Bar" width="1242" height="492"/>

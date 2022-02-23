@@ -231,7 +231,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         if let location = locations.first {
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
             let directions = MKDirections(request: request)
-
+            print("COORDS: \(location.coordinate)")
             directions.calculate { [weak self] response, error in
                 guard let unwrappedResponse = response else { return }
 
@@ -292,7 +292,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
-            let maxDistance: CLLocationDistance = 60 // 60 meters radius from landmark
+            let maxDistance: CLLocationDistance = 20 // 20 meters radius from landmark
             let region = CLCircularRegion(center: center,
                                           radius: maxDistance, identifier: "")
             region.notifyOnEntry = true
@@ -315,8 +315,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         currentTime += timeInterval
         shouldRecordLocation = true
         
-        // save data to DB every 5 seconds
-        if(currentTime.truncatingRemainder(dividingBy: 5.0) == 0.0) {
+        // save data to DB every 10 seconds
+        if(currentTime.truncatingRemainder(dividingBy: 10.0) == 0.0) {
             firebaseManager.saveCoordsAndTimes()
             firebaseManager.saveTotalTimeElapsed()
         }
@@ -466,9 +466,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     private func presentPictureErrorAlert() {
-        let pictureErrorAlert = UIAlertController(title: "Error", message: pictureTakingAttempts > 2 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
-        // two attempts to retake photo
-        if(pictureTakingAttempts <= 2) {
+        let pictureErrorAlert = UIAlertController(title: "Error", message: pictureTakingAttempts > 1 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
+        // one attempt to retake photo
+        if(pictureTakingAttempts <= 1) {
             pictureErrorAlert.addAction(UIAlertAction(title: "Retake Photo", style: .default) { _ in
                 pictureErrorAlert.removeFromParent()
                 self.didUseFoundLandmarkFeature = true
