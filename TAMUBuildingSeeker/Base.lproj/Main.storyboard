@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -22,14 +22,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TAMUHighlightBG" translatesAutoresizingMaskIntoConstraints="NO" id="es6-y5-Ok4">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU BUILDING SEEKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ves-hk-b9U">
-                                <rect key="frame" x="31.666666666666657" y="142" width="351" height="39.666666666666657"/>
+                                <rect key="frame" x="31.5" y="164.5" width="351" height="48"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="32"/>
                                 <color key="textColor" red="1" green="0.9137254901960784" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                                 </variation>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter 4-Digit Code" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nvi-X7-cUs">
-                                <rect key="frame" x="117" y="354" width="180" height="28"/>
+                                <rect key="frame" x="117" y="431" width="180" height="34"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -80,17 +80,45 @@
             <objects>
                 <viewController id="qzH-oK-ewC" customClass="MapViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sJC-Tk-78Q">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4n-yJ-ITK">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gn9-9I-SDR" userLabel="LandmarkInfoView">
+                                <rect key="frame" x="93.5" y="150.5" width="227" height="529.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BSBE" translatesAutoresizingMaskIntoConstraints="NO" id="01Z-h7-SQ3" userLabel="InfoImageView">
+                                        <rect key="frame" x="0.0" y="0.0" width="227" height="529.5"/>
+                                    </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2b-91-hKq" userLabel="CloseInfoViewButton">
+                                        <rect key="frame" x="170" y="148.5" width="40" height="38.5"/>
+                                        <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" backgroundImage="xmark.octagon.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="closeLandmarkInfoView:" destination="qzH-oK-ewC" eventType="touchUpInside" id="RDC-zg-fd6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="01Z-h7-SQ3" firstAttribute="centerY" secondItem="gn9-9I-SDR" secondAttribute="centerY" id="1xo-tZ-JHH"/>
+                                    <constraint firstItem="01Z-h7-SQ3" firstAttribute="height" secondItem="gn9-9I-SDR" secondAttribute="height" id="H2v-Z5-goZ"/>
+                                    <constraint firstItem="N2b-91-hKq" firstAttribute="height" secondItem="gn9-9I-SDR" secondAttribute="height" multiplier="0.075543" id="Taj-tT-2Bn"/>
+                                    <constraint firstItem="N2b-91-hKq" firstAttribute="trailing" secondItem="gn9-9I-SDR" secondAttribute="trailing" multiplier="210/227" id="Vvv-5t-HLq"/>
+                                    <constraint firstItem="N2b-91-hKq" firstAttribute="width" secondItem="gn9-9I-SDR" secondAttribute="width" multiplier="0.176211" id="XzX-Vi-ie5"/>
+                                    <constraint firstItem="N2b-91-hKq" firstAttribute="bottom" secondItem="gn9-9I-SDR" secondAttribute="bottom" multiplier="188/529.5" id="Z6G-X6-VOC"/>
+                                    <constraint firstItem="01Z-h7-SQ3" firstAttribute="centerX" secondItem="gn9-9I-SDR" secondAttribute="centerX" id="buZ-oZ-bJo"/>
+                                    <constraint firstItem="01Z-h7-SQ3" firstAttribute="width" secondItem="gn9-9I-SDR" secondAttribute="width" id="yF7-FP-E4I"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXc-qQ-63t" userLabel="NBNView">
-                                <rect key="frame" x="74" y="123.66666666666669" width="266" height="435.00000000000006"/>
+                                <rect key="frame" x="74" y="150.5" width="266" height="529.5"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gua-K7-CoF" userLabel="NearbyFoundLandmark">
-                                        <rect key="frame" x="0.0" y="390.99999999999994" width="120.33333333333333" height="44"/>
+                                        <rect key="frame" x="0.0" y="476" width="120.5" height="53.5"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" backgroundImage="FoundBuildingButton2"/>
                                         <connections>
@@ -99,7 +127,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv2-DT-fRg" userLabel="KeepSearchingButton">
-                                        <rect key="frame" x="145.66666666666666" y="390.99999999999994" width="120.33333333333334" height="44"/>
+                                        <rect key="frame" x="145.5" y="476" width="120.5" height="53.5"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" backgroundImage="Keep Searching Notification Button"/>
                                         <connections>
@@ -107,7 +135,7 @@
                                         </connections>
                                     </button>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nearby Notification" translatesAutoresizingMaskIntoConstraints="NO" id="o6I-xo-Avv">
-                                        <rect key="frame" x="15" y="0.0" width="236" height="377"/>
+                                        <rect key="frame" x="15" y="0.0" width="236" height="459"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,7 +155,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-MQ-Vpr" userLabel="GlobalPhotoButton">
-                                <rect key="frame" x="276.66666666666669" y="579.66666666666663" width="103.33333333333331" height="110.33333333333337"/>
+                                <rect key="frame" x="276.5" y="705.5" width="103.5" height="134.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" backgroundImage="TakePictureButton"/>
                                 <connections>
@@ -135,7 +163,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWX-z3-GV6" userLabel="BLFoundLandmarkButton">
-                                <rect key="frame" x="36.666666666666664" y="579.66666666666663" width="103.33333333333334" height="110.33333333333337"/>
+                                <rect key="frame" x="36.5" y="705.5" width="103.5" height="134.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="" backgroundImage="FoundBuildingButton"/>
                                 <connections>
@@ -143,35 +171,47 @@
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="L5E-dW-k8I">
-                                <rect key="frame" x="308.33333333333331" y="618.33333333333337" width="40" height="33"/>
+                                <rect key="frame" x="308.5" y="753" width="40" height="40"/>
                             </activityIndicatorView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2Ib-LP-GpP" userLabel="AI Found Landmark">
-                                <rect key="frame" x="68.333333333333329" y="618.33333333333337" width="40" height="33"/>
+                                <rect key="frame" x="68.5" y="753" width="40" height="40"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="511-9Q-2Gc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2Ib-LP-GpP" firstAttribute="width" secondItem="hWX-z3-GV6" secondAttribute="width" multiplier="0.386473" id="24E-MN-05N"/>
-                            <constraint firstItem="hWX-z3-GV6" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.15" id="331-jX-rgU"/>
+                            <constraint firstItem="hWX-z3-GV6" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.15" id="331-jX-rgU">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="3x5-bl-uDh"/>
-                            <constraint firstItem="lDg-MQ-Vpr" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="840/896" id="6oK-dy-fXi"/>
+                            <constraint firstItem="gn9-9I-SDR" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.548309" id="5Uy-Tw-CZe"/>
+                            <constraint firstItem="lDg-MQ-Vpr" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="840/896" id="6oK-dy-fXi">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="OXc-qQ-63t" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.642512" id="7hL-sO-7ca"/>
-                            <constraint firstItem="lDg-MQ-Vpr" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.15" id="AIa-DU-gPC"/>
-                            <constraint firstItem="hWX-z3-GV6" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="840/896" id="Ba8-Qb-mDo"/>
+                            <constraint firstItem="lDg-MQ-Vpr" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.15" id="AIa-DU-gPC">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
+                            <constraint firstItem="hWX-z3-GV6" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="840/896" id="Ba8-Qb-mDo">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="trailing" secondItem="sJC-Tk-78Q" secondAttribute="trailing" multiplier="380/414" id="Bth-E9-xQa"/>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.25" id="D7R-xn-deF"/>
                             <constraint firstItem="2Ib-LP-GpP" firstAttribute="centerX" secondItem="hWX-z3-GV6" secondAttribute="centerX" id="E0x-Rn-ehy"/>
                             <constraint firstItem="OXc-qQ-63t" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="Ezj-C1-5P1"/>
                             <constraint firstItem="L5E-dW-k8I" firstAttribute="centerY" secondItem="lDg-MQ-Vpr" secondAttribute="centerY" id="Id7-zp-BNf"/>
+                            <constraint firstItem="gn9-9I-SDR" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.591033" id="MSq-PX-TU4"/>
                             <constraint firstItem="hWX-z3-GV6" firstAttribute="trailing" secondItem="sJC-Tk-78Q" secondAttribute="trailing" multiplier="140/414" id="NI8-zS-hkk"/>
                             <constraint firstItem="2Ib-LP-GpP" firstAttribute="centerY" secondItem="hWX-z3-GV6" secondAttribute="centerY" id="QDi-1P-0fK"/>
+                            <constraint firstItem="gn9-9I-SDR" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="680/896" id="Qkl-JP-ZzH"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" id="Qx4-Cb-vWl"/>
                             <constraint firstItem="L5E-dW-k8I" firstAttribute="width" secondItem="lDg-MQ-Vpr" secondAttribute="width" multiplier="0.386473" id="SC6-AM-Fnf"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" id="TFd-Lx-zeK"/>
                             <constraint firstItem="OXc-qQ-63t" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.591033" id="UsZ-Kw-n84"/>
                             <constraint firstItem="L5E-dW-k8I" firstAttribute="centerX" secondItem="lDg-MQ-Vpr" secondAttribute="centerX" id="Y74-Ef-XN9"/>
                             <constraint firstItem="2Ib-LP-GpP" firstAttribute="height" secondItem="hWX-z3-GV6" secondAttribute="height" multiplier="0.297398" id="aUz-tw-4uA"/>
+                            <constraint firstItem="gn9-9I-SDR" firstAttribute="centerX" secondItem="511-9Q-2Gc" secondAttribute="centerX" id="jAk-47-0Ia"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerY" secondItem="sJC-Tk-78Q" secondAttribute="centerY" id="jIj-S2-IYd"/>
                             <constraint firstItem="hWX-z3-GV6" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.25" id="rwU-JD-8WI"/>
                             <constraint firstItem="OXc-qQ-63t" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="680/896" id="tpc-Rj-mrH"/>
@@ -182,6 +222,8 @@
                     <connections>
                         <outlet property="foundLandmarkActivityIndicator" destination="2Ib-LP-GpP" id="RdQ-Xy-xGu"/>
                         <outlet property="foundLandmarkButton" destination="hWX-z3-GV6" id="nAn-0E-Oci"/>
+                        <outlet property="landmarkInfoView" destination="gn9-9I-SDR" id="pWC-Vh-nVj"/>
+                        <outlet property="landmarkInfoViewImageView" destination="01Z-h7-SQ3" id="WGc-7N-P55"/>
                         <outlet property="mapView" destination="z4n-yJ-ITK" id="JD0-eV-idp"/>
                         <outlet property="nearbyNotifView" destination="OXc-qQ-63t" id="Fv3-hX-umT"/>
                         <outlet property="takePhotoActivityIndicator" destination="L5E-dW-k8I" id="mSD-Wy-ZVm"/>
@@ -195,31 +237,16 @@
             </objects>
             <point key="canvasLocation" x="3907.2463768115945" y="82.33695652173914"/>
         </scene>
-        <!--Task View Controller-->
-        <scene sceneID="8fu-af-VsP">
-            <objects>
-                <viewController id="mkb-ux-XcM" customClass="ORKTaskViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="H46-n7-TvP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="sxn-eW-4GT"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uol-oe-Pqf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3000" y="832"/>
-        </scene>
         <!--End View Controller-->
         <scene sceneID="5IP-Xx-9Jf">
             <objects>
                 <viewController id="2Oy-eU-sUh" customClass="EndViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GqJ-Za-Srz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Complete!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erz-T1-MjT">
-                                <rect key="frame" x="143" y="357.66666666666669" width="128" height="21"/>
+                                <rect key="frame" x="143" y="442.5" width="128" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -242,17 +269,17 @@
             <objects>
                 <viewController id="bKS-IT-5dM" customClass="PhotoBankViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mny-aT-sQB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grey Buildings Background" translatesAutoresizingMaskIntoConstraints="NO" id="425-RA-JRb">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Bank Banner" translatesAutoresizingMaskIntoConstraints="NO" id="DHJ-dg-cPv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="117.66666666666667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="143.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xm-6U-chP">
-                                <rect key="frame" x="333.66666666666669" y="24.666666666666671" width="66.333333333333314" height="37"/>
+                                <rect key="frame" x="334" y="30" width="66" height="45"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Home">
@@ -266,10 +293,10 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxs-HI-c3g">
-                                <rect key="frame" x="0.0" y="117.66666666666669" width="414" height="618.33333333333326"/>
+                                <rect key="frame" x="0.0" y="143.5" width="414" height="752.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnj-Qb-Du6" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="618.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="752.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -334,17 +361,17 @@
             <objects>
                 <viewController id="Mqj-1G-c72" userLabel="D View Controller" customClass="DViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Vv-2R-rOy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="Uz7-ij-aeA">
-                                <rect key="frame" x="0.0" y="668.33333333333337" width="414" height="67.666666666666629"/>
+                                <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Maroon Search and Title Bar" translatesAutoresizingMaskIntoConstraints="NO" id="LwZ-x5-bRK">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="95.666666666666671"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU BUILDING SEEKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yRr-Cn-Woa">
-                                <rect key="frame" x="31.666666666666657" y="30.333333333333332" width="350.66666666666674" height="39.333333333333343"/>
+                                <rect key="frame" x="31.5" y="37" width="351" height="48"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="32"/>
                                 <color key="textColor" red="1" green="0.91372549020000005" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -353,7 +380,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVq-C4-VOT" userLabel="List of Buildings in Route">
-                                <rect key="frame" x="22" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="22" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="List of Buildings"/>
                                 <connections>
@@ -361,7 +388,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-zd-YwE" userLabel="Photo Taking Tutorial">
-                                <rect key="frame" x="153" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="153" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Taking Tutorial Button"/>
                                 <connections>
@@ -369,7 +396,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phv-ox-gl2" userLabel="Photo Bank">
-                                <rect key="frame" x="284" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="284" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Bank Button"/>
                                 <connections>
@@ -377,7 +404,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soc-Yh-IAN" userLabel="Building Seeker">
-                                <rect key="frame" x="20" y="332" width="374" height="177.33333333333337"/>
+                                <rect key="frame" x="20" y="404" width="374" height="216"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Building Seeker Button (Words)"/>
                                 <connections>
@@ -385,7 +412,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99L-AD-dKa" userLabel="My Location">
-                                <rect key="frame" x="138" y="596.33333333333337" width="138" height="114.33333333333337"/>
+                                <rect key="frame" x="138" y="726" width="138" height="139"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="My Location Button"/>
                                 <connections>
@@ -464,17 +491,17 @@
             <objects>
                 <viewController id="FuN-wc-LZM" customClass="LandmarkListViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EcG-Uv-nHd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grey Buildings Background" translatesAutoresizingMaskIntoConstraints="NO" id="xC0-mK-a1h">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="List Of Bldg in Route Banner" translatesAutoresizingMaskIntoConstraints="NO" id="rJb-v7-E3i">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="117.66666666666667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="143.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3l8-Gv-M8L">
-                                <rect key="frame" x="333.66666666666669" y="24.666666666666671" width="66.333333333333314" height="37"/>
+                                <rect key="frame" x="334" y="30" width="66" height="45"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Home">
@@ -488,7 +515,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freedom from Terrorism Memorial" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hqN-qm-Ubh">
-                                <rect key="frame" x="20" y="170" width="309.66666666666669" height="23"/>
+                                <rect key="frame" x="20" y="207" width="309.5" height="28"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -497,7 +524,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2008" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fNm-vF-Lgb">
-                                <rect key="frame" x="19.999999999999996" y="197.66666666666666" width="34.666666666666657" height="16"/>
+                                <rect key="frame" x="20" y="240.5" width="35" height="19.5"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -506,7 +533,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Urg-bm-MF4">
-                                <rect key="frame" x="20" y="217.99999999999997" width="375.33333333333331" height="81.666666666666657"/>
+                                <rect key="frame" x="20" y="265.5" width="375.5" height="99.5"/>
                                 <string key="text">A gift from Texas A&amp;M's classes of 1968 and 2003, the memorial is dedicated to Aggies "who have made the ultimate sacrifice in the fight against terrorism" and Aggies who have served and continue to serve to provide us "Freedom From Terrorism".</string>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -516,7 +543,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Engineering Activity Building" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Odf-H4-Sdj">
-                                <rect key="frame" x="20" y="346.66666666666669" width="309.66666666666669" height="23"/>
+                                <rect key="frame" x="20" y="422" width="309.5" height="28"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -525,7 +552,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tLi-GU-cC1">
-                                <rect key="frame" x="19.999999999999996" y="374.33333333333331" width="34.666666666666657" height="16"/>
+                                <rect key="frame" x="20" y="455.5" width="35" height="19.5"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -534,7 +561,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qCf-7i-1f5">
-                                <rect key="frame" x="20" y="391.66666666666669" width="375.33333333333331" height="68.333333333333314"/>
+                                <rect key="frame" x="20" y="477" width="375.5" height="83"/>
                                 <string key="text">Comprising any one of three buildings, Engineering Activity Buildings A-C, they serve as classrooms and labs for many engineering majors. Building A also contains the advising office for the Computer Science department.</string>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -544,7 +571,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bolton Hall" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Pfr-k3-ThI">
-                                <rect key="frame" x="20.000000000000007" y="506.66666666666674" width="125.66666666666669" height="23"/>
+                                <rect key="frame" x="20" y="617" width="125.5" height="28"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -553,7 +580,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1912" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="slL-3I-uoj">
-                                <rect key="frame" x="19.999999999999996" y="534.33333333333337" width="34.666666666666657" height="16"/>
+                                <rect key="frame" x="20" y="650.5" width="35" height="19.5"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -562,7 +589,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nh7-gp-CO6">
-                                <rect key="frame" x="20" y="554.66666666666663" width="375.33333333333331" height="82"/>
+                                <rect key="frame" x="20" y="675.5" width="375.5" height="99.5"/>
                                 <string key="text">Originally constructed as the Mechanical and Electrical Engineering Building, today it houses the the communication department in the College of Liberal Arts. It is also said that the nation's first play-by-play of a football game was broadcast here in 1921. </string>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -676,17 +703,17 @@
             <objects>
                 <viewController id="9RT-K2-Pr6" userLabel="B View Controller" customClass="BViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tDy-zw-RJT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="KbF-jn-MEk">
-                                <rect key="frame" x="0.0" y="668.33333333333337" width="414" height="67.666666666666629"/>
+                                <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Maroon Search and Title Bar" translatesAutoresizingMaskIntoConstraints="NO" id="wbo-VU-oQE">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="95.666666666666671"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU BUILDING SEEKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DGI-o6-Kbq">
-                                <rect key="frame" x="31.666666666666657" y="30.333333333333332" width="350.66666666666674" height="39.333333333333343"/>
+                                <rect key="frame" x="31.5" y="37" width="351" height="48"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="32"/>
                                 <color key="textColor" red="1" green="0.91372549020000005" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -695,7 +722,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcw-o2-aNI" userLabel="Building Seeker">
-                                <rect key="frame" x="20" y="360.66666666666669" width="374" height="177.33333333333331"/>
+                                <rect key="frame" x="20" y="439" width="374" height="216"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Building Seeker Button (Words)"/>
                                 <connections>
@@ -703,7 +730,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ble-df-Kbq" userLabel="My Location">
-                                <rect key="frame" x="138" y="596.33333333333337" width="138" height="114.33333333333337"/>
+                                <rect key="frame" x="138" y="726" width="138" height="139"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="My Location Button"/>
                                 <connections>
@@ -711,7 +738,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI3-7A-0ks" userLabel="List of Buildings in Route">
-                                <rect key="frame" x="22" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="22" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="List of Buildings"/>
                                 <connections>
@@ -719,7 +746,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjc-KC-yZZ" userLabel="Photo Taking Tutorial">
-                                <rect key="frame" x="153" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="153" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Taking Tutorial Button"/>
                                 <connections>
@@ -727,7 +754,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3u-e6-BPo" userLabel="Photo Bank">
-                                <rect key="frame" x="284" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="284" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Bank Button"/>
                                 <connections>
@@ -802,17 +829,17 @@
             <objects>
                 <viewController id="RkS-bZ-c98" userLabel="A View Controller" customClass="AViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oE1-mE-2pL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="3Lu-qb-bNd">
-                                <rect key="frame" x="0.0" y="668.33333333333337" width="414" height="67.666666666666629"/>
+                                <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Maroon Search and Title Bar" translatesAutoresizingMaskIntoConstraints="NO" id="cH3-ee-C7o">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="95.666666666666671"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU BUILDING SEEKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mds-Gd-oqf">
-                                <rect key="frame" x="31.666666666666657" y="30.333333333333332" width="350.66666666666674" height="39.333333333333343"/>
+                                <rect key="frame" x="31.5" y="37" width="351" height="48"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="32"/>
                                 <color key="textColor" red="1" green="0.91372549020000005" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -821,7 +848,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgQ-nq-7CT" userLabel="List of Buildings in Route">
-                                <rect key="frame" x="22" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="22" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="List of Buildings"/>
                                 <connections>
@@ -829,7 +856,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfL-MF-wee" userLabel="Photo Taking Tutorial">
-                                <rect key="frame" x="153" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="153" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Taking Tutorial Button"/>
                                 <connections>
@@ -837,7 +864,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRF-Im-h6x" userLabel="Photo Bank">
-                                <rect key="frame" x="284" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="284" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Bank Button"/>
                                 <connections>
@@ -845,7 +872,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7c-6K-FfK" userLabel="FoundLandmarkButton">
-                                <rect key="frame" x="217" y="378" width="175" height="217.66666666666663"/>
+                                <rect key="frame" x="217" y="460" width="175" height="265"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="FoundBuildingButton"/>
                                 <connections>
@@ -853,7 +880,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUILDING" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JyJ-FC-ahr">
-                                <rect key="frame" x="20" y="386.33333333333331" width="186" height="73.666666666666686"/>
+                                <rect key="frame" x="20" y="470.5" width="186" height="89.5"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="35"/>
                                 <color key="textColor" red="0.31372549019607843" green="0.047058823529411764" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -862,7 +889,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEEKER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GfM-US-HzY">
-                                <rect key="frame" x="20" y="419.33333333333331" width="138" height="73.666666666666686"/>
+                                <rect key="frame" x="20" y="510.5" width="138" height="89.5"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="35"/>
                                 <color key="textColor" red="0.31372549019607843" green="0.047058823529411764" blue="0.039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -871,7 +898,7 @@
                                 </variation>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="fBo-pk-hQj">
-                                <rect key="frame" x="280.66666666666669" y="467" width="48" height="39.333333333333314"/>
+                                <rect key="frame" x="280.5" y="568.5" width="48" height="48"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vOu-xp-Ogk"/>
@@ -957,17 +984,17 @@
             <objects>
                 <viewController id="8kL-oF-nFM" userLabel="C View Controller" customClass="CViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qBT-Tv-898">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayRectangle" translatesAutoresizingMaskIntoConstraints="NO" id="bam-Xx-qp5">
-                                <rect key="frame" x="0.0" y="668.33333333333337" width="414" height="67.666666666666629"/>
+                                <rect key="frame" x="0.0" y="813.5" width="414" height="82.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Maroon Search and Title Bar" translatesAutoresizingMaskIntoConstraints="NO" id="nCk-Ne-xVP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="95.666666666666671"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="116.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMU BUILDING SEEKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tj9-AX-9Wc">
-                                <rect key="frame" x="31.666666666666657" y="30.333333333333332" width="351" height="39.333333333333343"/>
+                                <rect key="frame" x="31.5" y="37" width="351" height="48"/>
                                 <fontDescription key="fontDescription" name="ConceptMedium" family="Concept" pointSize="32"/>
                                 <color key="textColor" red="1" green="0.91372549020000005" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -976,7 +1003,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpd-as-36e" userLabel="List of Buildings in Route">
-                                <rect key="frame" x="22" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="22" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="List of Buildings"/>
                                 <connections>
@@ -984,7 +1011,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dml-Ce-wfn" userLabel="Photo Taking Tutorial">
-                                <rect key="frame" x="153" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="153" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Taking Tutorial Button"/>
                                 <connections>
@@ -992,7 +1019,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8l-zB-WIg" userLabel="Photo Bank">
-                                <rect key="frame" x="284" y="164.33333333333331" width="108" height="140.33333333333331"/>
+                                <rect key="frame" x="284" y="200" width="108" height="171"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="Photo Bank Button"/>
                                 <connections>
@@ -1000,7 +1027,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQY-ik-Db9" userLabel="TakePhotoButton">
-                                <rect key="frame" x="217" y="378" width="175" height="217.66666666666663"/>
+                                <rect key="frame" x="217" y="460" width="175" height="265"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="TakePictureButton"/>
                                 <connections>
@@ -1009,7 +1036,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saY-YW-agX" userLabel="FoundLandmarkButton">
-                                <rect key="frame" x="21" y="378" width="175" height="217.66666666666663"/>
+                                <rect key="frame" x="21" y="460" width="175" height="265"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="FoundBuildingButton"/>
                                 <connections>
@@ -1018,10 +1045,10 @@
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ZKe-35-lNU" userLabel="FoundLandmarkActivityIndicator">
-                                <rect key="frame" x="87.666666666666671" y="469.33333333333331" width="42.000000000000014" height="34.666666666666686"/>
+                                <rect key="frame" x="87.5" y="571.5" width="42" height="42"/>
                             </activityIndicatorView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="myW-N7-VHd" userLabel="TakePhotoActivityIndicator">
-                                <rect key="frame" x="283.66666666666669" y="469.33333333333331" width="42" height="34.666666666666686"/>
+                                <rect key="frame" x="283.5" y="571.5" width="42" height="42"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PYU-ng-mfX"/>
@@ -1105,17 +1132,17 @@
             <objects>
                 <viewController id="thI-nd-p8v" customClass="TutorialViewController" customModule="TAMUBuildingSeeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d5f-cA-qqX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grey Buildings Background" translatesAutoresizingMaskIntoConstraints="NO" id="X6h-To-aWJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Taking Tutorial Banner" translatesAutoresizingMaskIntoConstraints="NO" id="ySC-l7-UNr">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="117.66666666666667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="143.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw3-a2-LOc">
-                                <rect key="frame" x="333.66666666666669" y="24.666666666666671" width="66.333333333333314" height="37"/>
+                                <rect key="frame" x="334" y="30" width="66" height="45"/>
                                 <fontDescription key="fontDescription" name="Concept-Bold" family="Concept" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Home">
@@ -1129,16 +1156,16 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteBox" translatesAutoresizingMaskIntoConstraints="NO" id="egc-c1-vbu" userLabel="WhiteBoxTop">
-                                <rect key="frame" x="0.0" y="178.66666666666666" width="414" height="125.33333333333334"/>
+                                <rect key="frame" x="0.0" y="217.5" width="414" height="152.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteBox" translatesAutoresizingMaskIntoConstraints="NO" id="nve-pp-pNM" userLabel="WhiteBoxBottom">
-                                <rect key="frame" x="0.0" y="536" width="414" height="125.33333333333337"/>
+                                <rect key="frame" x="0.0" y="652.5" width="414" height="152.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Taking Tutorial Icon" translatesAutoresizingMaskIntoConstraints="NO" id="5en-fd-JnM">
-                                <rect key="frame" x="34.666666666666657" y="284.33333333333337" width="344.66666666666674" height="274.33333333333337"/>
+                                <rect key="frame" x="35" y="346" width="344" height="334"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take pictures close to the building and avoid capturing any other buildings in the background." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mwm-1w-Fs0">
-                                <rect key="frame" x="0.0" y="192" width="414" height="95.666666666666686"/>
+                                <rect key="frame" x="0.0" y="234" width="414" height="116"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1147,7 +1174,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avoid large obstructions in the image such as trees or lamp posts that take up a large portion of the image." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vxp-aH-Ld2">
-                                <rect key="frame" x="10.333333333333343" y="553.66666666666663" width="393.33333333333326" height="95.333333333333371"/>
+                                <rect key="frame" x="10.5" y="674" width="393" height="116"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1230,33 +1257,35 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Jwu-UX-V6z"/>
+        <segue reference="laJ-ga-JLD"/>
         <segue reference="d4N-WR-apa"/>
-        <segue reference="iXd-WQ-N7E"/>
+        <segue reference="iLO-wX-S5z"/>
         <segue reference="gqJ-5T-FCv"/>
-        <segue reference="veg-iH-GnY"/>
-        <segue reference="ogk-8h-LLW"/>
+        <segue reference="v6R-2b-tcd"/>
+        <segue reference="gpP-xT-v8x"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="BSBE" width="782" height="1567"/>
         <image name="Building Seeker Button (Words)" width="1077" height="552"/>
         <image name="FoundBuildingButton" width="107" height="141"/>
         <image name="FoundBuildingButton2" width="327" height="125"/>
         <image name="GrayRectangle" width="750" height="150"/>
-        <image name="Grey Buildings Background" width="414" height="736"/>
+        <image name="Grey Buildings Background" width="375" height="667"/>
         <image name="Keep Searching Notification Button" width="327" height="125"/>
-        <image name="List Of Bldg in Route Banner" width="414" height="117.33333587646484"/>
+        <image name="List Of Bldg in Route Banner" width="621" height="176"/>
         <image name="List of Buildings" width="317" height="522"/>
         <image name="Maroon Search and Title Bar" width="1242" height="492"/>
         <image name="My Location Button" width="335" height="301"/>
         <image name="Nearby Notification" width="699" height="992"/>
-        <image name="Photo Bank Banner" width="414" height="117.33333587646484"/>
+        <image name="Photo Bank Banner" width="621" height="176"/>
         <image name="Photo Bank Button" width="317" height="522"/>
-        <image name="Photo Taking Tutorial Banner" width="250" height="71"/>
+        <image name="Photo Taking Tutorial Banner" width="375" height="106.5"/>
         <image name="Photo Taking Tutorial Button" width="317" height="522"/>
         <image name="Photo Taking Tutorial Icon" width="552" height="521"/>
-        <image name="TAMUHighlightBG" width="414" height="736"/>
+        <image name="TAMUHighlightBG" width="375" height="667"/>
         <image name="TakePictureButton" width="107" height="141"/>
         <image name="WhiteBox" width="100" height="100"/>
+        <image name="xmark.octagon.fill" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

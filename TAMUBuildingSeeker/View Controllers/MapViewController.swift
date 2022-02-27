@@ -24,6 +24,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var foundLandmarkButton: UIButton!
     @IBOutlet var foundLandmarkActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet var nearbyNotifView: UIView!
+    
+    // used when participant uses the "Take Photo" button
+    @IBOutlet var landmarkInfoView: UIView!
+    @IBOutlet var landmarkInfoViewImageView: UIImageView!
+    
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
     
@@ -62,8 +68,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Represents how many times the user has tried to take a picture of the destination
     var pictureTakingAttempts = 0
-    
-    @IBOutlet var nearbyNotifView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -260,16 +264,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.removeOverlays(mapView.overlays)
         
         let destinationMarker = MKPointAnnotation()
-        destinationMarker.coordinate = LandmarkData.destCoords[destinationIndex]
-        destinationMarker.title = LandmarkData.destTitles[destinationIndex]
+        destinationMarker.coordinate = DestinationData.destCoords[destinationIndex]
+        destinationMarker.title = DestinationData.destTitles[destinationIndex]
         mapAnnotations.append(destinationMarker)
         mapView.addAnnotation(destinationMarker)
         if(destinationIndex > 0) {
             mapView.removeAnnotation(mapAnnotations[destinationIndex-1])
         }
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: LandmarkData.destCoords[destinationIndex]))
-        monitorRegionAtLocation(center: LandmarkData.destCoords[destinationIndex])
-        print("CENTER: \(LandmarkData.destCoords[destinationIndex])")
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: DestinationData.destCoords[destinationIndex]))
+        monitorRegionAtLocation(center: DestinationData.destCoords[destinationIndex])
+        print("CENTER: \(DestinationData.destCoords[destinationIndex])")
         
         shouldUpdateMapRect = true
         
@@ -297,7 +301,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         mapRegions[destinationIndex].notifyOnEntry = false
-        nearbyNotifView.isHidden = false
         nearbyNotifView.animateIn()
         foundLandmarkButton.isHidden = true
     }
@@ -429,7 +432,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // else asks to retry/override picture in alert
     private func verifyOrRejectLandmark(names: [String]) {
         pictureTakingAttempts += 1
-        switch LandmarkData.destTitles[destinationIndex] {
+        switch DestinationData.destTitles[destinationIndex] {
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
                 presentPictureSuccessAlert(landmarkName: "Freedom from Terrorism Memorial")
@@ -493,14 +496,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // Called when using general photo taking picture (Take Photo button)
-    // TODO: >>> Displays information about the landmark in a custom pop-up <<<
     private func showLandmarkInformation(named name: String) {
-        let landmarkInfoAlert = UIAlertController(title: name == "None" ? "Oops" : "Landmark Found!", message: name == "None" ? "We could not find a landmark in the picture!" : "This landmark is the \(name)!", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Ok", style: .default) { _ in
-            landmarkInfoAlert.removeFromParent()
+        if(name == "None") {
+            let oopsAlert = UIAlertController(title: "Oops", message: "We could not find a landmark in the picture! Please try again.", preferredStyle: .alert)
+            let confirm = UIAlertAction(title: "Ok", style: .default) { _ in
+                oopsAlert.removeFromParent()
+            }
+            oopsAlert.addAction(confirm)
+            present(oopsAlert, animated: true, completion: nil)
+        } else {
+            landmarkInfoViewImageView.image = UIImage(named: Landmarks.landmarkData[name]!.imageFileName)
+            landmarkInfoView.animateIn()
         }
-        landmarkInfoAlert.addAction(confirm)
-        present(landmarkInfoAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func closeLandmarkInfoView(_ sender: UIButton) {
+        landmarkInfoView.animateOut()
     }
     
     /// - Tag: PerformRequests
@@ -589,11 +600,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
 extension UIView {
     func animateIn() {
+        self.isHidden = false
         self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.alpha = 0.0;
         for child in self.subviews {
             child.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             child.alpha = 0.0;
+            child.isHidden = false
         }
         UIView.animate(withDuration: 0.25, animations: {
             self.alpha = 1.0
@@ -617,6 +630,9 @@ extension UIView {
             if (doneAnimating)
             {
                 self.isHidden = true
+                for child in self.subviews {
+                    child.isHidden = true
+                }
             }
         });
     }

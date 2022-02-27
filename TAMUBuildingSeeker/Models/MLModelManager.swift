@@ -72,6 +72,6 @@ class MLModelManager {
     
     // Removes ML model results of buildings > 60 meters from current location
     public func filterOutDistantBuildings(results: [String], currLoc: CLLocationCoordinate2D) -> [String] {
-        return results.filter{ CLLocation(latitude: LandmarkData.landmarkCoords[$0]!.latitude, longitude: LandmarkData.landmarkCoords[$0]!.longitude).distance(from: CLLocation(latitude: currLoc.latitude, longitude: currLoc.longitude)) < 60 }
+        return results.filter{ CLLocation(latitude: Landmarks.landmarkData[$0]!.coordinate.latitude, longitude: Landmarks.landmarkData[$0]!.coordinate.longitude).distance(from: CLLocation(latitude: currLoc.latitude, longitude: currLoc.longitude)) < 6000 }
     }
 }
