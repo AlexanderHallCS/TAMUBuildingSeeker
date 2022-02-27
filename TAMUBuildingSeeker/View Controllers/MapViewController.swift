@@ -30,6 +30,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var landmarkInfoView: UIView!
     @IBOutlet var landmarkInfoViewImageView: UIImageView!
     
+    @IBOutlet var destCongratsView: UIView!
+    @IBOutlet var destCongratsViewImageView: UIImageView!
+    
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
     
@@ -325,17 +328,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     private func prepareEndOfStudy() {
-        let endAlert = UIAlertController(title: "Complete", message: "Thank you for participating in this study! Please head back to Rudder Plaza", preferredStyle: .alert)
-        endAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            endAlert.removeFromParent()
-        })
-        present(endAlert, animated: true, completion: nil)
         mapView.removeAnnotation(mapAnnotations[2]) // remove Bolton Hall map marker
         mapView.removeOverlays(mapView.overlays)
         pauseTimer()
         
         UserData.totalTimeElapsed = currentTime
         firebaseManager.saveTotalTimeElapsed()
+        
+        let endAlert = UIAlertController(title: "Complete", message: "Thank you for participating in this study! Please head back to Rudder Plaza", preferredStyle: .alert)
+        endAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            self.performSegue(withIdentifier: "mapToEnd", sender: self)
+            endAlert.removeFromParent()
+        })
+        present(endAlert, animated: true, completion: nil)
     }
     
     // TODO: Disable app from starting again once study completes (UserDefaults boolean)
@@ -435,38 +440,48 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         switch DestinationData.destTitles[destinationIndex] {
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
-                presentPictureSuccessAlert(landmarkName: "Freedom from Terrorism Memorial")
+                presentPictureSuccessAlert(imageName: "Freedom Congrats")
             } else {
                 presentPictureErrorAlert()
             }
         case "Engineering Activity Building":
             if(names.contains("Engineering Activity Building")) {
-                presentPictureSuccessAlert(landmarkName: "Engineering Activity Buildings")
+                presentPictureSuccessAlert(imageName: "EAB Congrats")
             } else {
                 presentPictureErrorAlert()
             }
         default:
             if(names.contains("Bolton Hall")) {
-                presentPictureSuccessAlert(landmarkName: "Bolton Hall")
+                presentPictureSuccessAlert(imageName: "Bolton Congrats")
             } else {
                 presentPictureErrorAlert()
             }
         }
     }
     
-    private func presentPictureSuccessAlert(landmarkName: String) {
-        let successAlert = UIAlertController(title: "Correct", message: "You have found \(landmarkName)! Please take a short survey.", preferredStyle: .alert)
-        successAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+    // show congrats pop-up after taking a successful picture of a destination
+    private func presentPictureSuccessAlert(imageName: String) {
+        destCongratsViewImageView.image = UIImage(named: imageName)
+        destCongratsView.animateIn()
+    }
+    
+    // remove congrats pop-up, save data, show survey
+    @IBAction func pressDestCongratsSuccessButton(_ sender: UIButton) {
+        destCongratsView.animateOut()
+        let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
+        surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
             UserData.destinationTimes.append(self.currentTime)
             self.firebaseManager.saveDestinationTimes()
             self.pictureTakingAttempts = 0
             self.destinationIndex += 1
             self.takeSurvey()
-            successAlert.removeFromParent()
+            surveyAlert.removeFromParent()
         })
-        present(successAlert, animated: true, completion: nil)
+        present(surveyAlert, animated: true, completion: nil)
     }
     
+    // if destination picture is incorrect, show this alert
+    // allow overriding of taking pictures after 2 attempts
     private func presentPictureErrorAlert() {
         let pictureErrorAlert = UIAlertController(title: "Error", message: pictureTakingAttempts > 1 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
         // one attempt to retake photo
