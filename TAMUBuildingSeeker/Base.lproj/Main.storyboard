@@ -86,6 +86,46 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4n-yJ-ITK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </mapView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXc-qQ-63t" userLabel="NBNView">
+                                <rect key="frame" x="74" y="123.66666666666669" width="266" height="435.00000000000006"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gua-K7-CoF" userLabel="NearbyFoundLandmark">
+                                        <rect key="frame" x="0.0" y="390.99999999999994" width="120.33333333333333" height="44"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" backgroundImage="FoundBuildingButton2"/>
+                                        <connections>
+                                            <action selector="pressFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="AnM-Ys-3yG"/>
+                                            <action selector="pressNotifFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Fjf-dN-w0n"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv2-DT-fRg" userLabel="KeepSearchingButton">
+                                        <rect key="frame" x="145.66666666666666" y="390.99999999999994" width="120.33333333333334" height="44"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" backgroundImage="Keep Searching Notification Button"/>
+                                        <connections>
+                                            <action selector="pressNotifContinueButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Y17-Zu-atn"/>
+                                        </connections>
+                                    </button>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nearby Notification" translatesAutoresizingMaskIntoConstraints="NO" id="o6I-xo-Avv">
+                                        <rect key="frame" x="15" y="0.0" width="236" height="377"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="o6I-xo-Avv" firstAttribute="centerX" secondItem="OXc-qQ-63t" secondAttribute="centerX" id="2Sp-xf-voP"/>
+                                    <constraint firstItem="gua-K7-CoF" firstAttribute="bottom" secondItem="OXc-qQ-63t" secondAttribute="bottom" id="4vi-G7-77R"/>
+                                    <constraint firstItem="Dv2-DT-fRg" firstAttribute="width" secondItem="OXc-qQ-63t" secondAttribute="width" multiplier="0.452381" id="Gsb-JH-Jqc"/>
+                                    <constraint firstItem="o6I-xo-Avv" firstAttribute="width" secondItem="OXc-qQ-63t" secondAttribute="width" multiplier="0.887218" id="IWJ-ZW-Qha"/>
+                                    <constraint firstItem="gua-K7-CoF" firstAttribute="width" secondItem="OXc-qQ-63t" secondAttribute="width" multiplier="0.452381" id="LGB-Lu-JOO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dv2-DT-fRg" secondAttribute="bottom" id="Mye-xp-Wgo"/>
+                                    <constraint firstItem="o6I-xo-Avv" firstAttribute="bottom" secondItem="OXc-qQ-63t" secondAttribute="bottom" multiplier="377/435" id="OAY-Aa-13J"/>
+                                    <constraint firstItem="Dv2-DT-fRg" firstAttribute="trailing" secondItem="OXc-qQ-63t" secondAttribute="trailing" id="Uyj-be-TZl"/>
+                                    <constraint firstItem="o6I-xo-Avv" firstAttribute="height" secondItem="OXc-qQ-63t" secondAttribute="height" multiplier="0.866667" id="XbM-h8-vJL"/>
+                                    <constraint firstItem="gua-K7-CoF" firstAttribute="leading" secondItem="OXc-qQ-63t" secondAttribute="leading" id="b1O-cz-y0v"/>
+                                    <constraint firstItem="gua-K7-CoF" firstAttribute="height" secondItem="OXc-qQ-63t" secondAttribute="height" multiplier="0.101149" id="f1r-Tb-gdS"/>
+                                    <constraint firstItem="Dv2-DT-fRg" firstAttribute="height" secondItem="OXc-qQ-63t" secondAttribute="height" multiplier="0.101149" id="pJi-WR-yDR"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-MQ-Vpr" userLabel="GlobalPhotoButton">
                                 <rect key="frame" x="276.66666666666669" y="579.66666666666663" width="103.33333333333331" height="110.33333333333337"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -102,32 +142,12 @@
                                     <action selector="pressFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="OQg-3q-KL5"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nearby Notification" translatesAutoresizingMaskIntoConstraints="NO" id="o6I-xo-Avv">
-                                <rect key="frame" x="82.666666666666671" y="125" width="248.66666666666663" height="368"/>
-                            </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gua-K7-CoF" userLabel="MidFoundLandmark">
-                                <rect key="frame" x="82.666666666666686" y="508" width="120.33333333333331" height="44"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="FoundBuildingButton2"/>
-                                <connections>
-                                    <action selector="pressFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="AnM-Ys-3yG"/>
-                                    <action selector="pressNotifFoundLandmarkButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Fjf-dN-w0n"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="L5E-dW-k8I">
                                 <rect key="frame" x="308.33333333333331" y="618.33333333333337" width="40" height="33"/>
                             </activityIndicatorView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2Ib-LP-GpP" userLabel="AI Found Landmark">
                                 <rect key="frame" x="68.333333333333329" y="618.33333333333337" width="40" height="33"/>
                             </activityIndicatorView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv2-DT-fRg" userLabel="ContinueButton">
-                                <rect key="frame" x="211.00000000000003" y="508" width="120.33333333333334" height="44"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="Keep Searching Notification Button"/>
-                                <connections>
-                                    <action selector="pressNotifContinueButton:" destination="qzH-oK-ewC" eventType="touchUpInside" id="Y17-Zu-atn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="511-9Q-2Gc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -136,34 +156,25 @@
                             <constraint firstItem="hWX-z3-GV6" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.15" id="331-jX-rgU"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="3x5-bl-uDh"/>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="840/896" id="6oK-dy-fXi"/>
-                            <constraint firstItem="o6I-xo-Avv" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="81V-he-bLG"/>
+                            <constraint firstItem="OXc-qQ-63t" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.642512" id="7hL-sO-7ca"/>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.15" id="AIa-DU-gPC"/>
-                            <constraint firstItem="o6I-xo-Avv" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.6" id="AUh-ZS-EYt"/>
                             <constraint firstItem="hWX-z3-GV6" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="840/896" id="Ba8-Qb-mDo"/>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="trailing" secondItem="sJC-Tk-78Q" secondAttribute="trailing" multiplier="380/414" id="Bth-E9-xQa"/>
-                            <constraint firstItem="gua-K7-CoF" firstAttribute="leading" secondItem="o6I-xo-Avv" secondAttribute="leading" id="D6C-NB-KgI"/>
                             <constraint firstItem="lDg-MQ-Vpr" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.25" id="D7R-xn-deF"/>
                             <constraint firstItem="2Ib-LP-GpP" firstAttribute="centerX" secondItem="hWX-z3-GV6" secondAttribute="centerX" id="E0x-Rn-ehy"/>
+                            <constraint firstItem="OXc-qQ-63t" firstAttribute="centerX" secondItem="sJC-Tk-78Q" secondAttribute="centerX" id="Ezj-C1-5P1"/>
                             <constraint firstItem="L5E-dW-k8I" firstAttribute="centerY" secondItem="lDg-MQ-Vpr" secondAttribute="centerY" id="Id7-zp-BNf"/>
                             <constraint firstItem="hWX-z3-GV6" firstAttribute="trailing" secondItem="sJC-Tk-78Q" secondAttribute="trailing" multiplier="140/414" id="NI8-zS-hkk"/>
-                            <constraint firstItem="Dv2-DT-fRg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gua-K7-CoF" secondAttribute="trailing" id="OAC-Nf-wJZ"/>
                             <constraint firstItem="2Ib-LP-GpP" firstAttribute="centerY" secondItem="hWX-z3-GV6" secondAttribute="centerY" id="QDi-1P-0fK"/>
-                            <constraint firstItem="gua-K7-CoF" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.29" id="QjD-Na-0ea"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" id="Qx4-Cb-vWl"/>
                             <constraint firstItem="L5E-dW-k8I" firstAttribute="width" secondItem="lDg-MQ-Vpr" secondAttribute="width" multiplier="0.386473" id="SC6-AM-Fnf"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" id="TFd-Lx-zeK"/>
-                            <constraint firstItem="Dv2-DT-fRg" firstAttribute="top" secondItem="o6I-xo-Avv" secondAttribute="bottom" constant="15" id="VY7-6h-stj"/>
+                            <constraint firstItem="OXc-qQ-63t" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.591033" id="UsZ-Kw-n84"/>
                             <constraint firstItem="L5E-dW-k8I" firstAttribute="centerX" secondItem="lDg-MQ-Vpr" secondAttribute="centerX" id="Y74-Ef-XN9"/>
-                            <constraint firstItem="Dv2-DT-fRg" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.29" id="aSo-MQ-pq0"/>
                             <constraint firstItem="2Ib-LP-GpP" firstAttribute="height" secondItem="hWX-z3-GV6" secondAttribute="height" multiplier="0.297398" id="aUz-tw-4uA"/>
-                            <constraint firstItem="o6I-xo-Avv" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="600/896" id="aup-wT-A1k"/>
-                            <constraint firstItem="Dv2-DT-fRg" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.06" id="coE-3h-EEg"/>
-                            <constraint firstItem="gua-K7-CoF" firstAttribute="top" secondItem="o6I-xo-Avv" secondAttribute="bottom" constant="15" id="fPr-vS-NQj"/>
-                            <constraint firstItem="Dv2-DT-fRg" firstAttribute="trailing" secondItem="o6I-xo-Avv" secondAttribute="trailing" id="gB2-oc-TRE"/>
                             <constraint firstItem="z4n-yJ-ITK" firstAttribute="centerY" secondItem="sJC-Tk-78Q" secondAttribute="centerY" id="jIj-S2-IYd"/>
-                            <constraint firstItem="gua-K7-CoF" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.06" id="pAw-A4-bpS"/>
-                            <constraint firstItem="o6I-xo-Avv" firstAttribute="height" secondItem="sJC-Tk-78Q" secondAttribute="height" multiplier="0.5" id="pGj-pc-0WO"/>
                             <constraint firstItem="hWX-z3-GV6" firstAttribute="width" secondItem="sJC-Tk-78Q" secondAttribute="width" multiplier="0.25" id="rwU-JD-8WI"/>
+                            <constraint firstItem="OXc-qQ-63t" firstAttribute="bottom" secondItem="sJC-Tk-78Q" secondAttribute="bottom" multiplier="680/896" id="tpc-Rj-mrH"/>
                             <constraint firstItem="L5E-dW-k8I" firstAttribute="height" secondItem="lDg-MQ-Vpr" secondAttribute="height" multiplier="0.297398" id="xYr-LP-aDa"/>
                         </constraints>
                     </view>
@@ -172,9 +183,7 @@
                         <outlet property="foundLandmarkActivityIndicator" destination="2Ib-LP-GpP" id="RdQ-Xy-xGu"/>
                         <outlet property="foundLandmarkButton" destination="hWX-z3-GV6" id="nAn-0E-Oci"/>
                         <outlet property="mapView" destination="z4n-yJ-ITK" id="JD0-eV-idp"/>
-                        <outlet property="nearbyContinueButton" destination="Dv2-DT-fRg" id="cuD-Qd-Wsu"/>
-                        <outlet property="nearbyFoundLandmarkButton" destination="gua-K7-CoF" id="3kv-OD-eZF"/>
-                        <outlet property="nearbyNotifImageView" destination="o6I-xo-Avv" id="9yi-dz-wxW"/>
+                        <outlet property="nearbyNotifView" destination="OXc-qQ-63t" id="Fv3-hX-umT"/>
                         <outlet property="takePhotoActivityIndicator" destination="L5E-dW-k8I" id="mSD-Wy-ZVm"/>
                         <outlet property="takePictureButton" destination="lDg-MQ-Vpr" id="Vu6-ug-xK4"/>
                         <segue destination="2Oy-eU-sUh" kind="presentation" identifier="mapToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="4VF-eg-EMd"/>

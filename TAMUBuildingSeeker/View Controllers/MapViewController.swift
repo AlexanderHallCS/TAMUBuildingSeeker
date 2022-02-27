@@ -24,10 +24,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var foundLandmarkButton: UIButton!
     @IBOutlet var foundLandmarkActivityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet var nearbyNotifImageView: UIImageView!
-    @IBOutlet var nearbyFoundLandmarkButton: UIButton!
-    @IBOutlet var nearbyContinueButton: UIButton!
-    
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
     
@@ -66,6 +62,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // Represents how many times the user has tried to take a picture of the destination
     var pictureTakingAttempts = 0
+    
+    @IBOutlet var nearbyNotifView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,14 +171,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
             if(didPressNotifFoundLandmark) {
                 didPressNotifFoundLandmark = false
-                removeNearbyNotification()
+                nearbyNotifView.animateOut()
             }
             self.presentPhotoPicker(sourceType: .camera)
         }
         let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
             if(didPressNotifFoundLandmark) {
                 didPressNotifFoundLandmark = false
-                removeNearbyNotification()
+                nearbyNotifView.animateOut()
             }
             self.presentPhotoPicker(sourceType: .photoLibrary)
         }
@@ -192,18 +190,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func pressNotifContinueButton(_ sender: UIButton) {
-        removeNearbyNotification()
+        nearbyNotifView.animateOut()
     }
     
     @IBAction func pressNotifFoundLandmarkButton(_ sender: UIButton) {
         didPressNotifFoundLandmark = true
-    }
-    
-    private func removeNearbyNotification() {
-        foundLandmarkButton.isHidden = false
-        nearbyNotifImageView.isHidden = true
-        nearbyFoundLandmarkButton.isHidden = true
-        nearbyContinueButton.isHidden = true
     }
     
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
@@ -306,9 +297,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         mapRegions[destinationIndex].notifyOnEntry = false
-        nearbyNotifImageView.isHidden = false
-        nearbyFoundLandmarkButton.isHidden = false
-        nearbyContinueButton.isHidden = false
+        nearbyNotifView.isHidden = false
+        nearbyNotifView.animateIn()
         foundLandmarkButton.isHidden = true
     }
     
@@ -594,5 +584,40 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         taskViewController.navigationBar.prefersLargeTitles = false
         taskViewController.navigationBar.backgroundColor = .white
         present(taskViewController, animated: true, completion: nil)
+    }
+}
+
+extension UIView {
+    func animateIn() {
+        self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.alpha = 0.0;
+        for child in self.subviews {
+            child.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            child.alpha = 0.0;
+        }
+        UIView.animate(withDuration: 0.25, animations: {
+            self.alpha = 1.0
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            for child in self.subviews {
+                child.alpha = 1.0
+                child.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+        });
+    }
+    
+    func animateOut() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.alpha = 0.0;
+            for child in self.subviews {
+                child.alpha = 1.0
+                child.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+        }, completion:{ (doneAnimating : Bool) in
+            if (doneAnimating)
+            {
+                self.isHidden = true
+            }
+        });
     }
 }
