@@ -43,6 +43,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var mapRegions: [CLCircularRegion] = []
     
     var coordinates: [GeoPoint] = []
+    var currLoc = CLLocationCoordinate2D()
     
     let modelManager = MLModelManager()
     let firebaseManager = FirebaseManager()
@@ -229,9 +230,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+            currLoc = location.coordinate
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate))
             let directions = MKDirections(request: request)
-            print("COORDS: \(location.coordinate)")
             directions.calculate { [weak self] response, error in
                 guard let unwrappedResponse = response else { return }
 
@@ -268,16 +269,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.removeOverlays(mapView.overlays)
         
         let destinationMarker = MKPointAnnotation()
-        destinationMarker.coordinate = LandmarkData.landmarkCoords[destinationIndex]
-        destinationMarker.title = LandmarkData.landmarkTitles[destinationIndex]
+        destinationMarker.coordinate = LandmarkData.destCoords[destinationIndex]
+        destinationMarker.title = LandmarkData.destTitles[destinationIndex]
         mapAnnotations.append(destinationMarker)
         mapView.addAnnotation(destinationMarker)
         if(destinationIndex > 0) {
             mapView.removeAnnotation(mapAnnotations[destinationIndex-1])
         }
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: LandmarkData.landmarkCoords[destinationIndex]))
-        monitorRegionAtLocation(center: LandmarkData.landmarkCoords[destinationIndex])
-        print("CENTER: \(LandmarkData.landmarkCoords[destinationIndex])")
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: LandmarkData.destCoords[destinationIndex]))
+        monitorRegionAtLocation(center: LandmarkData.destCoords[destinationIndex])
+        print("CENTER: \(LandmarkData.destCoords[destinationIndex])")
         
         shouldUpdateMapRect = true
         
@@ -403,7 +404,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return classification.confidence > 0.01
         }
     
-        let names = classifications.map { classification in
+        var names = classifications.map { classification in
             return modelManager.renameResult(result: classification.identifier)
         }
     
@@ -411,8 +412,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return Double(String(format: "%.2f", classification.confidence * 100))!
         }
         
+        print("BEFORE FILTERING")
+        for name in names {
+            print(name)
+        }
+        names = modelManager.filterOutDistantBuildings(results: names, currLoc: currLoc);
+        print("AFTER FILTERING")
+        
         if(didUseFoundLandmarkFeature) {
             didUseFoundLandmarkFeature = false
+            // takes top 3 results - works since model returns names with highest % first
             verifyOrRejectLandmark(names: Array(names.prefix(3)))
         } else if(didUsePhotoTakingFeature) {
             didUsePhotoTakingFeature = false
@@ -430,7 +439,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // else asks to retry/override picture in alert
     private func verifyOrRejectLandmark(names: [String]) {
         pictureTakingAttempts += 1
-        switch LandmarkData.landmarkTitles[destinationIndex] {
+        switch LandmarkData.destTitles[destinationIndex] {
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
                 presentPictureSuccessAlert(landmarkName: "Freedom from Terrorism Memorial")

@@ -38,7 +38,7 @@
 		1154A58927904A27000D59DE /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		1154A58B27916FAD000D59DE /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
 		1154A58D27950714000D59DE /* CViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CViewController.swift; sourceTree = "<group>"; };
-		117C481227A837B8000497BD /* SurveyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SurveyHelper.swift; path = TAMUBuildingSeeker/SurveyHelper.swift; sourceTree = SOURCE_ROOT; };
+		117C481227A837B8000497BD /* SurveyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SurveyHelper.swift; path = TAMUBuildingSeeker/Models/SurveyHelper.swift; sourceTree = SOURCE_ROOT; };
 		117C481427A84255000497BD /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		117C481827A84579000497BD /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A628E727B98E2600DAC35F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -74,6 +74,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		114DC87127CB1B5000F4922D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				117C481227A837B8000497BD /* SurveyHelper.swift */,
+				1154A58B27916FAD000D59DE /* MLModelManager.swift */,
+				11A628E727B98E2600DAC35F /* FirebaseManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		11A829EC27023F320005FF3B = {
 			isa = PBXGroup;
 			children = (
@@ -95,13 +105,11 @@
 		11A829F727023F320005FF3B /* TAMUBuildingSeeker */ = {
 			isa = PBXGroup;
 			children = (
+				114DC87127CB1B5000F4922D /* Models */,
 				11E1632F277D1C970074A782 /* View Controllers */,
 				11E1632E277D1C740074A782 /* Supporting Files */,
 				11B8852B277082B200788483 /* Fonts */,
 				11E1632C277D1C140074A782 /* Globals.swift */,
-				117C481227A837B8000497BD /* SurveyHelper.swift */,
-				1154A58B27916FAD000D59DE /* MLModelManager.swift */,
-				11A628E727B98E2600DAC35F /* FirebaseManager.swift */,
 				11A829FE27023F320005FF3B /* Main.storyboard */,
 				11A82A0127023F380005FF3B /* Assets.xcassets */,
 				111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */,

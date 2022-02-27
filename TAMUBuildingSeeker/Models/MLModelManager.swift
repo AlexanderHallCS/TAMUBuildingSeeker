@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
+import CoreLocation
 
 class MLModelManager {
     
@@ -67,5 +68,10 @@ class MLModelManager {
         default:
             return result
         }
+    }
+    
+    // Removes ML model results of buildings > 60 meters from current location
+    public func filterOutDistantBuildings(results: [String], currLoc: CLLocationCoordinate2D) -> [String] {
+        return results.filter{ CLLocation(latitude: LandmarkData.landmarkCoords[$0]!.latitude, longitude: LandmarkData.landmarkCoords[$0]!.longitude).distance(from: CLLocation(latitude: currLoc.latitude, longitude: currLoc.longitude)) < 60 }
     }
 }
