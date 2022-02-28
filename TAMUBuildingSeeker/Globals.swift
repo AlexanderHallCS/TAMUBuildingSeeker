@@ -20,6 +20,7 @@ struct UserData {
     static var totalTimeElapsed = 0.0
     static var coordinates: [GeoPoint] = [] // coordinates of the user
     static var coordinateTimestamps: [Double] = [] // timestamps associated with above coordinates
+    static var coordinateDateTimes: [String] = [] // datetimes associated with above coordinates
     static var destinationTimes: [Double] = [] // [Freedom from Terrorism Memorial identification time, EAB identification time, Bolton Hall identification time]
     static var surveyStartTimes: [Double] = []
     static var surveyStopTimes: [Double] = []

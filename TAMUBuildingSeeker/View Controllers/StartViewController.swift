@@ -87,9 +87,6 @@ class StartViewController: UIViewController, UITextFieldDelegate {
     // segues to appropriate group VC
     // sets globals for group code and group letter
     private func prepareAppGroup() {
-        // check second character of inputted text
-        // segue to respective group VC
-        
         let groupCode = groupCodeSelector.text!
         UserData.groupCode = groupCode.uppercased()
         UserData.group = String(groupCode[groupCode.index(groupCode.startIndex, offsetBy: 1)]).uppercased()

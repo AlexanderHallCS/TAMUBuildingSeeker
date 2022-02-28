@@ -154,14 +154,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // linked to found landmark buttons from notification and constant one on map
     @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
-        didUseFoundLandmarkFeature = true
-        
-        let photoTakingAlert = generatePhotoTakingAlert()
-        let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
-            self.didUseFoundLandmarkFeature = false
+        let atDestinationAlert = UIAlertController(title: "Confirm", message: "Do you think you have found the landmark?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Yes", style: .default) {  [unowned self] _ in
+            self.didUseFoundLandmarkFeature = true
+            
+            let photoTakingAlert = generatePhotoTakingAlert()
+            let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+                self.didUseFoundLandmarkFeature = false
+            }
+            photoTakingAlert.addAction(cancelPhotoTaking)
+            present(photoTakingAlert, animated: true)
         }
-        photoTakingAlert.addAction(cancelPhotoTaking)
-        present(photoTakingAlert, animated: true)
+        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        atDestinationAlert.addAction(confirmAction)
+        atDestinationAlert.addAction(cancelAction)
+        present(atDestinationAlert, animated: true)
     }
     
     private func generatePhotoTakingAlert() -> UIAlertController {
@@ -246,6 +253,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             if(shouldRecordLocation) {
                 UserData.coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
                 UserData.coordinateTimestamps.append(currentTime)
+                UserData.coordinateDateTimes.append(getCurrentDateTime())
                 shouldRecordLocation = false
             }
         }
@@ -325,6 +333,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     private func pauseTimer() {
         timer.invalidate()
+    }
+    
+    private func getCurrentDateTime() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
+        return dateFormatter.string(from: date)
     }
     
     private func prepareEndOfStudy() {
