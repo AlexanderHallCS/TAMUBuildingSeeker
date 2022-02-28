@@ -75,3 +75,47 @@ struct Landmarks {
         "Koldus Building":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.612171028742992, longitude: -96.33966660122215), imageFileName: "Koldus"),
         "YMCA Building":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.615100263370817, longitude: -96.34235182988616), imageFileName: "YMCA")]
 }
+
+extension UIView {
+    func animateIn() {
+        self.isUserInteractionEnabled = true
+        self.isHidden = false
+        self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.alpha = 0.0;
+        for child in self.subviews {
+            child.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            child.alpha = 0.0;
+            child.isHidden = false
+            child.isUserInteractionEnabled = true
+        }
+        UIView.animate(withDuration: 0.25, animations: {
+            self.alpha = 1.0
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            for child in self.subviews {
+                child.alpha = 1.0
+                child.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+        });
+    }
+    
+    func animateOut() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.alpha = 0.0;
+            for child in self.subviews {
+                child.alpha = 1.0
+                child.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+        }, completion:{ (doneAnimating : Bool) in
+            if (doneAnimating)
+            {
+                self.isUserInteractionEnabled = false
+                self.isHidden = true
+                for child in self.subviews {
+                    child.isHidden = true
+                    child.isUserInteractionEnabled = false
+                }
+            }
+        });
+    }
+}

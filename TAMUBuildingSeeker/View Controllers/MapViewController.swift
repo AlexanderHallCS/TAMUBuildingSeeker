@@ -30,6 +30,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var landmarkInfoView: UIView!
     @IBOutlet var landmarkInfoViewImageView: UIImageView!
     
+    // used after a successful recognition of a destination landmark
     @IBOutlet var destCongratsView: UIView!
     @IBOutlet var destCongratsViewImageView: UIImageView!
     
@@ -139,7 +140,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    @IBAction func takePicture(_ sender: UIButton) {
+    // linked to the "Take Photo" button
+    @IBAction func pressTakePhotoButton(_ sender: UIButton) {
         didUsePhotoTakingFeature = true
         
         let photoTakingAlert = generatePhotoTakingAlert()
@@ -261,8 +263,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return renderer
     }
     
-    
-    
     private func prepareDestination(title: String, message: String) {
         mapView.removeOverlays(mapView.overlays)
         
@@ -345,50 +345,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // TODO: Disable app from starting again once study completes (UserDefaults boolean)
     
-//    @objc func confirmButtonPressed() {
-//        takePictureButton.isUserInteractionEnabled = true
-//        takePictureButton.isHidden = false
-//        //updateClassifications(for: capturedImage!)
-//        for view in self.view.subviews {
-//            if(view.tag == 101) {
-//                view.removeFromSuperview()
-//            }
-//        }
-//    }
-    
-//    func renameResult(result: String) -> String {
-//        switch result {
-//        case "ANNEX_LIBR":
-//            return "Evans Library Annex"
-//        case "BSBW":
-//            return "Biological Sciences Building West"
-//        case "BTLR":
-//            return "Butler Hall"
-//        case "EABAA":
-//            return "Engineering Activity Building A"
-//        case "EABAB":
-//            return "Engineering Activity Building B"
-//        case "EABAC":
-//            return "Engineering Activity Building C"
-//        case "HELD":
-//            return "Heldenfelds Hall"
-//        case "LAAH":
-//            return "Liberal Arts & Humanities Building"
-//        case "PAV":
-//            return "Pavilion"
-//        case "PETR":
-//            return "Peterson Building"
-//        case "RDER":
-//            return "Rudder Tower"
-//        case "SBISA":
-//            return "SBISA Dining Hall"
-//        case "SCC":
-//            return "Student Computing Center"
-//        default:
-//            return result
-//        }
-//    }
-    
     // MARK: Image classification processing
     
     func processClassifications(for request: VNRequest, error: Error?) {
@@ -466,7 +422,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     // remove congrats pop-up, save data, show survey
-    @IBAction func pressDestCongratsSuccessButton(_ sender: UIButton) {
+    @IBAction func pressDestCongratsContinueButton(_ sender: UIButton) {
         destCongratsView.animateOut()
         let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
         surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
@@ -610,45 +566,5 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         taskViewController.navigationBar.prefersLargeTitles = false
         taskViewController.navigationBar.backgroundColor = .white
         present(taskViewController, animated: true, completion: nil)
-    }
-}
-
-extension UIView {
-    func animateIn() {
-        self.isHidden = false
-        self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        self.alpha = 0.0;
-        for child in self.subviews {
-            child.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            child.alpha = 0.0;
-            child.isHidden = false
-        }
-        UIView.animate(withDuration: 0.25, animations: {
-            self.alpha = 1.0
-            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            for child in self.subviews {
-                child.alpha = 1.0
-                child.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        });
-    }
-    
-    func animateOut() {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.alpha = 0.0;
-            for child in self.subviews {
-                child.alpha = 1.0
-                child.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        }, completion:{ (doneAnimating : Bool) in
-            if (doneAnimating)
-            {
-                self.isHidden = true
-                for child in self.subviews {
-                    child.isHidden = true
-                }
-            }
-        });
     }
 }

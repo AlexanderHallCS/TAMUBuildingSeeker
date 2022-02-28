@@ -8,11 +8,13 @@
 import UIKit
 import Vision
 import CoreML
+import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
+import ResearchKit
 
-class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, ORKTaskViewControllerDelegate {
 
     @IBOutlet var takePhotoButton: UIButton!
     @IBOutlet var foundLandmarkButton: UIButton!
@@ -20,22 +22,63 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet var foundLandmarkActivityIndicator: UIActivityIndicatorView!
     @IBOutlet var takePhotoActivityIndicator: UIActivityIndicatorView!
     
+    // used when participant uses the "Take Photo" button
+    @IBOutlet var landmarkInfoView: UIView!
+    @IBOutlet var landmarkInfoViewImageView: UIImageView!
+    
+    // used after a successful recognition of a destination landmark
+    @IBOutlet var destCongratsView: UIView!
+    @IBOutlet var destCongratsViewImageView: UIImageView!
+    
+    var previewImageView: UIImageView!
+    var capturedImage: UIImage?
+    
+    let manager = CLLocationManager()
+    
+    var destinationIndex = 0 // specifies what the current destination is
+    
+    var coordinates: [GeoPoint] = []
+    var currLoc = CLLocationCoordinate2D()
+    
     let modelManager = MLModelManager()
     let firebaseManager = FirebaseManager()
+    let surveyHelper = SurveyHelper()
     
     var modelDownloadTask: StorageDownloadTask?
     var modelDownloadUrl = URL(string: "")
     
+    var timer: Timer = Timer()
+    let timeInterval = 1.0 // how often timestamps are taken
+    var currentTime = 0.0
+    var shouldRecordLocation = false
+    
+    // Used to indicate which button the user pressed to take a picture.
+    // This is needed to find out how to process the classification results
+    var didUsePhotoTakingFeature = false
+    var didUseFoundLandmarkFeature = false
+    
+    // Represents how many times the user has tried to take a picture of the destination
+    var pictureTakingAttempts = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firebaseManager.signInAnonymously()
         
         let mlModelFileData = modelManager.downloadMLModelFile()
         modelDownloadTask = mlModelFileData.0
         modelDownloadUrl = mlModelFileData.1
         
+        manager.delegate = self
+        
+        manager.distanceFilter = kCLDistanceFilterNone
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
+        
         foundLandmarkActivityIndicator.startAnimating()
-        takePhotoActivityIndicator.startAnimating()
         foundLandmarkButton.isEnabled = false
+        
+        takePhotoActivityIndicator.startAnimating()
         takePhotoButton.isEnabled = false
         
         modelDownloadTask?.observe(.success) { _ in
@@ -47,22 +90,57 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
             
             self.foundLandmarkButton.isEnabled = true
             self.takePhotoButton.isEnabled = true
-        }
+        }        
         
-        firebaseManager.signInAnonymously()
+        timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(incrementTimeInterval), userInfo: nil, repeats: true)
     }
     
-
-    @IBAction func takePhoto(_ sender: UIButton) {
-        if(sender == foundLandmarkButton) {
-            // show if building is correct or not and to retake if incorrect
-        } else if(sender == takePhotoButton) {
-            // show building name (and possibly information about the building)
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            manager.startUpdatingLocation()
+            shouldRecordLocation = true
+            prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
+        case .notDetermined:
+            break
+        default:
+            let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                alert.removeFromParent()
+            })
+            self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    // linked to "Take Photo" button
+    @IBAction func pressTakePhotoButton(_ sender: UIButton) {
+        didUsePhotoTakingFeature = true
         
+        let photoTakingAlert = generatePhotoTakingAlert()
+        let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+            self.didUsePhotoTakingFeature = false
+        }
+        photoTakingAlert.addAction(cancelPhotoTaking)
+        present(photoTakingAlert, animated: true)
+    }
+    
+    // linked to found landmark button
+    @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
+        didUseFoundLandmarkFeature = true
+        
+        let photoTakingAlert = generatePhotoTakingAlert()
+        let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+            self.didUseFoundLandmarkFeature = false
+        }
+        photoTakingAlert.addAction(cancelPhotoTaking)
+        present(photoTakingAlert, animated: true)
+    }
+    
+    private func generatePhotoTakingAlert() -> UIAlertController {
+        // Show options for the source picker only if the camera is available.
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             presentPhotoPicker(sourceType: .photoLibrary)
-            return
+            return UIAlertController()
         }
         
         var alertStyle = UIAlertController.Style.actionSheet
@@ -80,9 +158,8 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         photoSourcePicker.addAction(takePhoto)
         photoSourcePicker.addAction(choosePhoto)
-        photoSourcePicker.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        present(photoSourcePicker, animated: true)
+        return photoSourcePicker
     }
     
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
@@ -103,35 +180,208 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         updateClassifications(for: capturedImage)
         UserData.picturesTaken.append(capturedImage)
+        UserData.numPicturesTaken += 1
+        firebaseManager.saveNumPicturesTaken()
     }
     
-    // TODO: DISPLAY NOTIFICATION IF RESULT IS SUCCESSFUL OR NOT OR NEEDS ANOTHER PICTURE
-    func processClassifications(for request: VNRequest, error: Error?) -> Dictionary<String, Double> {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            currLoc = location.coordinate
+            if(shouldRecordLocation) {
+                UserData.coordinates.append(GeoPoint(latitude: locations.first!.coordinate.latitude, longitude: locations.first!.coordinate.longitude))
+                UserData.coordinateTimestamps.append(currentTime)
+                shouldRecordLocation = false
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to fetch user's location: \(error.localizedDescription)")
+    }
+    
+    private func prepareDestination(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+            alert.removeFromParent()
+        })
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func incrementTimeInterval() {
+        currentTime += timeInterval
+        shouldRecordLocation = true
+        
+        // save data to DB every 10 seconds
+        if(currentTime.truncatingRemainder(dividingBy: 10.0) == 0.0) {
+            firebaseManager.saveCoordsAndTimes()
+            firebaseManager.saveTotalTimeElapsed()
+        }
+    }
+    
+    private func startTimer() {
+        timer.fire()
+    }
+    
+    private func pauseTimer() {
+        timer.invalidate()
+    }
+    
+    private func prepareEndOfStudy() {
+        pauseTimer()
+        
+        UserData.totalTimeElapsed = currentTime
+        firebaseManager.saveTotalTimeElapsed()
+        
+        let endAlert = UIAlertController(title: "Complete", message: "Thank you for participating in this study! Please head back to Rudder Plaza", preferredStyle: .alert)
+        endAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            self.performSegue(withIdentifier: "mapToEnd", sender: self)
+            endAlert.removeFromParent()
+        })
+        present(endAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: Image classification processing
+    
+    func processClassifications(for request: VNRequest, error: Error?) {
         
         guard let results = request.results else {
             fatalError("Could not classify image")
         }
     
-        let classifications = results as! [VNClassificationObservation]
+        // get all classification results whose confidence is greater than 0.01/1.00
+        let classifications = (results as! [VNClassificationObservation]).filter { classification in
+            return classification.confidence > 0.01
+        }
     
-        let topClassifications = classifications.prefix(3) // get top 3 results
-    
-        let names = topClassifications.map { classification in
+        var names = classifications.map { classification in
             return modelManager.renameResult(result: classification.identifier)
         }
     
-        let resultPercentages = topClassifications.map { classification in
+        let resultPercentages = classifications.map { classification in
             return Double(String(format: "%.2f", classification.confidence * 100))!
+        }
+        
+        print("BEFORE FILTERING")
+        for name in names {
+            print(name)
+        }
+        names = modelManager.filterOutDistantBuildings(results: names, currLoc: currLoc);
+        print("AFTER FILTERING")
+        
+        if(didUseFoundLandmarkFeature) {
+            didUseFoundLandmarkFeature = false
+            // takes top 3 results - works since model returns names with highest % first
+            verifyOrRejectLandmark(names: Array(names.prefix(3)))
+        } else if(didUsePhotoTakingFeature) {
+            didUsePhotoTakingFeature = false
+            showLandmarkInformation(named: names.first ?? "None")
         }
         
         print("NAMES: \(names)")
         print("RESULT PERCENTAGES: \(resultPercentages)")
         
-        return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
+        //return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
+    }
+    
+    // Called when using the Found Landmark buttons
+    // Prepares and updates route to next destination if accurate,
+    // else asks to retry/override picture in alert
+    private func verifyOrRejectLandmark(names: [String]) {
+        pictureTakingAttempts += 1
+        switch DestinationData.destTitles[destinationIndex] {
+        case "Freedom from Terrorism Memorial":
+            if(names.contains("Freedom from Terrorism Memorial")) {
+                presentPictureSuccessAlert(imageName: "Freedom Congrats")
+            } else {
+                presentPictureErrorAlert()
+            }
+        case "Engineering Activity Building":
+            if(names.contains("Engineering Activity Building")) {
+                presentPictureSuccessAlert(imageName: "EAB Congrats")
+            } else {
+                presentPictureErrorAlert()
+            }
+        default:
+            if(names.contains("Bolton Hall")) {
+                presentPictureSuccessAlert(imageName: "Bolton Congrats")
+            } else {
+                presentPictureErrorAlert()
+            }
+        }
+    }
+    
+    // show congrats pop-up after taking a successful picture of a destination
+    private func presentPictureSuccessAlert(imageName: String) {
+        destCongratsViewImageView.image = UIImage(named: imageName)
+        destCongratsView.animateIn()
+    }
+    
+    // remove congrats pop-up, save data, show survey
+    @IBAction func pressDestCongratsContinueButton(_ sender: UIButton) {
+        destCongratsView.animateOut()
+        let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
+        surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+            UserData.destinationTimes.append(self.currentTime)
+            self.firebaseManager.saveDestinationTimes()
+            self.pictureTakingAttempts = 0
+            self.destinationIndex += 1
+            self.takeSurvey()
+            surveyAlert.removeFromParent()
+        })
+        present(surveyAlert, animated: true, completion: nil)
+    }
+    
+    // if destination picture is incorrect, show this alert
+    // allow overriding of taking pictures after 2 attempts
+    private func presentPictureErrorAlert() {
+        let pictureErrorAlert = UIAlertController(title: "Error", message: pictureTakingAttempts > 1 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
+        // one attempt to retake photo
+        if(pictureTakingAttempts <= 1) {
+            pictureErrorAlert.addAction(UIAlertAction(title: "Retake Photo", style: .default) { _ in
+                pictureErrorAlert.removeFromParent()
+                self.didUseFoundLandmarkFeature = true
+                
+                let photoTakingAlert = self.generatePhotoTakingAlert()
+                let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+                    self.didUseFoundLandmarkFeature = false
+                }
+                photoTakingAlert.addAction(cancelPhotoTaking)
+                self.present(photoTakingAlert, animated: true)
+            })
+        } else {
+            pictureErrorAlert.addAction(UIAlertAction(title: "Continue Anyway", style: .default) { _ in
+                UserData.destinationTimes.append(self.currentTime)
+                self.firebaseManager.saveDestinationTimes()
+                self.pictureTakingAttempts = 0
+                self.destinationIndex += 1
+                self.takeSurvey()
+                pictureErrorAlert.removeFromParent()
+            })
+        }
+        present(pictureErrorAlert, animated: true, completion: nil)
+    }
+    
+    // Called when using general photo taking picture (Take Photo button)
+    private func showLandmarkInformation(named name: String) {
+        if(name == "None") {
+            let oopsAlert = UIAlertController(title: "Oops", message: "We could not find a landmark in the picture! Please try again.", preferredStyle: .alert)
+            let confirm = UIAlertAction(title: "Ok", style: .default) { _ in
+                oopsAlert.removeFromParent()
+            }
+            oopsAlert.addAction(confirm)
+            present(oopsAlert, animated: true, completion: nil)
+        } else {
+            landmarkInfoViewImageView.image = UIImage(named: Landmarks.landmarkData[name]!.imageFileName)
+            landmarkInfoView.animateIn()
+        }
+    }
+    
+    @IBAction func closeLandmarkInfoView(_ sender: UIButton) {
+        landmarkInfoView.animateOut()
     }
     
     /// - Tag: PerformRequests
-    func updateClassifications(for image: UIImage) {
+    private func updateClassifications(for image: UIImage) {
         
         var orientation: CGImagePropertyOrientation = .down
         switch image.imageOrientation {
@@ -156,14 +406,18 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 // Download completed successfully
                 do {
                     let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
+                    print("test1")
                     let mlModelObject = try MLModel(contentsOf: compiledModelURL)
+                    print("test2")
                     let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
+                    print("WOOO BABY")
                     let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
                         self?.processClassifications(for: request, error: error)
                     })
                     request.imageCropAndScaleOption = .centerCrop
                     do {
                         try handler.perform([request])
+                        print("WE REQUESTING!")
                     } catch {
                         print("Failed to perform classification.\n\(error.localizedDescription)")
                     }
@@ -172,6 +426,41 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 }
             }
         }
+    }
+    
+    // MARK: Mid-App Survey, ResearchKit
+    
+    func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
+        UserData.surveyStopTimes.append(currentTime)
+        surveyHelper.storeSurveyResultsLocally(taskViewController: taskViewController, reason: reason)
+        firebaseManager.saveSurveyResults()
+        taskViewController.dismiss(animated: true, completion: nil)
+        
+        if(destinationIndex == 1) {
+            prepareDestination(title: "Continue", message: "Please head to the Engineering Activity Buildings!")
+        } else if(destinationIndex == 2) {
+            prepareDestination(title: "Continue", message: "Please head to Bolton Hall!")
+        } else { // destinationIndex > 2 means finished route
+            prepareEndOfStudy()
+        }
+    }
+    
+    // Delegate function used to make cancel button invisible
+    func taskViewController(_ taskViewController: ORKTaskViewController, stepViewControllerWillAppear stepViewController: ORKStepViewController) {
+        stepViewController.cancelButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(self.nothingPlaceholderForInvisCancelButton))
+    }
+    
+    // Supporting function to make cancel button invisible
+    @objc func nothingPlaceholderForInvisCancelButton() {}
+    
+    private func takeSurvey() {
+        UserData.surveyStartTimes.append(currentTime)
+        let taskViewController = ORKTaskViewController(task: surveyHelper.MidAppSurveyTask, taskRun: nil)
+        taskViewController.delegate = self
+        taskViewController.modalPresentationStyle = .fullScreen
+        taskViewController.navigationBar.prefersLargeTitles = false
+        taskViewController.navigationBar.backgroundColor = .white
+        present(taskViewController, animated: true, completion: nil)
     }
     
     @IBAction func unwindToCVC(segue: UIStoryboardSegue) {}
