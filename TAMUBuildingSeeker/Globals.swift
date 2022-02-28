@@ -14,6 +14,9 @@ struct UserData {
     static var group = ""
     static var groupCode = ""
     static var numPicturesTaken = 0
+    static var numTimesBuildingRecognizerUsed = 0
+    static var numTimesDestinationPictureTaken = 0 // min 3, max 6 (unless user ends study early)
+    static var numTimesDestinationWasRecognized = 0 // min 0, max 3
     static var totalTimeElapsed = 0.0
     static var coordinates: [GeoPoint] = [] // coordinates of the user
     static var coordinateTimestamps: [Double] = [] // timestamps associated with above coordinates

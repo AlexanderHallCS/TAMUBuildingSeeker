@@ -145,7 +145,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         updateClassifications(for: capturedImage)
         UserData.picturesTaken.append(capturedImage)
         UserData.numPicturesTaken += 1
-        firebaseManager.saveNumPicturesTaken()
+        UserData.numTimesDestinationPictureTaken += 1
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -175,10 +175,11 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         currentTime += timeInterval
         shouldRecordLocation = true
         
+        UserData.totalTimeElapsed = currentTime
+        
         // save data to DB every 10 seconds
         if(currentTime.truncatingRemainder(dividingBy: 10.0) == 0.0) {
-            firebaseManager.saveCoordsAndTimes()
-            firebaseManager.saveTotalTimeElapsed()
+            firebaseManager.saveData()
         }
     }
     
@@ -194,7 +195,6 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         pauseTimer()
         
         UserData.totalTimeElapsed = currentTime
-        firebaseManager.saveTotalTimeElapsed()
         
         let endAlert = UIAlertController(title: "Complete", message: "Thank you for participating in this study! Please head back to Rudder Plaza", preferredStyle: .alert)
         endAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
@@ -279,7 +279,6 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
         surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
             UserData.destinationTimes.append(self.currentTime)
-            self.firebaseManager.saveDestinationTimes()
             self.pictureTakingAttempts = 0
             self.destinationIndex += 1
             self.takeSurvey()
@@ -305,7 +304,6 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         } else {
             pictureErrorAlert.addAction(UIAlertAction(title: "Continue Anyway", style: .default) { _ in
                 UserData.destinationTimes.append(self.currentTime)
-                self.firebaseManager.saveDestinationTimes()
                 self.pictureTakingAttempts = 0
                 self.destinationIndex += 1
                 self.takeSurvey()

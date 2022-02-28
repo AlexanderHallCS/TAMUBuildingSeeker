@@ -30,7 +30,10 @@ class FirebaseManager {
                 "surveyStartTimes":UserData.surveyStartTimes,
                 "surveyStopTimes":UserData.surveyStopTimes,
                 "surveyResults":UserData.surveyResults,
-                "numPicturesTaken":UserData.numPicturesTaken
+                "numPicturesTaken":UserData.numPicturesTaken,
+                "numTimesBuildingRecognizerUsed":UserData.numTimesBuildingRecognizerUsed,
+                "numTimesDestinationPictureTaken":UserData.numTimesDestinationPictureTaken,
+                "numTimesDestinationWasRecognized":UserData.numTimesDestinationWasRecognized
                     ]) { error in
                 if error != nil {
                     print("Error saving user data")
@@ -40,9 +43,9 @@ class FirebaseManager {
     }
     
     // creates an anonymous user and stores study data
-    // called after final destination has a correct picture taken
+    // called every 10 seconds when participant uses app (on maps if available, otherwise on Group VC)
     public func saveData() {
-        db.collection("user").addDocument(data: [
+        db.collection("user").document(UserData.groupCode).updateData([
             "group":UserData.group,
             "groupCode":UserData.groupCode,
             "totalTimeElapsed":UserData.totalTimeElapsed,
@@ -52,7 +55,10 @@ class FirebaseManager {
             "surveyStartTimes":UserData.surveyStartTimes,
             "surveyStopTimes":UserData.surveyStopTimes,
             "surveyResults":UserData.surveyResults,
-            "numPicturesTaken":UserData.numPicturesTaken
+            "numPicturesTaken":UserData.numPicturesTaken,
+            "numTimesBuildingRecognizerUsed":UserData.numTimesBuildingRecognizerUsed,
+            "numTimesDestinationPictureTaken":UserData.numTimesDestinationPictureTaken,
+            "numTimesDestinationWasRecognized":UserData.numTimesDestinationWasRecognized
                 ]) { error in
             if error != nil {
                 print("Error saving user data")
@@ -60,52 +66,12 @@ class FirebaseManager {
         }
     }
     
-    public func saveCoordsAndTimes() {
-        db.collection("user").document(UserData.groupCode).updateData([
-            "coordinates":UserData.coordinates,
-            "coordinateTimestamps":UserData.coordinateTimestamps
-        ]) { error in
-            if error != nil {
-                print("Error saving user data")
-            }
-        }
-    }
-    
+    // called after each survey is completed
     public func saveSurveyResults() {
         db.collection("user").document(UserData.groupCode).updateData([
-            "surveyResults":UserData.surveyResults,
             "surveyStartTimes":UserData.surveyStartTimes,
-            "surveyStopTimes":UserData.surveyStopTimes
-        ]) { error in
-            if error != nil {
-                print("Error saving user data")
-            }
-        }
-    }
-    
-    public func saveDestinationTimes() {
-        db.collection("user").document(UserData.groupCode).updateData([
-            "destinationTimes":UserData.destinationTimes
-        ]) { error in
-            if error != nil {
-                print("Error saving user data")
-            }
-        }
-    }
-    
-    public func saveNumPicturesTaken() {
-        db.collection("user").document(UserData.groupCode).updateData([
-            "numPicturesTaken":UserData.numPicturesTaken
-        ]) { error in
-            if error != nil {
-                print("Error saving user data")
-            }
-        }
-    }
-    
-    public func saveTotalTimeElapsed() {
-        db.collection("user").document(UserData.groupCode).updateData([
-            "totalTimeElapsed":UserData.totalTimeElapsed
+            "surveyStopTimes":UserData.surveyStopTimes,
+            "surveyResults":UserData.surveyResults
         ]) { error in
             if error != nil {
                 print("Error saving user data")
