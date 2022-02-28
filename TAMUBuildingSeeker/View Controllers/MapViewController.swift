@@ -155,21 +155,25 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // linked to found landmark buttons from notification and constant one on map
     @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
-        let atDestinationAlert = UIAlertController(title: "Confirm", message: "Do you think you have found the landmark?", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "Yes", style: .default) {  [unowned self] _ in
-            self.didUseFoundLandmarkFeature = true
-            
-            let photoTakingAlert = generatePhotoTakingAlert()
-            let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
-                self.didUseFoundLandmarkFeature = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + (didPressNotifFoundLandmark ? 0.25 : 0.0), execute: {
+            let atDestinationAlert = UIAlertController(title: "Confirm", message: "Do you think you have found the landmark?", preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "Yes", style: .default) {  [unowned self] _ in
+                self.didUseFoundLandmarkFeature = true
+                
+                let photoTakingAlert = generatePhotoTakingAlert()
+                let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+                    self.didUseFoundLandmarkFeature = false
+                }
+                photoTakingAlert.addAction(cancelPhotoTaking)
+                present(photoTakingAlert, animated: true)
             }
-            photoTakingAlert.addAction(cancelPhotoTaking)
-            present(photoTakingAlert, animated: true)
-        }
-        let cancelAction = UIAlertAction(title: "No", style: .cancel)
-        atDestinationAlert.addAction(confirmAction)
-        atDestinationAlert.addAction(cancelAction)
-        present(atDestinationAlert, animated: true)
+            let cancelAction = UIAlertAction(title: "No", style: .cancel)
+            atDestinationAlert.addAction(confirmAction)
+            atDestinationAlert.addAction(cancelAction)
+            self.present(atDestinationAlert, animated: true)
+        })
+        
     }
     
     private func generatePhotoTakingAlert() -> UIAlertController {
@@ -188,14 +192,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [unowned self] _ in
             if(didPressNotifFoundLandmark) {
                 didPressNotifFoundLandmark = false
-                nearbyNotifView.animateOut()
             }
             self.presentPhotoPicker(sourceType: .camera)
         }
         let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [unowned self] _ in
             if(didPressNotifFoundLandmark) {
                 didPressNotifFoundLandmark = false
-                nearbyNotifView.animateOut()
             }
             self.presentPhotoPicker(sourceType: .photoLibrary)
         }
@@ -207,11 +209,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func pressNotifContinueButton(_ sender: UIButton) {
+        foundLandmarkButton.isHidden = false
+        if(UserData.group == "D") {
+            takePictureButton.isHidden = false
+        }
         nearbyNotifView.animateOut()
     }
     
     @IBAction func pressNotifFoundLandmarkButton(_ sender: UIButton) {
         didPressNotifFoundLandmark = true
+        foundLandmarkButton.isHidden = false
+        if(UserData.group == "D") {
+            takePictureButton.isHidden = false
+        }
+        nearbyNotifView.animateOut()
     }
     
     func presentPhotoPicker(sourceType: UIImagePickerController.SourceType) {
@@ -299,7 +310,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
-            let maxDistance: CLLocationDistance = 15 // 15 meters radius from landmark
+            let maxDistance: CLLocationDistance = 10 // 10 meters radius from landmark
             let region = CLCircularRegion(center: center,
                                           radius: maxDistance, identifier: "")
             region.notifyOnEntry = true
@@ -480,15 +491,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // remove congrats pop-up, save data, show survey
     @IBAction func pressDestCongratsContinueButton(_ sender: UIButton) {
         destCongratsView.animateOut()
-        let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
-        surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            UserData.destinationTimes.append(self.currentTime)
-            self.pictureTakingAttempts = 0
-            self.destinationIndex += 1
-            self.takeSurvey()
-            surveyAlert.removeFromParent()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
+            surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                UserData.destinationTimes.append(self.currentTime)
+                self.pictureTakingAttempts = 0
+                self.destinationIndex += 1
+                self.takeSurvey()
+                surveyAlert.removeFromParent()
+            })
+            self.present(surveyAlert, animated: true, completion: nil)
         })
-        present(surveyAlert, animated: true, completion: nil)
+        
     }
     
     // if destination picture is incorrect, show this alert
@@ -535,6 +549,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    // only present in group D
     @IBAction func closeLandmarkInfoView(_ sender: UIButton) {
         foundLandmarkButton.isHidden = false
         takePictureButton.isHidden = false

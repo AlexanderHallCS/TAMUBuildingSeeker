@@ -346,15 +346,17 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     // remove congrats pop-up, save data, show survey
     @IBAction func pressDestCongratsContinueButton(_ sender: UIButton) {
         destCongratsView.animateOut()
-        let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
-        surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            UserData.destinationTimes.append(self.currentTime)
-            self.pictureTakingAttempts = 0
-            self.destinationIndex += 1
-            self.takeSurvey()
-            surveyAlert.removeFromParent()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            let surveyAlert = UIAlertController(title: "Survey", message: "Please take a short survey.", preferredStyle: .alert)
+            surveyAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                UserData.destinationTimes.append(self.currentTime)
+                self.pictureTakingAttempts = 0
+                self.destinationIndex += 1
+                self.takeSurvey()
+                surveyAlert.removeFromParent()
+            })
+            self.present(surveyAlert, animated: true, completion: nil)
         })
-        present(surveyAlert, animated: true, completion: nil)
     }
     
     // if destination picture is incorrect, show this alert
