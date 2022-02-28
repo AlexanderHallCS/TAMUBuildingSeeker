@@ -357,11 +357,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         present(endAlert, animated: true, completion: nil)
     }
     
-    // TODO: Disable app from starting again once study completes (UserDefaults boolean)
-    
     // MARK: Image classification processing
     
-    func processClassifications(for request: VNRequest, error: Error?) {
+    func processClassifications(for request: VNRequest, error: Error?, image: UIImage) {
         
         guard let results = request.results else {
             fatalError("Could not classify image")
@@ -372,36 +370,65 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return classification.confidence > 0.01
         }
     
-        var names = classifications.map { classification in
+        var wholeImageTopResults = classifications.map { classification in
             return modelManager.renameResult(result: classification.identifier)
         }
-    
+        
         let resultPercentages = classifications.map { classification in
             return Double(String(format: "%.2f", classification.confidence * 100))!
         }
         
-        print("BEFORE FILTERING")
-        for name in names {
+        print("WHOLE IMAGE BEFORE TAKE TOP 3")
+        for i in 0..<resultPercentages.count {
+            print("\(wholeImageTopResults[i]) \(resultPercentages[i])")
+        }
+        print("END OF WHOLE IMAGE BEFORE TAKE TOP 3")
+        
+        // take top 3 results from image classification of overall image
+        wholeImageTopResults = Array(wholeImageTopResults.prefix(3))
+        
+        let choppedImagesTopResults = modelManager.extractThreeByThreeCroppingTopResults(image: image, modelDownloadUrl: modelDownloadUrl!)
+        
+        var overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
+        
+        print("choppedImagesTopResults:")
+        for name in choppedImagesTopResults {
             print(name)
         }
-        names = modelManager.filterOutDistantBuildings(results: names, currLoc: currLoc);
-        print("AFTER FILTERING")
+        print("END OF choppedImagesTopResults")
+        
+        print("BEFORE FILTERING COMBINED")
+        for result in overallAndSliceResults {
+            print(result)
+        }
+        overallAndSliceResults = modelManager.filterOutDistantBuildings(results: overallAndSliceResults, currLoc: currLoc);
+        print("AFTER FILTERING COMBINED")
+        for result in overallAndSliceResults {
+            print(result)
+        }
         
         if(didUseFoundLandmarkFeature) {
             didUseFoundLandmarkFeature = false
             UserData.numTimesDestinationPictureTaken += 1
-            // takes top 3 results - works since model returns names with highest % first
-            verifyOrRejectLandmark(names: Array(names.prefix(3)))
+            // takes top results from classification of whole image and classification of chopped parts
+            verifyOrRejectLandmark(names: Array(overallAndSliceResults))
         } else if(didUsePhotoTakingFeature) {
             didUsePhotoTakingFeature = false
             UserData.numTimesBuildingRecognizerUsed += 1
-            showLandmarkInformation(named: names.first ?? "None")
+            var topResult = ""
+            if(wholeImageTopResults.count == 0 && choppedImagesTopResults.count == 0) {
+                topResult = "None"
+            } else if(wholeImageTopResults.count == 0 && choppedImagesTopResults.count > 0) {
+                topResult = choppedImagesTopResults.first!
+            } else if(wholeImageTopResults.count > 0 && choppedImagesTopResults.count == 0) {
+                topResult = wholeImageTopResults.first!
+            } else {
+                topResult = wholeImageTopResults.first!
+            }
+            showLandmarkInformation(named: topResult)
         }
         
-        print("NAMES: \(names)")
-        print("RESULT PERCENTAGES: \(resultPercentages)")
-        
-        //return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
+        print("NAMES: \(overallAndSliceResults)")
     }
     
     // Called when using the Found Landmark buttons
@@ -535,7 +562,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
                     print("WOOO BABY")
                     let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
-                        self?.processClassifications(for: request, error: error)
+                        self?.processClassifications(for: request, error: error, image: image)
                     })
                     request.imageCropAndScaleOption = .centerCrop
                     do {
