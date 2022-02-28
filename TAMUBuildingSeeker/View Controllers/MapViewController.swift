@@ -270,20 +270,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return renderer
     }
     
+    // add next destination marker to map, remove previous one
+    // set next destination to be next destination building --> redraws route based on this
+    // begin monitoring radius around next destination for nearby notification
     private func prepareDestination(title: String, message: String) {
         let destinationMarker = MKPointAnnotation()
         destinationMarker.coordinate = DestinationData.destCoords[destinationIndex]
         destinationMarker.title = DestinationData.destTitles[destinationIndex]
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: DestinationData.destCoords[destinationIndex]))
+        shouldUpdateMapRect = true
+        
         mapAnnotations.append(destinationMarker)
         mapView.addAnnotation(destinationMarker)
         if(destinationIndex > 0) {
             mapView.removeAnnotation(mapAnnotations[destinationIndex-1])
         }
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: DestinationData.destCoords[destinationIndex]))
         monitorRegionAtLocation(center: DestinationData.destCoords[destinationIndex])
-        print("CENTER: \(DestinationData.destCoords[destinationIndex])")
-        
-        shouldUpdateMapRect = true
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
