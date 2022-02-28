@@ -283,9 +283,6 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         
         var overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
         
-        for result in overallAndSliceResults {
-            print(result)
-        }
         overallAndSliceResults = modelManager.filterOutDistantBuildings(results: overallAndSliceResults, currLoc: currLoc);
         
         if(didUseFoundLandmarkFeature) {

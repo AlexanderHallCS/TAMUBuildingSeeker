@@ -248,9 +248,6 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         
         var overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
         
-        for result in overallAndSliceResults {
-            print(result)
-        }
         overallAndSliceResults = modelManager.filterOutDistantBuildings(results: overallAndSliceResults, currLoc: currLoc);
         
         UserData.numTimesDestinationPictureTaken += 1
