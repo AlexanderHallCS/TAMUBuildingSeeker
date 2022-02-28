@@ -299,7 +299,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Make sure the devices supports region monitoring.
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             // Register the region.
-            let maxDistance: CLLocationDistance = 20 // 20 meters radius from landmark
+            let maxDistance: CLLocationDistance = 15 // 15 meters radius from landmark
             let region = CLCircularRegion(center: center,
                                           radius: maxDistance, identifier: "")
             region.notifyOnEntry = true
