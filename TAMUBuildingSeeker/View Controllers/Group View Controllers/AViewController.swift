@@ -189,6 +189,11 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         if(currentTime.truncatingRemainder(dividingBy: 10.0) == 0.0) {
             firebaseManager.saveData()
         }
+        
+        // disallow most data collection after 75 minutes
+        if(currentTime > 4500) {
+            pauseTimer()
+        }
     }
     
     private func startTimer() {
