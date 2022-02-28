@@ -15,7 +15,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import ResearchKit
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ORKTaskViewControllerDelegate  {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ORKTaskViewControllerDelegate, UNUserNotificationCenterDelegate  {
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var takePictureButton: UIButton!
@@ -312,8 +312,34 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         mapRegions[destinationIndex].notifyOnEntry = false
         nearbyNotifView.animateIn()
+        sendNearbyPushNotification()
         foundLandmarkButton.isHidden = true
     }
+    
+    // MARK: Push Notification
+    
+    private func sendNearbyPushNotification() {
+        let center = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = "Howdy!"
+        content.body = "You are near a destination!"
+        content.sound = .default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+        let identifier = "N1"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                print("Notification request didn't go through with error: \(error.localizedDescription)!")
+            }
+        })
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner,.badge])
+    }
+    
+    // MARK: Time
     
     @objc func incrementTimeInterval() {
         currentTime += timeInterval
@@ -341,6 +367,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
         return dateFormatter.string(from: date)
     }
+    
+    // MARK: CLEANUP
     
     private func prepareEndOfStudy() {
         mapView.removeAnnotation(mapAnnotations[2]) // remove Bolton Hall map marker

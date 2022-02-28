@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0CAED1D9177EE8C5DDD27CC9 /* Pods_TAMUBuildingSeeker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8EA22843ABD0310B0EF175 /* Pods_TAMUBuildingSeeker.framework */; };
 		111FB5B42721BCC30052D9CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */; };
+		114DC87527CCD5F000F4922D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114DC87427CCD5F000F4922D /* MapKit.framework */; };
 		1150EB0427813BF900DA0253 /* LandmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */; };
 		1150EB06278143BA00DA0253 /* PhotoBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */; };
 		1154A588279015EC000D59DE /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A587279015EC000D59DE /* BViewController.swift */; };
@@ -32,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		111FB5B32721BCC30052D9CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		114DC87227CCD56400F4922D /* TAMUBuildingSeeker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TAMUBuildingSeeker.entitlements; sourceTree = "<group>"; };
+		114DC87327CCD5D100F4922D /* TAMUBuildingSeekerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TAMUBuildingSeekerRelease.entitlements; sourceTree = "<group>"; };
+		114DC87427CCD5F000F4922D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1150EB0327813BF900DA0253 /* LandmarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkListViewController.swift; sourceTree = "<group>"; };
 		1150EB05278143BA00DA0253 /* PhotoBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBankViewController.swift; sourceTree = "<group>"; };
 		1154A587279015EC000D59DE /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114DC87527CCD5F000F4922D /* MapKit.framework in Frameworks */,
 				0CAED1D9177EE8C5DDD27CC9 /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +110,8 @@
 		11A829F727023F320005FF3B /* TAMUBuildingSeeker */ = {
 			isa = PBXGroup;
 			children = (
+				114DC87327CCD5D100F4922D /* TAMUBuildingSeekerRelease.entitlements */,
+				114DC87227CCD56400F4922D /* TAMUBuildingSeeker.entitlements */,
 				114DC87127CB1B5000F4922D /* Models */,
 				11E1632F277D1C970074A782 /* View Controllers */,
 				11E1632E277D1C740074A782 /* Supporting Files */,
@@ -174,6 +181,7 @@
 		8EE0322F4E031585D108613E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				114DC87427CCD5F000F4922D /* MapKit.framework */,
 				117C481827A84579000497BD /* ResearchKit.framework */,
 				117C481427A84255000497BD /* ResearchKit.framework */,
 				2A8EA22843ABD0310B0EF175 /* Pods_TAMUBuildingSeeker.framework */,
@@ -460,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TAMUBuildingSeeker/TAMUBuildingSeeker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
@@ -467,6 +476,9 @@
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "TAMU Building Seeker requires access to camera for taking pictures of buildings or using photo library building pictures.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Show location on map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Show location on map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Show location on map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -493,6 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TAMUBuildingSeeker/TAMUBuildingSeekerRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
@@ -500,6 +513,9 @@
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "TAMU Building Seeker requires access to camera for taking pictures of buildings or using photo library building pictures.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Show location on map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Show location on map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Show location on map";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
