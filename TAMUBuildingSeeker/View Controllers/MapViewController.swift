@@ -84,6 +84,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         mapView.delegate = self
         manager.delegate = self
+        UNUserNotificationCenter.current().delegate = self
         
         mapView.mapType = .mutedStandard
         
@@ -314,6 +315,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         nearbyNotifView.animateIn()
         sendNearbyPushNotification()
         foundLandmarkButton.isHidden = true
+        takePictureButton.isHidden = true
     }
     
     // MARK: Push Notification
@@ -534,6 +536,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     @IBAction func closeLandmarkInfoView(_ sender: UIButton) {
+        foundLandmarkButton.isHidden = false
+        takePictureButton.isHidden = false
         landmarkInfoView.animateOut()
     }
     
