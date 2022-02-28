@@ -1109,6 +1109,7 @@
                         <outlet property="destCongratsViewImageView" destination="yJg-dP-YnS" id="WAZ-z5-du7"/>
                         <outlet property="foundLandmarkActivityMonitor" destination="fBo-pk-hQj" id="Pqq-kb-6Wg"/>
                         <outlet property="foundLandmarkButton" destination="N7c-6K-FfK" id="g4k-ZB-ZL7"/>
+                        <segue destination="2Oy-eU-sUh" kind="presentation" identifier="AToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="5kL-QE-c1s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6G-wl-yjd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1337,6 +1338,7 @@
                         <outlet property="landmarkInfoViewImageView" destination="JXe-Y2-6P7" id="FBz-Ix-JMB"/>
                         <outlet property="takePhotoActivityIndicator" destination="myW-N7-VHd" id="wY7-Yd-796"/>
                         <outlet property="takePhotoButton" destination="cQY-ik-Db9" id="fvK-Vt-Wle"/>
+                        <segue destination="2Oy-eU-sUh" kind="presentation" identifier="CToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="fnx-VX-XS2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bkl-ja-7dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1478,6 +1480,7 @@
         <segue reference="W9d-zn-THW"/>
         <segue reference="gqJ-5T-FCv"/>
         <segue reference="yf8-aV-TnX"/>
+        <segue reference="fnx-VX-XS2"/>
         <segue reference="aKH-Pe-sDX"/>
     </inferredMetricsTieBreakers>
     <resources>

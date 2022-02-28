@@ -359,7 +359,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     // MARK: Image classification processing
     
-    func processClassifications(for request: VNRequest, error: Error?, image: UIImage) {
+    private func processClassifications(for request: VNRequest, error: Error?, image: UIImage) {
         
         guard let results = request.results else {
             fatalError("Could not classify image")
@@ -374,16 +374,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return modelManager.renameResult(result: classification.identifier)
         }
         
-        let resultPercentages = classifications.map { classification in
-            return Double(String(format: "%.2f", classification.confidence * 100))!
-        }
-        
-        print("WHOLE IMAGE BEFORE TAKE TOP 3")
-        for i in 0..<resultPercentages.count {
-            print("\(wholeImageTopResults[i]) \(resultPercentages[i])")
-        }
-        print("END OF WHOLE IMAGE BEFORE TAKE TOP 3")
-        
         // take top 3 results from image classification of overall image
         wholeImageTopResults = Array(wholeImageTopResults.prefix(3))
         
@@ -391,21 +381,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
         
-        print("choppedImagesTopResults:")
-        for name in choppedImagesTopResults {
-            print(name)
-        }
-        print("END OF choppedImagesTopResults")
-        
-        print("BEFORE FILTERING COMBINED")
         for result in overallAndSliceResults {
             print(result)
         }
         overallAndSliceResults = modelManager.filterOutDistantBuildings(results: overallAndSliceResults, currLoc: currLoc);
-        print("AFTER FILTERING COMBINED")
-        for result in overallAndSliceResults {
-            print(result)
-        }
         
         if(didUseFoundLandmarkFeature) {
             didUseFoundLandmarkFeature = false
@@ -427,8 +406,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             showLandmarkInformation(named: topResult)
         }
-        
-        print("NAMES: \(overallAndSliceResults)")
     }
     
     // Called when using the Found Landmark buttons
@@ -556,23 +533,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 // Download completed successfully
                 do {
                     let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
-                    print("test1")
                     let mlModelObject = try MLModel(contentsOf: compiledModelURL)
-                    print("test2")
                     let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
-                    print("WOOO BABY")
                     let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
                         self?.processClassifications(for: request, error: error, image: image)
                     })
                     request.imageCropAndScaleOption = .centerCrop
                     do {
                         try handler.perform([request])
-                        print("WE REQUESTING!")
                     } catch {
                         print("Failed to perform classification.\n\(error.localizedDescription)")
                     }
                 } catch {
-                    print("error!!")
+                    print("error!")
                 }
             }
         }

@@ -23,7 +23,6 @@ class MLModelManager {
         let downloadTask = modelRef.write(toFile: localURL) { (URL, error) -> Void in
             if (error != nil) {
                 print("Uh-oh, an error occurred!")
-                print(error)
             } else {
                 print("Local file URL is returned")
                 
@@ -103,11 +102,8 @@ class MLModelManager {
                 let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: orientation.rawValue)! ,options: [:])
                 do {
                     let compiledModelURL = try MLModel.compileModel(at: modelDownloadUrl)
-                    print("test3")
                     let mlModelObject = try MLModel(contentsOf: compiledModelURL)
-                    print("test4")
                     let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
-                    print("WOOO BABY OMEGA")
                     let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
                         let topSliceResults = self!.getImageSegmentTopClassifications(for: request, error: error)
                         for result in topSliceResults {
@@ -125,7 +121,7 @@ class MLModelManager {
                         print("Failed to perform classification.\n\(error.localizedDescription)")
                     }
                 } catch {
-                    print("error!!")
+                    print("error!")
                 }
             }
         }
@@ -204,6 +200,6 @@ class MLModelManager {
     
     // Removes ML model results of buildings > 60 meters from current location
     public func filterOutDistantBuildings(results: [String], currLoc: CLLocationCoordinate2D) -> [String] {
-        return results.filter{ CLLocation(latitude: Landmarks.landmarkData[$0]!.coordinate.latitude, longitude: Landmarks.landmarkData[$0]!.coordinate.longitude).distance(from: CLLocation(latitude: currLoc.latitude, longitude: currLoc.longitude)) < 6000 }
+        return results.filter{ CLLocation(latitude: Landmarks.landmarkData[$0]!.coordinate.latitude, longitude: Landmarks.landmarkData[$0]!.coordinate.longitude).distance(from: CLLocation(latitude: currLoc.latitude, longitude: currLoc.longitude)) < 60 }
     }
 }

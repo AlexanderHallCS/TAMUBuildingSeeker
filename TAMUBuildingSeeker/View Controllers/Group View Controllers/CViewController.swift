@@ -248,7 +248,7 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         
         let endAlert = UIAlertController(title: "Complete", message: "Thank you for participating in this study! Please head back to Rudder Plaza", preferredStyle: .alert)
         endAlert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-            self.performSegue(withIdentifier: "mapToEnd", sender: self)
+            self.performSegue(withIdentifier: "CToEnd", sender: self)
             endAlert.removeFromParent()
         })
         present(endAlert, animated: true, completion: nil)
@@ -256,7 +256,7 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     
     // MARK: Image classification processing
     
-    func processClassifications(for request: VNRequest, error: Error?) {
+    private func processClassifications(for request: VNRequest, error: Error?, image: UIImage) {
         
         guard let results = request.results else {
             fatalError("Could not classify image")
@@ -267,36 +267,42 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
             return classification.confidence > 0.01
         }
     
-        var names = classifications.map { classification in
+        var wholeImageTopResults = classifications.map { classification in
             return modelManager.renameResult(result: classification.identifier)
         }
-    
-        let resultPercentages = classifications.map { classification in
-            return Double(String(format: "%.2f", classification.confidence * 100))!
-        }
         
-        print("BEFORE FILTERING")
-        for name in names {
-            print(name)
+        // take top 3 results from image classification of overall image
+        wholeImageTopResults = Array(wholeImageTopResults.prefix(3))
+        
+        let choppedImagesTopResults = modelManager.extractThreeByThreeCroppingTopResults(image: image, modelDownloadUrl: modelDownloadUrl!)
+        
+        var overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
+        
+        for result in overallAndSliceResults {
+            print(result)
         }
-        names = modelManager.filterOutDistantBuildings(results: names, currLoc: currLoc);
-        print("AFTER FILTERING")
+        overallAndSliceResults = modelManager.filterOutDistantBuildings(results: overallAndSliceResults, currLoc: currLoc);
         
         if(didUseFoundLandmarkFeature) {
             didUseFoundLandmarkFeature = false
             UserData.numTimesDestinationPictureTaken += 1
-            // takes top 3 results - works since model returns names with highest % first
-            verifyOrRejectLandmark(names: Array(names.prefix(3)))
+            // takes top results from classification of whole image and classification of chopped parts
+            verifyOrRejectLandmark(names: Array(overallAndSliceResults))
         } else if(didUsePhotoTakingFeature) {
             didUsePhotoTakingFeature = false
             UserData.numTimesBuildingRecognizerUsed += 1
-            showLandmarkInformation(named: names.first ?? "None")
+            var topResult = ""
+            if(wholeImageTopResults.count == 0 && choppedImagesTopResults.count == 0) {
+                topResult = "None"
+            } else if(wholeImageTopResults.count == 0 && choppedImagesTopResults.count > 0) {
+                topResult = choppedImagesTopResults.first!
+            } else if(wholeImageTopResults.count > 0 && choppedImagesTopResults.count == 0) {
+                topResult = wholeImageTopResults.first!
+            } else {
+                topResult = wholeImageTopResults.first!
+            }
+            showLandmarkInformation(named: topResult)
         }
-        
-        print("NAMES: \(names)")
-        print("RESULT PERCENTAGES: \(resultPercentages)")
-        
-        //return Dictionary(uniqueKeysWithValues: zip(names, resultPercentages))
     }
     
     // Called when using the Found Landmark buttons
@@ -423,23 +429,19 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
                 // Download completed successfully
                 do {
                     let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
-                    print("test1")
                     let mlModelObject = try MLModel(contentsOf: compiledModelURL)
-                    print("test2")
                     let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
-                    print("WOOO BABY")
                     let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
-                        self?.processClassifications(for: request, error: error)
+                        self?.processClassifications(for: request, error: error, image: image)
                     })
                     request.imageCropAndScaleOption = .centerCrop
                     do {
                         try handler.perform([request])
-                        print("WE REQUESTING!")
                     } catch {
                         print("Failed to perform classification.\n\(error.localizedDescription)")
                     }
                 } catch {
-                    print("error!!")
+                    print("error!")
                 }
             }
         }
