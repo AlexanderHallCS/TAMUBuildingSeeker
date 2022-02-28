@@ -241,7 +241,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let directions = MKDirections(request: request)
             directions.calculate { [weak self] response, error in
                 guard let unwrappedResponse = response else { return }
-
+                self!.mapView.removeOverlays(self!.mapView.overlays)
                 for route in unwrappedResponse.routes {
                     self!.mapView.addOverlay(route.polyline)
                     if(self!.shouldUpdateMapRect) {
@@ -271,8 +271,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     private func prepareDestination(title: String, message: String) {
-        mapView.removeOverlays(mapView.overlays)
-        
         let destinationMarker = MKPointAnnotation()
         destinationMarker.coordinate = DestinationData.destCoords[destinationIndex]
         destinationMarker.title = DestinationData.destTitles[destinationIndex]
