@@ -5,6 +5,7 @@
 //  Created by Alexander Hall on 10/3/21.
 //
 
+import AudioToolbox
 import UIKit
 import MapKit
 import Vision
@@ -337,6 +338,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         content.title = "Howdy!"
         content.body = "You are near a destination!"
         content.sound = .default
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
         let identifier = "N1"

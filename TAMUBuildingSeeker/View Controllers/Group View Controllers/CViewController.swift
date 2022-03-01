@@ -30,6 +30,8 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     @IBOutlet var destCongratsView: UIView!
     @IBOutlet var destCongratsViewImageView: UIImageView!
     
+    @IBOutlet var startButton: UIButton!
+    
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
     
@@ -87,11 +89,16 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
             
             self.foundLandmarkActivityIndicator.isHidden = true
             self.takePhotoActivityIndicator.isHidden = true
-            
-            self.foundLandmarkButton.isEnabled = true
-            self.takePhotoButton.isEnabled = true
-        }        
-        
+        }
+    }
+    
+    @IBAction func pressStartButton(_ sender: UIButton) {
+        startButton.setBackgroundImage(UIImage(named: "StartGrayscale"), for: .normal)
+        startButton.isUserInteractionEnabled = false
+        shouldRecordLocation = true
+        prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
+        foundLandmarkButton.isEnabled = true
+        takePhotoButton.isEnabled = true
         timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(incrementTimeInterval), userInfo: nil, repeats: true)
     }
     
@@ -99,8 +106,6 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
             manager.startUpdatingLocation()
-            shouldRecordLocation = true
-            prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
         case .notDetermined:
             break
         default:

@@ -23,6 +23,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     @IBOutlet var destCongratsView: UIView!
     @IBOutlet var destCongratsViewImageView: UIImageView!
     
+    @IBOutlet var startButton: UIButton!
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
     
@@ -69,9 +70,15 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         modelDownloadTask?.observe(.success) { _ in
             self.foundLandmarkActivityMonitor.stopAnimating()
             self.foundLandmarkActivityMonitor.isHidden = true
-            self.foundLandmarkButton.isEnabled = true
         }
-        
+    }
+    
+    @IBAction func pressStartButton(_ sender: UIButton) {
+        startButton.setBackgroundImage(UIImage(named: "StartGrayscale"), for: .normal)
+        startButton.isUserInteractionEnabled = false
+        foundLandmarkButton.isEnabled = true
+        shouldRecordLocation = true
+        prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
         timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(incrementTimeInterval), userInfo: nil, repeats: true)
     }
     
@@ -79,8 +86,6 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
             manager.startUpdatingLocation()
-            shouldRecordLocation = true
-            prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
         case .notDetermined:
             break
         default:
@@ -261,6 +266,8 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     // else asks to retry/override picture in alert
     private func verifyOrRejectLandmark(names: [String]) {
         pictureTakingAttempts += 1
+        print("called! \(pictureTakingAttempts)")
+        print("TITLE: \(DestinationData.destTitles[destinationIndex])")
         switch DestinationData.destTitles[destinationIndex] {
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
@@ -333,7 +340,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     
     /// - Tag: PerformRequests
     private func updateClassifications(for image: UIImage) {
-        
+        print("UPDATED CLASSSIFICATIONS")
         var orientation: CGImagePropertyOrientation = .down
         switch image.imageOrientation {
         case .up:
@@ -352,8 +359,9 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         
         DispatchQueue.global(qos: .userInitiated).async {
             let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: orientation.rawValue)! ,options: [:])
-            
+            print("AFTER HANDLER CREATION")
             self.modelDownloadTask!.observe(.success) { snapshot in
+                print("AFTER MODEL DOWNLOAD TASK SUCCEEDED")
                 // Download completed successfully
                 do {
                     let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
@@ -361,6 +369,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
                     let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
                     let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
                         self?.processClassifications(for: request, error: error, image: image)
+                        print("I AM CALLED")
                     })
                     request.imageCropAndScaleOption = .centerCrop
                     do {
