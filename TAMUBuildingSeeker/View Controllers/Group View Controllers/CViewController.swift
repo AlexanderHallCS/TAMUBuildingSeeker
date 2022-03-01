@@ -50,7 +50,7 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     var modelDownloadUrl = URL(string: "")
     
     var timer: Timer = Timer()
-    let timeInterval = 1.0 // how often timestamps are taken
+    let timeInterval = 0.1 // how often timestamps are taken (0.1s or 100ms)
     var currentTime = 0.0
     var shouldRecordLocation = false
     
@@ -247,7 +247,7 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     private func getCurrentDateTime() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
+        dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss.SSSS"
         return dateFormatter.string(from: date)
     }
     
@@ -321,22 +321,28 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
                 UserData.numTimesDestinationWasRecognized += 1
+                UserData.successfulRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "Freedom Congrats")
             } else {
+                UserData.failedRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         case "Engineering Activity Building":
             if(names.contains("Engineering Activity Building")) {
                 UserData.numTimesDestinationWasRecognized += 1
+                UserData.successfulRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "EAB Congrats")
             } else {
+                UserData.failedRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         default:
             if(names.contains("Bolton Hall")) {
                 UserData.numTimesDestinationWasRecognized += 1
+                UserData.successfulRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "Bolton Congrats")
             } else {
+                UserData.failedRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         }

@@ -212,7 +212,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     private func getCurrentDateTime() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss"
+        dateFormatter.dateFormat = "YY, MMM d, HH:mm:ss.SSSS"
         return dateFormatter.string(from: date)
     }
     
@@ -271,20 +271,29 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         switch DestinationData.destTitles[destinationIndex] {
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
+                UserData.numTimesDestinationWasRecognized += 1
+                UserData.successfulRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "Freedom Congrats")
             } else {
+                UserData.failedRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         case "Engineering Activity Building":
             if(names.contains("Engineering Activity Building")) {
+                UserData.numTimesDestinationWasRecognized += 1
+                UserData.successfulRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "EAB Congrats")
             } else {
+                UserData.failedRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         default:
             if(names.contains("Bolton Hall")) {
+                UserData.numTimesDestinationWasRecognized += 1
+                UserData.successfulRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "Bolton Congrats")
             } else {
+                UserData.failedRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         }
