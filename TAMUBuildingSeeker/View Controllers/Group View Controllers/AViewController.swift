@@ -109,17 +109,10 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     
     // linked to found landmark buttons from notification and constant one on map
     @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
-        let atDestinationAlert = UIAlertController(title: "Confirm", message: "Do you think you have found the landmark?", preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "Yes", style: .default) {  [unowned self] _ in
-            let photoTakingAlert = generatePhotoTakingAlert()
-            let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel)
-            photoTakingAlert.addAction(cancelPhotoTaking)
-            present(photoTakingAlert, animated: true)
-        }
-        let cancelAction = UIAlertAction(title: "No", style: .cancel)
-        atDestinationAlert.addAction(confirmAction)
-        atDestinationAlert.addAction(cancelAction)
-        present(atDestinationAlert, animated: true)
+        let photoTakingAlert = generatePhotoTakingAlert()
+        let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel)
+        photoTakingAlert.addAction(cancelPhotoTaking)
+        present(photoTakingAlert, animated: true)
     }
     
     private func generatePhotoTakingAlert() -> UIAlertController {
@@ -164,10 +157,9 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
             capturedImage = pickedImage
         }
         
-        updateClassifications(for: capturedImage)
         UserData.picturesTaken.append(capturedImage)
         UserData.numPicturesTaken += 1
-        UserData.numTimesDestinationPictureTaken += 1
+        updateClassifications(for: capturedImage)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -228,6 +220,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     
     private func prepareEndOfStudy() {
         pauseTimer()
+        firebaseManager.saveData()
         
         UserData.totalTimeElapsed = currentTime
         
@@ -276,8 +269,6 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     // else asks to retry/override picture in alert
     private func verifyOrRejectLandmark(names: [String]) {
         pictureTakingAttempts += 1
-        print("called! \(pictureTakingAttempts)")
-        print("TITLE: \(DestinationData.destTitles[destinationIndex])")
         switch DestinationData.destTitles[destinationIndex] {
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
@@ -334,7 +325,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     // if destination picture is incorrect, show this alert
     // allow overriding of taking pictures after 2 attempts
     private func presentPictureErrorAlert() {
-        let pictureErrorAlert = UIAlertController(title: "Error", message: pictureTakingAttempts > 1 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
+        let pictureErrorAlert = UIAlertController(title: "Oops", message: pictureTakingAttempts > 1 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
         // one attempt to retake photo
         if(pictureTakingAttempts <= 1) {
             pictureErrorAlert.addAction(UIAlertAction(title: "Retake Photo", style: .default) { _ in
@@ -359,7 +350,6 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     
     /// - Tag: PerformRequests
     private func updateClassifications(for image: UIImage) {
-        print("UPDATED CLASSSIFICATIONS")
         var orientation: CGImagePropertyOrientation = .down
         switch image.imageOrientation {
         case .up:
@@ -376,30 +366,22 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         
         guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: orientation.rawValue)! ,options: [:])
-            print("AFTER HANDLER CREATION")
-            self.modelDownloadTask!.observe(.success) { snapshot in
-                print("AFTER MODEL DOWNLOAD TASK SUCCEEDED")
-                // Download completed successfully
-                do {
-                    let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
-                    let mlModelObject = try MLModel(contentsOf: compiledModelURL)
-                    let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
-                    let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
-                        self?.processClassifications(for: request, error: error, image: image)
-                        print("I AM CALLED")
-                    })
-                    request.imageCropAndScaleOption = .centerCrop
-                    do {
-                        try handler.perform([request])
-                    } catch {
-                        print("Failed to perform classification.\n\(error.localizedDescription)")
-                    }
-                } catch {
-                    print("error!")
-                }
+        let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: orientation.rawValue)! ,options: [:])
+        do {
+            let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
+            let mlModelObject = try MLModel(contentsOf: compiledModelURL)
+            let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
+            let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
+                self?.processClassifications(for: request, error: error, image: image)
+            })
+            request.imageCropAndScaleOption = .centerCrop
+            do {
+                try handler.perform([request])
+            } catch {
+                print("Failed to perform classification.\n\(error.localizedDescription)")
             }
+        } catch {
+            print("error!")
         }
     }
     

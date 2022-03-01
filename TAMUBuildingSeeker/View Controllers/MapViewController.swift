@@ -158,21 +158,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBAction func pressFoundLandmarkButton(_ sender: UIButton) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + (didPressNotifFoundLandmark ? 0.25 : 0.0), execute: {
-            let atDestinationAlert = UIAlertController(title: "Confirm", message: "Do you think you have found the landmark?", preferredStyle: .alert)
-            let confirmAction = UIAlertAction(title: "Yes", style: .default) {  [unowned self] _ in
-                self.didUseFoundLandmarkFeature = true
-                
-                let photoTakingAlert = generatePhotoTakingAlert()
-                let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
-                    self.didUseFoundLandmarkFeature = false
-                }
-                photoTakingAlert.addAction(cancelPhotoTaking)
-                present(photoTakingAlert, animated: true)
+            self.didUseFoundLandmarkFeature = true
+            
+            let photoTakingAlert = self.generatePhotoTakingAlert()
+            let cancelPhotoTaking = UIAlertAction(title: "Cancel", style: .cancel) {  [unowned self] _ in
+                self.didUseFoundLandmarkFeature = false
             }
-            let cancelAction = UIAlertAction(title: "No", style: .cancel)
-            atDestinationAlert.addAction(confirmAction)
-            atDestinationAlert.addAction(cancelAction)
-            self.present(atDestinationAlert, animated: true)
+            photoTakingAlert.addAction(cancelPhotoTaking)
+            self.present(photoTakingAlert, animated: true)
         })
         
     }
@@ -242,9 +235,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             capturedImage = pickedImage
         }
         
-        updateClassifications(for: capturedImage)
         UserData.picturesTaken.append(capturedImage)
         UserData.numPicturesTaken += 1
+        updateClassifications(for: capturedImage)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -391,9 +384,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // MARK: CLEANUP
     
     private func prepareEndOfStudy() {
+        pauseTimer()
+        firebaseManager.saveData()
+        manager.stopUpdatingLocation()
         mapView.removeAnnotation(mapAnnotations[2]) // remove Bolton Hall map marker
         mapView.removeOverlays(mapView.overlays)
-        pauseTimer()
         
         UserData.totalTimeElapsed = currentTime
         
@@ -516,7 +511,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     // if destination picture is incorrect, show this alert
     // allow overriding of taking pictures after 2 attempts
     private func presentPictureErrorAlert() {
-        let pictureErrorAlert = UIAlertController(title: "Error", message: pictureTakingAttempts > 1 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
+        let pictureErrorAlert = UIAlertController(title: "Oops", message: pictureTakingAttempts > 1 ? "The error may be on our end. Click on \"Continue Anyway\" to continue the study and take a short survey." : "Hm.. You may be looking in the wrong direction. Double check and try again.", preferredStyle: .alert)
         // one attempt to retake photo
         if(pictureTakingAttempts <= 1) {
             pictureErrorAlert.addAction(UIAlertAction(title: "Retake Photo", style: .default) { _ in
@@ -583,28 +578,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         guard let ciImage = CIImage(image: image) else { fatalError("Unable to create \(CIImage.self) from \(image).") }
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: orientation.rawValue)! ,options: [:])
-            
-            self.modelDownloadTask!.observe(.success) { snapshot in
-                // Download completed successfully
-                do {
-                    let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
-                    let mlModelObject = try MLModel(contentsOf: compiledModelURL)
-                    let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
-                    let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
-                        self?.processClassifications(for: request, error: error, image: image)
-                    })
-                    request.imageCropAndScaleOption = .centerCrop
-                    do {
-                        try handler.perform([request])
-                    } catch {
-                        print("Failed to perform classification.\n\(error.localizedDescription)")
-                    }
-                } catch {
-                    print("error!")
-                }
+        let handler = VNImageRequestHandler(ciImage: ciImage, orientation: CGImagePropertyOrientation(rawValue: orientation.rawValue)! ,options: [:])
+        do {
+            let compiledModelURL = try MLModel.compileModel(at: self.modelDownloadUrl!)
+            let mlModelObject = try MLModel(contentsOf: compiledModelURL)
+            let modelAsVNCoreModel = try VNCoreMLModel(for: mlModelObject)
+            let request = VNCoreMLRequest(model: modelAsVNCoreModel, completionHandler: { [weak self] request, error in
+                self?.processClassifications(for: request, error: error, image: image)
+            })
+            request.imageCropAndScaleOption = .centerCrop
+            do {
+                try handler.perform([request])
+            } catch {
+                print("Failed to perform classification.\n\(error.localizedDescription)")
             }
+        } catch {
+            print("error!")
         }
     }
     
