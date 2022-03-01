@@ -60,7 +60,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var modelDownloadUrl = URL(string: "")
     
     var timer: Timer = Timer()
-    let timeInterval = 0.1 // how often timestamps are taken (0.1s or 100ms)
+    let timeInterval = 1.0 // how often timestamps are taken (1.0s or 1000ms)
     var currentTime = 0.0
     var shouldRecordLocation = false
     

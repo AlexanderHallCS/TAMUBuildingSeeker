@@ -24,6 +24,8 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     @IBOutlet var destCongratsViewImageView: UIImageView!
     
     @IBOutlet var startButton: UIButton!
+    @IBOutlet var startActivityIndicator: UIActivityIndicatorView!
+    
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
     
@@ -42,7 +44,7 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     var modelDownloadUrl = URL(string: "")
     
     var timer: Timer = Timer()
-    let timeInterval = 1.0 // how often timestamps are taken
+    let timeInterval = 1.0 // how often timestamps are taken (1.0s or 1000ms)
     var currentTime = 0.0
     var shouldRecordLocation = false
     
@@ -65,17 +67,25 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         manager.requestAlwaysAuthorization()
         
         foundLandmarkActivityMonitor.startAnimating()
+        startActivityIndicator.startAnimating()
         foundLandmarkButton.isEnabled = false
+        startButton.isEnabled = false
         
         modelDownloadTask?.observe(.success) { _ in
             self.foundLandmarkActivityMonitor.stopAnimating()
+            self.startActivityIndicator.stopAnimating()
+            
             self.foundLandmarkActivityMonitor.isHidden = true
+            self.startActivityIndicator.isHidden = true
+            
+            self.startButton.isEnabled = true
+            self.startButton.setBackgroundImage(UIImage(named: "Start"), for: .normal)
         }
     }
     
     @IBAction func pressStartButton(_ sender: UIButton) {
         startButton.setBackgroundImage(UIImage(named: "StartGrayscale"), for: .normal)
-        startButton.isUserInteractionEnabled = false
+        startButton.isEnabled = false
         foundLandmarkButton.isEnabled = true
         shouldRecordLocation = true
         prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")

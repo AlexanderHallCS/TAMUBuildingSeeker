@@ -1034,11 +1034,14 @@
                                 <rect key="frame" x="317" y="964.5" width="200" height="196"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="Start"/>
+                                <state key="normal" backgroundImage="StartGrayscale"/>
                                 <connections>
                                     <action selector="pressStartButton:" destination="RkS-bZ-c98" eventType="touchUpInside" id="HBN-Wd-ZR1"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mOq-EV-exd" userLabel="StartActivityIndicator">
+                                <rect key="frame" x="407" y="1052.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vOu-xp-Ogk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1057,6 +1060,7 @@
                             </constraint>
                             <constraint firstItem="mds-Gd-oqf" firstAttribute="centerX" secondItem="oE1-mE-2pL" secondAttribute="centerX" id="DrI-Ym-U3t"/>
                             <constraint firstItem="BhT-ns-WLh" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.548387" id="Dvi-lb-r0D"/>
+                            <constraint firstItem="mOq-EV-exd" firstAttribute="centerY" secondItem="Jky-eq-w2L" secondAttribute="centerY" id="FH9-St-0qB"/>
                             <constraint firstItem="wRF-Im-h6x" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.190848" id="GbR-n1-OLc">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
@@ -1086,6 +1090,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="50"/>
                             </constraint>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="trailing" secondItem="oE1-mE-2pL" secondAttribute="trailing" multiplier="392/414" id="bKS-sg-e7Q"/>
+                            <constraint firstItem="mOq-EV-exd" firstAttribute="height" secondItem="Jky-eq-w2L" secondAttribute="height" multiplier="0.102041" id="cV5-VK-tUr"/>
                             <constraint firstItem="fBo-pk-hQj" firstAttribute="centerY" secondItem="N7c-6K-FfK" secondAttribute="centerY" id="eea-LL-j0V"/>
                             <constraint firstItem="PgQ-nq-7CT" firstAttribute="trailing" secondItem="oE1-mE-2pL" secondAttribute="trailing" multiplier="130/414" id="g5p-PL-SQl"/>
                             <constraint firstItem="mds-Gd-oqf" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.847352" id="gO2-wz-5ca"/>
@@ -1094,7 +1099,9 @@
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="top" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="420/896" id="iUX-66-5Ae">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
+                            <constraint firstItem="mOq-EV-exd" firstAttribute="width" secondItem="Jky-eq-w2L" secondAttribute="width" multiplier="0.1" id="ia5-60-QhO"/>
                             <constraint firstItem="3Lu-qb-bNd" firstAttribute="centerX" secondItem="oE1-mE-2pL" secondAttribute="centerX" id="kKn-rl-7Bh"/>
+                            <constraint firstItem="mOq-EV-exd" firstAttribute="centerX" secondItem="Jky-eq-w2L" secondAttribute="centerX" id="mds-WI-H8q"/>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.295759" id="o9a-6p-QUu">
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
@@ -1122,6 +1129,7 @@
                         <outlet property="destCongratsViewImageView" destination="yJg-dP-YnS" id="WAZ-z5-du7"/>
                         <outlet property="foundLandmarkActivityMonitor" destination="fBo-pk-hQj" id="Pqq-kb-6Wg"/>
                         <outlet property="foundLandmarkButton" destination="N7c-6K-FfK" id="g4k-ZB-ZL7"/>
+                        <outlet property="startActivityIndicator" destination="mOq-EV-exd" id="LcE-DT-pVG"/>
                         <outlet property="startButton" destination="Jky-eq-w2L" id="0nD-MY-Kr1"/>
                         <segue destination="2Oy-eU-sUh" kind="presentation" identifier="AToEnd" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="5kL-QE-c1s"/>
                     </connections>
@@ -1273,11 +1281,14 @@
                                 <rect key="frame" x="317" y="964.5" width="200" height="196"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="Start"/>
+                                <state key="normal" backgroundImage="StartGrayscale"/>
                                 <connections>
                                     <action selector="pressStartButton:" destination="8kL-oF-nFM" eventType="touchUpInside" id="n70-HL-Zip"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-At-zdm" userLabel="StartActivityIndicator">
+                                <rect key="frame" x="407" y="1052.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PYU-ng-mfX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1324,6 +1335,7 @@
                             <constraint firstItem="4kv-WL-Xlj" firstAttribute="bottom" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="865/896" constant="8" id="Yxy-nJ-NeP"/>
                             <constraint firstItem="nCk-Ne-xVP" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" id="cab-iA-FmV"/>
                             <constraint firstItem="tj9-AX-9Wc" firstAttribute="centerX" secondItem="PYU-ng-mfX" secondAttribute="centerX" id="cw8-Ih-uJg"/>
+                            <constraint firstItem="Oy8-At-zdm" firstAttribute="centerX" secondItem="4kv-WL-Xlj" secondAttribute="centerX" id="gPl-UN-oBn"/>
                             <constraint firstItem="saY-YW-agX" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.422705" id="gmQ-PZ-OWm">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-50"/>
                             </constraint>
@@ -1331,10 +1343,12 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="-60"/>
                             </constraint>
                             <constraint firstItem="bam-Xx-qp5" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" id="iMG-FE-57I"/>
+                            <constraint firstItem="Oy8-At-zdm" firstAttribute="centerY" secondItem="4kv-WL-Xlj" secondAttribute="centerY" id="iQK-O4-vR7"/>
                             <constraint firstItem="ZKe-35-lNU" firstAttribute="centerX" secondItem="saY-YW-agX" secondAttribute="centerX" id="ikC-Q6-XIC"/>
                             <constraint firstItem="cQY-ik-Db9" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="398/414" id="kH3-0d-IOD"/>
                             <constraint firstItem="paH-Ir-qMq" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.590909" id="lZi-t3-sAM"/>
                             <constraint firstItem="MaS-ey-wpw" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.590909" id="lbY-m7-Zuh"/>
+                            <constraint firstItem="Oy8-At-zdm" firstAttribute="width" secondItem="4kv-WL-Xlj" secondAttribute="width" multiplier="0.1" id="mzs-y3-Wr5"/>
                             <constraint firstItem="MaS-ey-wpw" firstAttribute="centerX" secondItem="qBT-Tv-898" secondAttribute="centerX" id="oGY-hH-ryy"/>
                             <constraint firstItem="saY-YW-agX" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.295759" id="oMx-W1-ylU">
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
@@ -1347,6 +1361,7 @@
                             <constraint firstItem="cQY-ik-Db9" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="460/896" id="uVn-GX-ZAp">
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
+                            <constraint firstItem="Oy8-At-zdm" firstAttribute="height" secondItem="4kv-WL-Xlj" secondAttribute="height" multiplier="0.102041" id="vR1-QG-3is"/>
                             <constraint firstItem="F8l-zB-WIg" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.190848" id="vc6-ui-oIX">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
@@ -1367,6 +1382,7 @@
                         <outlet property="foundLandmarkButton" destination="saY-YW-agX" id="8fu-1D-3Gs"/>
                         <outlet property="landmarkInfoView" destination="MaS-ey-wpw" id="cr1-EJ-UFC"/>
                         <outlet property="landmarkInfoViewImageView" destination="JXe-Y2-6P7" id="FBz-Ix-JMB"/>
+                        <outlet property="startActivityIndicator" destination="Oy8-At-zdm" id="NeU-Js-wCi"/>
                         <outlet property="startButton" destination="4kv-WL-Xlj" id="YIY-uZ-EMB"/>
                         <outlet property="takePhotoActivityIndicator" destination="myW-N7-VHd" id="wY7-Yd-796"/>
                         <outlet property="takePhotoButton" destination="cQY-ik-Db9" id="fvK-Vt-Wle"/>
@@ -1539,7 +1555,7 @@
         <image name="Photo Taking Tutorial Banner" width="405" height="89"/>
         <image name="Photo Taking Tutorial Button" width="317" height="522"/>
         <image name="Photo Taking Tutorial Icon" width="552" height="521"/>
-        <image name="Start" width="272" height="305"/>
+        <image name="StartGrayscale" width="272" height="305"/>
         <image name="TAMUHighlightBG" width="405" height="540"/>
         <image name="TakePictureButton" width="107" height="141"/>
         <image name="WhiteBox" width="100" height="100"/>

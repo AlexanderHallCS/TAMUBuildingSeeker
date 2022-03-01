@@ -31,6 +31,7 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     @IBOutlet var destCongratsViewImageView: UIImageView!
     
     @IBOutlet var startButton: UIButton!
+    @IBOutlet var startActivityIndicator: UIActivityIndicatorView!
     
     var previewImageView: UIImageView!
     var capturedImage: UIImage?
@@ -50,7 +51,7 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     var modelDownloadUrl = URL(string: "")
     
     var timer: Timer = Timer()
-    let timeInterval = 0.1 // how often timestamps are taken (0.1s or 100ms)
+    let timeInterval = 1.0 // how often timestamps are taken (1.0s or 1000ms)
     var currentTime = 0.0
     var shouldRecordLocation = false
     
@@ -83,18 +84,26 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         takePhotoActivityIndicator.startAnimating()
         takePhotoButton.isEnabled = false
         
+        startActivityIndicator.startAnimating()
+        startButton.isEnabled = false
+        
         modelDownloadTask?.observe(.success) { _ in
             self.foundLandmarkActivityIndicator.stopAnimating()
             self.takePhotoActivityIndicator.stopAnimating()
+            self.startActivityIndicator.stopAnimating()
             
             self.foundLandmarkActivityIndicator.isHidden = true
             self.takePhotoActivityIndicator.isHidden = true
+            self.startActivityIndicator.isHidden = true
+            
+            self.startButton.setBackgroundImage(UIImage(named: "Start"), for: .normal)
+            self.startButton.isEnabled = true
         }
     }
     
     @IBAction func pressStartButton(_ sender: UIButton) {
         startButton.setBackgroundImage(UIImage(named: "StartGrayscale"), for: .normal)
-        startButton.isUserInteractionEnabled = false
+        startButton.isEnabled = false
         shouldRecordLocation = true
         prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
         foundLandmarkButton.isEnabled = true
