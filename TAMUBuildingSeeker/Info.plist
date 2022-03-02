@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Used to share survey results</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Used to share survey results</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Used to send push notification noise</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Used to get location data</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to send push notification noise</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
