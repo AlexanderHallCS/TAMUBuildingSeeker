@@ -96,13 +96,11 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
             self.takePhotoActivityIndicator.isHidden = true
             self.startActivityIndicator.isHidden = true
             
-            self.startButton.setBackgroundImage(UIImage(named: "Start"), for: .normal)
             self.startButton.isEnabled = true
         }
     }
     
     @IBAction func pressStartButton(_ sender: UIButton) {
-        startButton.setBackgroundImage(UIImage(named: "StartGrayscale"), for: .normal)
         startButton.isEnabled = false
         shouldRecordLocation = true
         prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
@@ -287,11 +285,12 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         // take top 3 results from image classification of overall image
         wholeImageTopResults = Array(wholeImageTopResults.prefix(3))
         
-        let choppedImagesTopResults = modelManager.extractThreeByThreeCroppingTopResults(image: image, modelDownloadUrl: modelDownloadUrl!)
+        var choppedImagesTopResults = modelManager.extractThreeByThreeCroppingTopResults(image: image, modelDownloadUrl: modelDownloadUrl!)
         
-        var overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
+        choppedImagesTopResults = modelManager.filterOutDistantBuildings(results: choppedImagesTopResults, currLoc: currLoc)
+        wholeImageTopResults = modelManager.filterOutDistantBuildings(results: wholeImageTopResults, currLoc: currLoc)
         
-        overallAndSliceResults = modelManager.filterOutDistantBuildings(results: overallAndSliceResults, currLoc: currLoc);
+        let overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
         
         if(didUseFoundLandmarkFeature) {
             didUseFoundLandmarkFeature = false

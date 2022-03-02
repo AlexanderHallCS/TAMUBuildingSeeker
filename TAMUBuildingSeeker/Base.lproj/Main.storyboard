@@ -966,7 +966,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7c-6K-FfK" userLabel="FoundLandmarkButton">
-                                <rect key="frame" x="487" y="619.5" width="302.5" height="373.5"/>
+                                <rect key="frame" x="487" y="599.5" width="302.5" height="373.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="FoundBuildingButton"/>
                                 <connections>
@@ -992,7 +992,7 @@
                                 </variation>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="fBo-pk-hQj">
-                                <rect key="frame" x="597" y="772.5" width="83" height="67.5"/>
+                                <rect key="frame" x="597" y="752.5" width="83" height="67.5"/>
                             </activityIndicatorView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhT-ns-WLh" userLabel="DestCongratsView">
                                 <rect key="frame" x="188.5" y="244" width="457" height="706"/>
@@ -1031,16 +1031,16 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jky-eq-w2L" userLabel="StartButton">
-                                <rect key="frame" x="317" y="964.5" width="200" height="196"/>
+                                <rect key="frame" x="207" y="1014.5" width="420" height="119.5"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="StartGrayscale"/>
+                                <state key="normal" backgroundImage="Start Button"/>
                                 <connections>
                                     <action selector="pressStartButton:" destination="RkS-bZ-c98" eventType="touchUpInside" id="HBN-Wd-ZR1"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mOq-EV-exd" userLabel="StartActivityIndicator">
-                                <rect key="frame" x="407" y="1052.5" width="20" height="20"/>
+                                <rect key="frame" x="396" y="1068" width="42" height="12.5"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vOu-xp-Ogk"/>
@@ -1079,7 +1079,9 @@
                             <constraint firstItem="wRF-Im-h6x" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.26087" id="Pbz-hd-fIs"/>
                             <constraint firstItem="BhT-ns-WLh" firstAttribute="centerX" secondItem="oE1-mE-2pL" secondAttribute="centerX" id="Qa6-fo-f5n"/>
                             <constraint firstItem="fBo-pk-hQj" firstAttribute="height" secondItem="N7c-6K-FfK" secondAttribute="height" multiplier="0.181132" id="VfT-6s-yPN"/>
-                            <constraint firstItem="Jky-eq-w2L" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.239247" id="Wxg-TF-Iri"/>
+                            <constraint firstItem="Jky-eq-w2L" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.6" id="Wxg-TF-Iri">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-80"/>
+                            </constraint>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JyJ-FC-ahr" secondAttribute="trailing" constant="8" symbolic="YES" id="YUj-r9-CNj"/>
                             <constraint firstItem="GfM-US-HzY" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.1" id="Yfk-SE-2fg"/>
                             <constraint firstItem="PgQ-nq-7CT" firstAttribute="top" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="200/896" id="Z15-Yx-lBS"/>
@@ -1097,7 +1099,7 @@
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GfM-US-HzY" secondAttribute="trailing" constant="8" symbolic="YES" id="hUD-cI-XkQ"/>
                             <constraint firstItem="GfM-US-HzY" firstAttribute="leading" secondItem="oE1-mE-2pL" secondAttribute="trailing" multiplier="20/414" id="i6F-Me-d7w"/>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="top" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="420/896" id="iUX-66-5Ae">
-                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="mOq-EV-exd" firstAttribute="width" secondItem="Jky-eq-w2L" secondAttribute="width" multiplier="0.1" id="ia5-60-QhO"/>
                             <constraint firstItem="3Lu-qb-bNd" firstAttribute="centerX" secondItem="oE1-mE-2pL" secondAttribute="centerX" id="kKn-rl-7Bh"/>
@@ -1111,12 +1113,12 @@
                             <constraint firstItem="mds-Gd-oqf" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.0536357" id="rxM-GS-HDz">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
-                            <constraint firstItem="Jky-eq-w2L" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.164166" id="sEe-Ik-l9T"/>
+                            <constraint firstItem="Jky-eq-w2L" firstAttribute="height" secondItem="oE1-mE-2pL" secondAttribute="height" multiplier="0.1" id="sEe-Ik-l9T"/>
                             <constraint firstItem="N7c-6K-FfK" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.422705" id="tEg-xn-wvy">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-50"/>
                             </constraint>
                             <constraint firstItem="wRF-Im-h6x" firstAttribute="top" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="200/896" id="v4Y-bG-ljr"/>
-                            <constraint firstItem="Jky-eq-w2L" firstAttribute="bottom" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="865/896" constant="8" id="vO8-AN-qe9"/>
+                            <constraint firstItem="Jky-eq-w2L" firstAttribute="bottom" secondItem="oE1-mE-2pL" secondAttribute="bottom" multiplier="845/896" constant="8" id="vO8-AN-qe9"/>
                             <constraint firstItem="PgQ-nq-7CT" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.26087" id="wK2-Zn-RgC"/>
                             <constraint firstItem="3Lu-qb-bNd" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" id="wag-a5-x0i"/>
                             <constraint firstItem="JyJ-FC-ahr" firstAttribute="width" secondItem="oE1-mE-2pL" secondAttribute="width" multiplier="0.449275" id="xil-3b-78L"/>
@@ -1186,7 +1188,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQY-ik-Db9" userLabel="TakePhotoButton">
-                                <rect key="frame" x="499" y="633" width="303" height="373"/>
+                                <rect key="frame" x="499" y="608" width="303" height="373"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="TakePictureButton"/>
                                 <connections>
@@ -1194,7 +1196,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="saY-YW-agX" userLabel="FoundLandmarkButton">
-                                <rect key="frame" x="32.5" y="633" width="302.5" height="373"/>
+                                <rect key="frame" x="32.5" y="608" width="302.5" height="373"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="FoundBuildingButton"/>
                                 <connections>
@@ -1202,10 +1204,10 @@
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ZKe-35-lNU" userLabel="FoundLandmarkActivityIndicator">
-                                <rect key="frame" x="147.5" y="790" width="72.5" height="59"/>
+                                <rect key="frame" x="147.5" y="765" width="72.5" height="59"/>
                             </activityIndicatorView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="myW-N7-VHd" userLabel="TakePhotoActivityIndicator">
-                                <rect key="frame" x="614" y="790" width="73" height="59"/>
+                                <rect key="frame" x="614" y="765" width="73" height="59"/>
                             </activityIndicatorView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paH-Ir-qMq" userLabel="DestCongratsView">
                                 <rect key="frame" x="188.5" y="244" width="457" height="706"/>
@@ -1278,16 +1280,16 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kv-WL-Xlj" userLabel="StartButton">
-                                <rect key="frame" x="317" y="964.5" width="200" height="196"/>
+                                <rect key="frame" x="207" y="1014.5" width="420" height="119.5"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="StartGrayscale"/>
+                                <state key="normal" backgroundImage="Start Button"/>
                                 <connections>
                                     <action selector="pressStartButton:" destination="8kL-oF-nFM" eventType="touchUpInside" id="n70-HL-Zip"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Oy8-At-zdm" userLabel="StartActivityIndicator">
-                                <rect key="frame" x="407" y="1052.5" width="20" height="20"/>
+                                <rect key="frame" x="396" y="1068" width="42" height="12.5"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PYU-ng-mfX"/>
@@ -1307,13 +1309,15 @@
                             <constraint firstItem="Dml-Ce-wfn" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="200/896" id="CGi-se-dq1"/>
                             <constraint firstItem="paH-Ir-qMq" firstAttribute="centerY" secondItem="qBT-Tv-898" secondAttribute="centerY" id="CYY-Nq-9if"/>
                             <constraint firstItem="myW-N7-VHd" firstAttribute="centerY" secondItem="cQY-ik-Db9" secondAttribute="centerY" id="CpM-mB-8n6"/>
-                            <constraint firstItem="4kv-WL-Xlj" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.239247" id="F4n-6q-K24"/>
+                            <constraint firstItem="4kv-WL-Xlj" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.6" id="F4n-6q-K24">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-80"/>
+                            </constraint>
                             <constraint firstItem="cQY-ik-Db9" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.295759" id="Fjg-O2-FrK">
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="MaS-ey-wpw" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.548387" id="Gba-EJ-umA"/>
                             <constraint firstItem="saY-YW-agX" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="460/896" id="GiF-jb-60l">
-                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="-5"/>
                             </constraint>
                             <constraint firstItem="bam-Xx-qp5" firstAttribute="bottom" secondItem="qBT-Tv-898" secondAttribute="bottom" id="IGR-Bg-OLI"/>
                             <constraint firstItem="paH-Ir-qMq" firstAttribute="centerX" secondItem="qBT-Tv-898" secondAttribute="centerX" id="LKA-B7-FCb"/>
@@ -1332,7 +1336,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
                             <constraint firstItem="nCk-Ne-xVP" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.13" id="YDi-Hx-8na"/>
-                            <constraint firstItem="4kv-WL-Xlj" firstAttribute="bottom" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="865/896" constant="8" id="Yxy-nJ-NeP"/>
+                            <constraint firstItem="4kv-WL-Xlj" firstAttribute="bottom" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="845/896" constant="8" id="Yxy-nJ-NeP"/>
                             <constraint firstItem="nCk-Ne-xVP" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" id="cab-iA-FmV"/>
                             <constraint firstItem="tj9-AX-9Wc" firstAttribute="centerX" secondItem="PYU-ng-mfX" secondAttribute="centerX" id="cw8-Ih-uJg"/>
                             <constraint firstItem="Oy8-At-zdm" firstAttribute="centerX" secondItem="4kv-WL-Xlj" secondAttribute="centerX" id="gPl-UN-oBn"/>
@@ -1359,7 +1363,7 @@
                             <constraint firstItem="myW-N7-VHd" firstAttribute="width" secondItem="cQY-ik-Db9" secondAttribute="width" multiplier="0.24" id="rk7-6N-T17"/>
                             <constraint firstItem="Lpd-as-36e" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="200/896" id="rw5-cU-fuV"/>
                             <constraint firstItem="cQY-ik-Db9" firstAttribute="top" secondItem="qBT-Tv-898" secondAttribute="bottom" multiplier="460/896" id="uVn-GX-ZAp">
-                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="-5"/>
                             </constraint>
                             <constraint firstItem="Oy8-At-zdm" firstAttribute="height" secondItem="4kv-WL-Xlj" secondAttribute="height" multiplier="0.102041" id="vR1-QG-3is"/>
                             <constraint firstItem="F8l-zB-WIg" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.190848" id="vc6-ui-oIX">
@@ -1369,9 +1373,7 @@
                             <constraint firstItem="Lpd-as-36e" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="130/414" id="wGS-mz-9dk"/>
                             <constraint firstItem="F8l-zB-WIg" firstAttribute="trailing" secondItem="qBT-Tv-898" secondAttribute="trailing" multiplier="392/414" id="whM-N8-70Y"/>
                             <constraint firstItem="bam-Xx-qp5" firstAttribute="centerX" secondItem="qBT-Tv-898" secondAttribute="centerX" id="x2L-Mv-g1P"/>
-                            <constraint firstItem="4kv-WL-Xlj" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.164166" id="xNp-eU-MSi">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-10"/>
-                            </constraint>
+                            <constraint firstItem="4kv-WL-Xlj" firstAttribute="height" secondItem="qBT-Tv-898" secondAttribute="height" multiplier="0.1" id="xNp-eU-MSi"/>
                             <constraint firstItem="tj9-AX-9Wc" firstAttribute="width" secondItem="qBT-Tv-898" secondAttribute="width" multiplier="0.847826" id="zdB-rk-3Rt"/>
                         </constraints>
                     </view>
@@ -1555,7 +1557,7 @@
         <image name="Photo Taking Tutorial Banner" width="405" height="89"/>
         <image name="Photo Taking Tutorial Button" width="317" height="522"/>
         <image name="Photo Taking Tutorial Icon" width="552" height="521"/>
-        <image name="StartGrayscale" width="272" height="305"/>
+        <image name="Start Button" width="1036" height="286"/>
         <image name="TAMUHighlightBG" width="405" height="540"/>
         <image name="TakePictureButton" width="107" height="141"/>
         <image name="WhiteBox" width="100" height="100"/>

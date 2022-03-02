@@ -79,12 +79,10 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
             self.startActivityIndicator.isHidden = true
             
             self.startButton.isEnabled = true
-            self.startButton.setBackgroundImage(UIImage(named: "Start"), for: .normal)
         }
     }
     
     @IBAction func pressStartButton(_ sender: UIButton) {
-        startButton.setBackgroundImage(UIImage(named: "StartGrayscale"), for: .normal)
         startButton.isEnabled = false
         foundLandmarkButton.isEnabled = true
         shouldRecordLocation = true
@@ -252,11 +250,12 @@ class AViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
         // take top 3 results from image classification of overall image
         wholeImageTopResults = Array(wholeImageTopResults.prefix(3))
         
-        let choppedImagesTopResults = modelManager.extractThreeByThreeCroppingTopResults(image: image, modelDownloadUrl: modelDownloadUrl!)
+        var choppedImagesTopResults = modelManager.extractThreeByThreeCroppingTopResults(image: image, modelDownloadUrl: modelDownloadUrl!)
         
-        var overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
+        choppedImagesTopResults = modelManager.filterOutDistantBuildings(results: choppedImagesTopResults, currLoc: currLoc)
+        wholeImageTopResults = modelManager.filterOutDistantBuildings(results: wholeImageTopResults, currLoc: currLoc)
         
-        overallAndSliceResults = modelManager.filterOutDistantBuildings(results: overallAndSliceResults, currLoc: currLoc);
+        let overallAndSliceResults = Array(Set(wholeImageTopResults + choppedImagesTopResults))
         
         UserData.numTimesDestinationPictureTaken += 1
         // takes top results from classification of whole image and classification of chopped parts
