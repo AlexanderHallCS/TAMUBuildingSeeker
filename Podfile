@@ -6,12 +6,11 @@ target 'TAMUBuildingSeeker' do
   use_frameworks!
 
   # Pods for TAMUBuildingSeeker
-  platform :ios, '14.7'
+  platform :ios, '15.0'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'GeoFire/Utils'
-  pod 'ResearchKit'
 end
