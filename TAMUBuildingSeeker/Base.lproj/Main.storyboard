@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1403,9 +1402,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grey Buildings Background" translatesAutoresizingMaskIntoConstraints="NO" id="X6h-To-aWJ">
-                                <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Taking Tutorial Banner" translatesAutoresizingMaskIntoConstraints="NO" id="ySC-l7-UNr">
                                 <rect key="frame" x="0.0" y="0.0" width="834" height="231"/>
                             </imageView>
@@ -1429,9 +1425,6 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteBox" translatesAutoresizingMaskIntoConstraints="NO" id="nve-pp-pNM" userLabel="WhiteBoxBottom">
                                 <rect key="frame" x="0.0" y="900" width="834" height="222.5"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo Taking Tutorial Icon" translatesAutoresizingMaskIntoConstraints="NO" id="5en-fd-JnM">
-                                <rect key="frame" x="170" y="451.5" width="494" height="484.5"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take pictures close to the building and avoid capturing any other buildings in the background." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mwm-1w-Fs0">
                                 <rect key="frame" x="0.0" y="301.5" width="834" height="155"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="24"/>
@@ -1450,6 +1443,9 @@
                                     <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="53"/>
                                 </variation>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GoodVsBadImage" translatesAutoresizingMaskIntoConstraints="NO" id="2bn-xw-55R">
+                                <rect key="frame" x="47.5" y="488" width="739" height="428"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2RA-4u-chT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1463,6 +1459,12 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.12959" id="5v4-OR-v7M"/>
+                            <constraint firstItem="2bn-xw-55R" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="665/896" id="B2x-am-VlC">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
+                            <constraint firstItem="2bn-xw-55R" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.922302" id="Dlo-Jm-ArS">
+                                <variation key="heightClass=regular-widthClass=regular" constant="-30"/>
+                            </constraint>
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="E3M-j8-PC1"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.05" id="FGN-4C-efq"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2RA-4u-chT" secondAttribute="leading" symbolic="YES" id="JCp-WN-UeO"/>
@@ -1476,38 +1478,28 @@
                             <constraint firstItem="Mwm-1w-Fs0" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="350/896" id="Pje-8W-yc1">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-10"/>
                             </constraint>
-                            <constraint firstItem="X6h-To-aWJ" firstAttribute="centerY" secondItem="d5f-cA-qqX" secondAttribute="centerY" id="QdO-i0-nV6"/>
                             <constraint firstItem="nve-pp-pNM" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.17" id="R7q-tL-mxY">
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="vxp-aH-Ld2" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="790/896" id="Ua7-0o-hgQ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
-                            <constraint firstItem="X6h-To-aWJ" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" id="VIq-bA-8hR"/>
                             <constraint firstItem="egc-c1-vbu" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="XLH-sO-6fX"/>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="top" secondItem="d5f-cA-qqX" secondAttribute="top" id="er6-IS-Nwi"/>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.16" id="fZU-Iv-TVG">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
                             <constraint firstItem="nve-pp-pNM" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="gxR-Hb-99q"/>
+                            <constraint firstItem="2bn-xw-55R" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.333333" id="hXn-yF-NkF">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="ySC-l7-UNr" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="he8-xw-WEv"/>
+                            <constraint firstItem="2bn-xw-55R" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="ifb-pa-8Fg"/>
                             <constraint firstItem="vxp-aH-Ld2" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.95" id="j36-gE-q4M"/>
                             <constraint firstItem="Zw3-a2-LOc" firstAttribute="trailing" secondItem="d5f-cA-qqX" secondAttribute="trailing" multiplier="400/414" id="maw-Yo-kXZ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-22"/>
                             </constraint>
                             <constraint firstItem="egc-c1-vbu" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="mga-Q9-pJP"/>
-                            <constraint firstItem="5en-fd-JnM" firstAttribute="height" secondItem="d5f-cA-qqX" secondAttribute="height" multiplier="0.37257" id="rb0-4C-wn6">
-                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
-                            </constraint>
-                            <constraint firstItem="5en-fd-JnM" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" multiplier="0.831776" id="tR1-US-0l4">
-                                <variation key="heightClass=regular-widthClass=regular" constant="-200"/>
-                            </constraint>
-                            <constraint firstItem="5en-fd-JnM" firstAttribute="bottom" secondItem="d5f-cA-qqX" secondAttribute="bottom" multiplier="680/896" id="tWS-YD-T2P">
-                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
-                            </constraint>
-                            <constraint firstItem="X6h-To-aWJ" firstAttribute="width" secondItem="d5f-cA-qqX" secondAttribute="width" id="unX-Xv-Izp"/>
-                            <constraint firstItem="5en-fd-JnM" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="w0l-Yr-LXz"/>
-                            <constraint firstItem="X6h-To-aWJ" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="xYf-VX-V3X"/>
                             <constraint firstItem="vxp-aH-Ld2" firstAttribute="centerX" secondItem="d5f-cA-qqX" secondAttribute="centerX" id="yME-9g-x2Z"/>
                         </constraints>
                     </view>
@@ -1521,7 +1513,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctN-8Z-J7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Ft8-wa-Wy5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2779.7101449275365" y="83.152173913043484"/>
+            <point key="canvasLocation" x="2779.1366906474823" y="82.914572864321613"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1544,6 +1536,7 @@
         <image name="FoundBuildingButton" width="107" height="141"/>
         <image name="FoundBuildingButton2" width="327" height="125"/>
         <image name="Freedom Congrats" width="783" height="1567"/>
+        <image name="GoodVsBadImage" width="1173" height="894"/>
         <image name="GrayRectangle" width="750" height="150"/>
         <image name="Grey Buildings Background" width="405" height="540"/>
         <image name="Keep Searching Notification Button" width="327" height="125"/>
@@ -1556,7 +1549,6 @@
         <image name="Photo Bank Button" width="317" height="522"/>
         <image name="Photo Taking Tutorial Banner" width="405" height="89"/>
         <image name="Photo Taking Tutorial Button" width="317" height="522"/>
-        <image name="Photo Taking Tutorial Icon" width="552" height="521"/>
         <image name="Start Button" width="1036" height="286"/>
         <image name="TAMUHighlightBG" width="405" height="540"/>
         <image name="TakePictureButton" width="107" height="141"/>
