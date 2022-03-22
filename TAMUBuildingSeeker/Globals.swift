@@ -25,8 +25,8 @@ struct UserData {
     static var surveyStartTimes: [Double] = []
     static var surveyStopTimes: [Double] = []
     static var surveyResults: [NSString] = []
-    static var successfulRecogTimes: [Double] = []
-    static var failedRecogTimes: [Double] = []
+    static var successfulDestRecogTimes: [Double] = []
+    static var failedDestRecogTimes: [Double] = []
     // not stored in data
     // used to load in the Photo Bank
     static var picturesTaken: [UIImage] = []

@@ -90,7 +90,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.mapType = .mutedStandard
         
         manager.distanceFilter = kCLDistanceFilterNone
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         manager.requestAlwaysAuthorization()
         
         request.transportType = .walking
@@ -459,28 +459,28 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         case "Freedom from Terrorism Memorial":
             if(names.contains("Freedom from Terrorism Memorial")) {
                 UserData.numTimesDestinationWasRecognized += 1
-                UserData.successfulRecogTimes.append(currentTime)
+                UserData.successfulDestRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "Freedom Congrats")
             } else {
-                UserData.failedRecogTimes.append(currentTime)
+                UserData.failedDestRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         case "Engineering Activity Building":
             if(names.contains("Engineering Activity Building")) {
                 UserData.numTimesDestinationWasRecognized += 1
-                UserData.successfulRecogTimes.append(currentTime)
+                UserData.successfulDestRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "EAB Congrats")
             } else {
-                UserData.failedRecogTimes.append(currentTime)
+                UserData.failedDestRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         default:
             if(names.contains("Bolton Hall")) {
                 UserData.numTimesDestinationWasRecognized += 1
-                UserData.successfulRecogTimes.append(currentTime)
+                UserData.successfulDestRecogTimes.append(currentTime)
                 presentPictureSuccessAlert(imageName: "Bolton Congrats")
             } else {
-                UserData.failedRecogTimes.append(currentTime)
+                UserData.failedDestRecogTimes.append(currentTime)
                 presentPictureErrorAlert()
             }
         }
