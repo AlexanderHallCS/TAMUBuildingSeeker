@@ -445,6 +445,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             } else {
                 topResult = wholeImageTopResults.first!
             }
+            
+            // calculate closest identifiable landmark to current location
+            var minDistance = 10000.0
+            var closestIdentifiableLandmark = ""
+            for (landmarkName, landmarkCoord) in Landmarks.landmarkData {
+                let distanceToLandmark = CLLocation(latitude: currLoc.latitude, longitude: currLoc.longitude).distance(from: CLLocation(latitude: landmarkCoord.coordinate.latitude, longitude: landmarkCoord.coordinate.longitude))
+                if(distanceToLandmark < minDistance) {
+                    closestIdentifiableLandmark = landmarkName
+                    minDistance = distanceToLandmark
+                }
+            }
+            // if the closestIdentifiableLandmark is the one represented in the topResult,
+            if(closestIdentifiableLandmark == topResult) {
+                UserData.numTimesBuildingRecognizerFeatureSucceeded += 1;
+            }
             showLandmarkInformation(named: topResult)
         }
     }

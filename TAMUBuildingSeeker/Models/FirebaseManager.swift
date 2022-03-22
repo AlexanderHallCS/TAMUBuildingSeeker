@@ -35,6 +35,7 @@ class FirebaseManager {
                 "failedDestRecogTimes":UserData.failedDestRecogTimes,
                 "numPicturesTaken":UserData.numPicturesTaken,
                 "numTimesBuildingRecognizerUsed":UserData.numTimesBuildingRecognizerUsed,
+                "numTimesBuildingRecognizerFeatureSucceeded":UserData.numTimesBuildingRecognizerFeatureSucceeded,
                 "numTimesDestinationPictureTaken":UserData.numTimesDestinationPictureTaken,
                 "numTimesDestinationWasRecognized":UserData.numTimesDestinationWasRecognized
                     ]) { error in
@@ -63,6 +64,7 @@ class FirebaseManager {
             "failedDestRecogTimes":UserData.failedDestRecogTimes,
             "numPicturesTaken":UserData.numPicturesTaken,
             "numTimesBuildingRecognizerUsed":UserData.numTimesBuildingRecognizerUsed,
+            "numTimesBuildingRecognizerFeatureSucceeded":UserData.numTimesBuildingRecognizerFeatureSucceeded,
             "numTimesDestinationPictureTaken":UserData.numTimesDestinationPictureTaken,
             "numTimesDestinationWasRecognized":UserData.numTimesDestinationWasRecognized
                 ]) { error in
