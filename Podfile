@@ -13,4 +13,5 @@ target 'TAMUBuildingSeeker' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'GeoFire/Utils'
+  pod 'ResearchKit', :git => 'https://github.com/ResearchKit/ResearchKit.git', :branch => 'master'
 end
