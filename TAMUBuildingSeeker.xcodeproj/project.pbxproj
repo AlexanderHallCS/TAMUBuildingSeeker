@@ -15,6 +15,8 @@
 		1154A58A27904A27000D59DE /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58927904A27000D59DE /* EndViewController.swift */; };
 		1154A58C27916FAD000D59DE /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58B27916FAD000D59DE /* MLModelManager.swift */; };
 		1154A58E27950715000D59DE /* CViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1154A58D27950714000D59DE /* CViewController.swift */; };
+		117B646C27FE6CB200445249 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117B646927FE6AEE00445249 /* ResearchKit.framework */; };
+		117B646D27FE6CB200445249 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 117B646927FE6AEE00445249 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		117C481327A837B8000497BD /* SurveyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C481227A837B8000497BD /* SurveyHelper.swift */; };
 		11A628E827B98E2600DAC35F /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A628E727B98E2600DAC35F /* FirebaseManager.swift */; };
 		11A829F927023F320005FF3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A829F827023F320005FF3B /* AppDelegate.swift */; };
@@ -24,8 +26,6 @@
 		11A82A0227023F380005FF3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0127023F380005FF3B /* Assets.xcassets */; };
 		11A82A0527023F380005FF3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A82A0327023F380005FF3B /* LaunchScreen.storyboard */; };
 		11ABF360270AB387000EDAE8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ABF35F270AB387000EDAE8 /* MapViewController.swift */; };
-		11BFB68827CFDECB00255C7D /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11BFB68527CFDEB300255C7D /* ResearchKit.framework */; platformFilter = ios; };
-		11BFB68927CFDECB00255C7D /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11BFB68527CFDEB300255C7D /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11E1632D277D1C140074A782 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E1632C277D1C140074A782 /* Globals.swift */; };
 		11E16332277D250D0074A782 /* DViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16331277D250D0074A782 /* DViewController.swift */; };
 		11E16336277D25360074A782 /* AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E16335277D25360074A782 /* AViewController.swift */; };
@@ -34,16 +34,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		11BFB68427CFDEB300255C7D /* PBXContainerItemProxy */ = {
+		117B646827FE6AEE00445249 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 11BFB67E27CFDEB200255C7D /* ResearchKit.xcodeproj */;
+			containerPortal = 117B646227FE6AED00445249 /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B183A5951A8535D100C76870;
 			remoteInfo = ResearchKit;
 		};
-		11BFB68627CFDEB300255C7D /* PBXContainerItemProxy */ = {
+		117B646A27FE6AEE00445249 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 11BFB67E27CFDEB200255C7D /* ResearchKit.xcodeproj */;
+			containerPortal = 117B646227FE6AED00445249 /* ResearchKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
 			remoteInfo = ResearchKitTests;
@@ -57,7 +57,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				11BFB68927CFDECB00255C7D /* ResearchKit.framework in Embed Frameworks */,
+				117B646D27FE6CB200445249 /* ResearchKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +76,7 @@
 		1154A58927904A27000D59DE /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		1154A58B27916FAD000D59DE /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
 		1154A58D27950714000D59DE /* CViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CViewController.swift; sourceTree = "<group>"; };
+		117B646227FE6AED00445249 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../Downloads/ResearchKit-2.0.0/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		117C481227A837B8000497BD /* SurveyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SurveyHelper.swift; path = TAMUBuildingSeeker/Models/SurveyHelper.swift; sourceTree = SOURCE_ROOT; };
 		117C481427A84255000497BD /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		117C481827A84579000497BD /* ResearchKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ResearchKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +92,6 @@
 		11ABF35F270AB387000EDAE8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		11B8852C2770833600788483 /* Concept Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Concept Bold.ttf"; sourceTree = "<group>"; };
 		11B8852D2770833800788483 /* Concept Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Concept Medium.ttf"; sourceTree = "<group>"; };
-		11BFB67E27CFDEB200255C7D /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../Assets Storage/ResearchKit-main/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		11E1632C277D1C140074A782 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		11E16331277D250D0074A782 /* DViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DViewController.swift; sourceTree = "<group>"; };
 		11E16335277D25360074A782 /* AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AViewController.swift; sourceTree = "<group>"; };
@@ -106,8 +106,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				114DC87527CCD5F000F4922D /* MapKit.framework in Frameworks */,
-				11BFB68827CFDECB00255C7D /* ResearchKit.framework in Frameworks */,
 				DFFEAB96CA9452F8F8FF9BB5 /* Pods_TAMUBuildingSeeker.framework in Frameworks */,
+				117B646C27FE6CB200445249 /* ResearchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,10 +124,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		117B646327FE6AED00445249 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				117B646927FE6AEE00445249 /* ResearchKit.framework */,
+				117B646B27FE6AEE00445249 /* ResearchKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		11A829EC27023F320005FF3B = {
 			isa = PBXGroup;
 			children = (
-				11BFB67E27CFDEB200255C7D /* ResearchKit.xcodeproj */,
+				117B646227FE6AED00445249 /* ResearchKit.xcodeproj */,
 				11A829F727023F320005FF3B /* TAMUBuildingSeeker */,
 				11A829F627023F320005FF3B /* Products */,
 				5D5CFA5476B87C3DD4EFA539 /* Pods */,
@@ -168,15 +177,6 @@
 				11B8852D2770833800788483 /* Concept Medium.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		11BFB67F27CFDEB200255C7D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				11BFB68527CFDEB300255C7D /* ResearchKit.framework */,
-				11BFB68727CFDEB300255C7D /* ResearchKitTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		11E1632E277D1C740074A782 /* Supporting Files */ = {
@@ -285,8 +285,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 11BFB67F27CFDEB200255C7D /* Products */;
-					ProjectRef = 11BFB67E27CFDEB200255C7D /* ResearchKit.xcodeproj */;
+					ProductGroup = 117B646327FE6AED00445249 /* Products */;
+					ProjectRef = 117B646227FE6AED00445249 /* ResearchKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -297,18 +297,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		11BFB68527CFDEB300255C7D /* ResearchKit.framework */ = {
+		117B646927FE6AEE00445249 /* ResearchKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ResearchKit.framework;
-			remoteRef = 11BFB68427CFDEB300255C7D /* PBXContainerItemProxy */;
+			remoteRef = 117B646827FE6AEE00445249 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		11BFB68727CFDEB300255C7D /* ResearchKitTests.xctest */ = {
+		117B646B27FE6AEE00445249 /* ResearchKitTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ResearchKitTests.xctest;
-			remoteRef = 11BFB68627CFDEB300255C7D /* PBXContainerItemProxy */;
+			remoteRef = 117B646A27FE6AEE00445249 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -539,7 +539,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TAMUBuildingSeeker/TAMUBuildingSeeker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
@@ -559,7 +559,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -581,7 +581,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TAMUBuildingSeeker/TAMUBuildingSeekerRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TAMUBuildingSeeker/Info.plist;
@@ -601,7 +601,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
