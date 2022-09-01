@@ -92,7 +92,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         manager.distanceFilter = kCLDistanceFilterNone
         manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         manager.requestAlwaysAuthorization()
-        
         request.transportType = .walking
         
         foundLandmarkActivityIndicator.startAnimating()
@@ -126,19 +125,37 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
-        case .authorizedWhenInUse, .authorizedAlways:
-            manager.startUpdatingLocation()
-            shouldRecordLocation = true
-            prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
-        case .notDetermined:
-            break
-        default:
-            let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
-                alert.removeFromParent()
-            })
-            self.present(alert, animated: true, completion: nil)
+        if #available(iOS 14.0, *) {
+            switch manager.authorizationStatus {
+            case .authorizedWhenInUse, .authorizedAlways:
+                manager.startUpdatingLocation()
+                shouldRecordLocation = true
+                prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
+            case .notDetermined:
+                break
+            default:
+                let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                    alert.removeFromParent()
+                })
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
+            switch CLLocationManager.authorizationStatus() {
+            case .authorizedWhenInUse, .authorizedAlways:
+                manager.startUpdatingLocation()
+                shouldRecordLocation = true
+                prepareDestination(title: "Start!", message: "Head to the Freedom from Terrorism Memorial")
+            case .notDetermined:
+                break
+            default:
+                let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                    alert.removeFromParent()
+                })
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
@@ -344,7 +361,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner,.badge])
+        if #available(iOS 14.0, *) {
+            completionHandler([.banner,.badge])
+        } else {
+            // Fallback on earlier versions
+            completionHandler([.badge])
+        }
     }
     
     // MARK: Time

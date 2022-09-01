@@ -110,17 +110,33 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
-        case .authorizedWhenInUse, .authorizedAlways:
-            manager.startUpdatingLocation()
-        case .notDetermined:
-            break
-        default:
-            let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
-                alert.removeFromParent()
-            })
-            self.present(alert, animated: true, completion: nil)
+        if #available(iOS 14.0, *) {
+            switch manager.authorizationStatus {
+            case .authorizedWhenInUse, .authorizedAlways:
+                manager.startUpdatingLocation()
+            case .notDetermined:
+                break
+            default:
+                let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                    alert.removeFromParent()
+                })
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            // Fallback on earlier versions
+            switch CLLocationManager.authorizationStatus() {
+            case .authorizedWhenInUse, .authorizedAlways:
+                manager.startUpdatingLocation()
+            case .notDetermined:
+                break
+            default:
+                let alert = UIAlertController(title: "Error", message: "Please enable location tracking in the Settings app!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                    alert.removeFromParent()
+                })
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
