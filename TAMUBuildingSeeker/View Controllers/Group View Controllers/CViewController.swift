@@ -326,18 +326,20 @@ class CViewController: UIViewController, UIImagePickerControllerDelegate, CLLoca
             } else {
                 topResult = wholeImageTopResults.first!
             }
-            // calculate closest identifiable landmark to current location
-            var minDistance = 10000.0
-            var closestIdentifiableLandmark = ""
+            
+            // minimum distance a landmark must be to be counted as close to the user
+            let minDistance = 100.0 // meters
+            var identifiableLandmarksInMinDistance: [String] = []
+            // finds all identifiable landmarks within 100 meters of the user
             for (landmarkName, landmarkCoord) in Landmarks.landmarkData {
                 let distanceToLandmark = CLLocation(latitude: currLoc.latitude, longitude: currLoc.longitude).distance(from: CLLocation(latitude: landmarkCoord.coordinate.latitude, longitude: landmarkCoord.coordinate.longitude))
-                if(distanceToLandmark < minDistance) {
-                    closestIdentifiableLandmark = landmarkName
-                    minDistance = distanceToLandmark
+                if(distanceToLandmark <= minDistance) {
+                    identifiableLandmarksInMinDistance.append(landmarkName)
                 }
             }
-            // if the closestIdentifiableLandmark is the one represented in the topResult,
-            if(closestIdentifiableLandmark == topResult) {
+            
+            // if the landmark recognized is within 100 meters of the user, then mark as finding the correct landmark
+            if(identifiableLandmarksInMinDistance.contains(topResult)) {
                 UserData.numTimesBuildingRecognizerFeatureSucceeded += 1;
             }
             showLandmarkInformation(named: topResult)
