@@ -34,8 +34,6 @@ class MLModelManager {
     
     public func renameResult(result: String) -> String {
         switch result {
-        case "ANNEX_LIBR":
-            return "Evans Library Annex"
         case "Biological Sciences Building East (BSBE) - Department of Biology":
             return "Biological Sciences Building East"
         case "BSBW":
@@ -50,18 +48,12 @@ class MLModelManager {
             return "Engineering Activity Building"
         case "HELD":
             return "Heldenfelds Hall"
-        case "LAAH":
-            return "Liberal Arts & Humanities Building"
         case "Military Sciences Building(Trigon)":
             return "Trigon"
-        case "PAV":
-            return "Pavilion"
         case "PETR":
             return "Peterson Building"
         case "RDER":
             return "Rudder Tower"
-        case "SBISA":
-            return "SBISA Dining Hall"
         case "SCC":
             return "Student Computing Center"
         case "Texas A_M Prospective Student Center - Aggieland":

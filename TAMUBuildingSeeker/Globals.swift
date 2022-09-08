@@ -68,7 +68,7 @@ struct Landmarks {
         "Student Computing Center":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.615911341535956, longitude: -96.33779557186001), imageFileName: "Student Computing"),
         "Shaping the Future Statue":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.616367359672434, longitude: -96.3412343951232), imageFileName: "Shaping the Future"),
         "Student Services Building":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.613970529551654, longitude: -96.34132947171938), imageFileName: "Student Services"),
-        "Trigon":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.614346683415967, longitude: -96.33926316433066), imageFileName: "Military Sciences")]
+        "Trigon":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.614346683415967, longitude: -96.33926316433066), imageFileName: "Military Sciences"),"Koldus Building":Landmark(coordinate: CLLocationCoordinate2D(latitude: 30.612171028742992, longitude: -96.33966660122215), imageFileName: "Koldus")]
 }
 
 extension UIView {
